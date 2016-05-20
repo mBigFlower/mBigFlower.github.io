@@ -68,6 +68,6 @@ theme: hueman
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
+  type: github
   repo: git@github.com:mBigFlower/mBigFlower.github.io
   branch: master
