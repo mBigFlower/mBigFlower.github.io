@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Fresco 与 RecyclerView | 春风十里</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="get,android" />
+    
+    <meta name="description" content="Fresco图片属性提供了各种图 不存在scaleType 而是换成了自己的，具体如下：摘取自这里
+
+正常图：actualImageScaleType=”focusCrop” //设置图片缩放. 通常使用focusCrop,该属性值会通过算法把人头像放在中间
+占位图：placeholderImage   —&amp;gt;&amp;gt; placeholderImageScaleType
+加载图：progres">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fresco 与 RecyclerView">
+<meta property="og:url" content="http://flowerfat.com/2015/08/06/学习笔记/index.html">
+<meta property="og:site_name" content="春风十里">
+<meta property="og:description" content="Fresco图片属性提供了各种图 不存在scaleType 而是换成了自己的，具体如下：摘取自这里
+
+正常图：actualImageScaleType=”focusCrop” //设置图片缩放. 通常使用focusCrop,该属性值会通过算法把人头像放在中间
+占位图：placeholderImage   —&amp;gt;&amp;gt; placeholderImageScaleType
+加载图：progres">
+<meta property="og:updated_time" content="2015-11-09T19:54:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fresco 与 RecyclerView">
+<meta name="twitter:description" content="Fresco图片属性提供了各种图 不存在scaleType 而是换成了自己的，具体如下：摘取自这里
+
+正常图：actualImageScaleType=”focusCrop” //设置图片缩放. 通常使用focusCrop,该属性值会通过算法把人头像放在中间
+占位图：placeholderImage   —&amp;gt;&amp;gt; placeholderImageScaleType
+加载图：progres">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Fighting</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Nodejs/">Nodejs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/github/">github</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/knowledge/">knowledge</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/动画/">动画</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/安卓/">安卓</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    uncategorized
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-学习笔记" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Fresco 与 RecyclerView
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2015/08/06/学习笔记/" class="article-date">
+    <time datetime="2015-08-05T16:00:00.000Z" itemprop="datePublished">2015-08-06</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/get/">get</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="Fresco"><a href="#Fresco" class="headerlink" title="Fresco"></a>Fresco</h2><h3 id="图片属性"><a href="#图片属性" class="headerlink" title="图片属性"></a>图片属性</h3><p>提供了各种图 不存在scaleType 而是换成了自己的，具体如下：<br><a href="http://blog.csdn.net/wa991830558/article/details/46005063" title="Fresco最最最简单使用" target="_blank" rel="external">摘取自这里</a></p>
+<ol>
+<li>正常图：actualImageScaleType=”focusCrop” //设置图片缩放. 通常使用focusCrop,该属性值会通过算法把人头像放在中间</li>
+<li>占位图：placeholderImage   —&gt;&gt; placeholderImageScaleType</li>
+<li>加载图：progressBarImage   —&gt;&gt; progressBarImageScaleType</li>
+<li>失败图：failureImage       —&gt;&gt; failureImageScaleType</li>
+<li>重载图：retryImage         —&gt;&gt; retryImageScaleType</li>
+</ol>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>修改图片尺寸</p>
+<pre><code>Uri uri = &quot;file:///mnt/sdcard/MyApp/myfile.jpg&quot;;
+int width = 50, height = 50;
+ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
+    .setResizeOptions(new ResizeOptions(width, height))
+    .build();
+PipelineDraweeController controller = Fresco.newDraweeControllerBuilder()
+    .setOldController(mDraweeView.getController())
+    .setImageRequest(request)
+    .build();
+mSimpleDraweeView.setController(controller);
+</code></pre><p>自动旋转</p>
+<pre><code>ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
+    .setAutoRotateEnabled(true)
+    .build();
+</code></pre><a id="more"></a>
+<h2 id="又是一个坑"><a href="#又是一个坑" class="headerlink" title="又是一个坑"></a>又是一个坑</h2><h3 id="RecycleView"><a href="#RecycleView" class="headerlink" title="RecycleView"></a>RecycleView</h3><p>在使用RecyclerView的时候, 错误提示：</p>
+<pre><code>java.lang.IllegalStateException: The specified child already has a parent. You must call removeView() on the child&apos;s parent first.
+</code></pre><p>不明觉厉，什么鬼？又特么百度不到。<br>可以验证，不是布局的问题。辣么来看java中的code：</p>
+<pre><code>public void recyclerViewInit() {
+    mRecyclerView.setHasFixedSize(true);
+    // use a linear layout manager
+    LinearLayoutManager manager = new LinearLayoutManager(this);
+    mRecyclerView.setLayoutManager(manager);
+
+    // specify an adapter (see also next example)
+    mAdapter = new TestAdapter(strs);
+    mRecyclerView.setAdapter(mAdapter);
+}
+</code></pre><p>打过log后发现 多半是自己的Adapter太搓。 果然换了个别人的Adapter就好了。我了个*。<br>疯狂对比两者的不同，发现背锅的在这里：</p>
+<p>。。。<br>嗯 这里先卖个关子，让我们先来看看超级ListView的的Adapter该怎么搞，就以跟ListView的不同来重点描述吧</p>
+<pre><code>public class className extends RecyclerView.Adapter&lt;className.ViewHolder&gt;
+</code></pre><p>这里继承的不再是BaseAdapter了。有人会问了，classNmae后面的.ViewHolder是啥子？我们需要在这个adapter类里定义一个</p>
+<pre><code>public static class ViewHolder extends RecyclerView.ViewHolder {
+    // each data item is just a string in this case
+    public TextView mTextView;
+    public ViewHolder(View v) {
+        super(v);
+        mTextView = (TextView)v.findViewById(R.id.adapter_test_tv);
+    }
+}
+</code></pre><p>没错，这个和以前的ViewHolder类似.</p>
+<h3 id="必须要重写的东西也变了，我们来分别说下这三个是干啥的："><a href="#必须要重写的东西也变了，我们来分别说下这三个是干啥的：" class="headerlink" title="必须要重写的东西也变了，我们来分别说下这三个是干啥的："></a>必须要重写的东西也变了，我们来分别说下这三个是干啥的：</h3><p>– 没啥说的 返回条目数</p>
+<pre><code>public int getItemCount() { return mDatas.size(); } 
+</code></pre><p>– 将数据显示</p>
+<pre><code>public void onBindViewHolder(final ViewHolder holder, int position) {
+    holder.mTextView.setText(mDatas.get(position));
+}
+</code></pre><p>– 获取布局，并定义ViewHolder，将布局传递给ViewHolder</p>
+<pre><code>public TestAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    // create a new view
+    View v = LayoutInflater.from(parent.getContext())
+        .inflate(R.layout.adapter_recycle, parent, false);
+       ViewHolder vh = new ViewHolder(v);
+    return vh;
+}
+</code></pre><blockquote>
+<p>来个完整版的adapter</p>
+</blockquote>
+<pre><code>public class TestAdapter extends RecyclerView.Adapter&lt;TestAdapter.ViewHolder&gt; {
+
+    private String[] mDatas;
+
+    // Provide a reference to the views for each data item
+    // Complex data items may need more than one view per item, and
+    // you provide access to all the views for a data item in a view holder
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        // each data item is just a string in this case
+        public TextView mTextView;
+        public ViewHolder(View v) {
+            super(v);
+            mTextView = (TextView)v.findViewById(R.id.adapter_test_tv);
+        }
+    }
+
+       // Provide a suitable constructor (depends on the kind of dataset)
+    public TestAdapter(String[] myDataset) {
+           mDatas = myDataset;
+    }
+
+    @Override
+    public TestAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // create a new view
+        View v = LayoutInflater.from(parent.getContext())
+            .inflate(R.layout.adapter_recycle, parent, false);
+        ViewHolder vh = new ViewHolder(v);
+        return vh;
+    }
+
+    @Override
+    public void onBindViewHolder(TestAdapter.ViewHolder holder, int position) {
+        holder.mTextView.setText(mDatas[position]);
+    }
+
+    @Override
+    public int getItemCount() {
+        return mDatas.length;
+    }
+}
+</code></pre><p>细细品味下来，会发现其实特么跟以前差不多嘛，只是结构换了。但为啥大家都说比ListView好呢？我们下回分解-.-</p>
+<h2 id="哦，对了-背锅的在这里"><a href="#哦，对了-背锅的在这里" class="headerlink" title="哦，对了 背锅的在这里"></a>哦，对了 背锅的在这里</h2><blockquote>
+<p>错误的地方： 这个是我从一本书里copy过来的，注意第一个函数的ViewHolder(TextView v)</p>
+</blockquote>
+<pre><code>public static class ViewHolder extends RecyclerView.ViewHolder {
+    // each data item is just a string in this case
+    public TextView mTextView;
+    public ViewHolder(TextView v) {
+        super(v);
+        mTextView = v;
+    }
+}
+
+// Create new views (invoked by the layout manager)
+@Override
+public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,int viewType) {
+    // create a new view
+    View v = LayoutInflater.from(parent.getContext())
+       .inflate(R.layout.my_text_view, parent, false);
+    // set the view&apos;s size, margins, paddings and layout parameters
+    ...
+    ViewHolder vh = new ViewHolder(v);
+    return vh;
+}
+</code></pre>
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://flowerfat.com/2015/08/06/学习笔记/" data-id="cioh5m94s001qsgrycvvol21q" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/mBigflower" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/flowerfat" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/08/06/云南/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            彩云之癫
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/08/05/2015-08-05/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Tips 0805</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/21/各种链接/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/21/各种链接/" class="title">三方链接</a></p>
+                            <p class="item-date"><time datetime="2016-05-21T12:51:20.286Z" itemprop="datePublished">2016-05-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/11/10/List中的Contains1110/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/安卓/">安卓</a></p>
+                            <p class="item-title"><a href="/2015/11/10/List中的Contains1110/" class="title">List中的Contains</a></p>
+                            <p class="item-date"><time datetime="2015-11-09T16:00:00.000Z" itemprop="datePublished">2015-11-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/11/03/nodejs搞服务器1103/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2015/11/03/nodejs搞服务器1103/" class="title">nodejs搞服务器</a></p>
+                            <p class="item-date"><time datetime="2015-11-02T16:00:00.000Z" itemprop="datePublished">2015-11-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/10/21/天狗菜谱（textview与html）1021/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://i.imgur.com/9GgXiw2.png)" alt="使用TextView显示Html" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/安卓/">安卓</a></p>
+                            <p class="item-title"><a href="/2015/10/21/天狗菜谱（textview与html）1021/" class="title">使用TextView显示Html</a></p>
+                            <p class="item-date"><time datetime="2015-10-20T16:00:00.000Z" itemprop="datePublished">2015-10-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/10/21/nodejs入门三1021/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2015/10/21/nodejs入门三1021/" class="title">nodejs入门（三）心得</a></p>
+                            <p class="item-date"><time datetime="2015-10-20T16:00:00.000Z" itemprop="datePublished">2015-10-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/knowledge/">knowledge</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/动画/">动画</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安卓/">安卓</a><span class="category-list-count">11</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">20</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dear/">dear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/get/">get</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/project/">project</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分享/">分享</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/天气预报/">天气预报</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/控件/">控件</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/无标签/">无标签</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日记/">日记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接/">链接</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/dear/" style="font-size: 10px;">dear</a> <a href="/tags/get/" style="font-size: 13.33px;">get</a> <a href="/tags/project/" style="font-size: 13.33px;">project</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/基础/" style="font-size: 16.67px;">基础</a> <a href="/tags/天气预报/" style="font-size: 13.33px;">天气预报</a> <a href="/tags/工具/" style="font-size: 13.33px;">工具</a> <a href="/tags/控件/" style="font-size: 16.67px;">控件</a> <a href="/tags/无标签/" style="font-size: 10px;">无标签</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/链接/" style="font-size: 10px;">链接</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.baidu.com">Baidu</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 胖小了个花</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://flowerfat.com/2015/08/06/学习笔记/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

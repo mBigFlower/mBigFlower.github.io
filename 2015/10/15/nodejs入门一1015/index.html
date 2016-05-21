@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>nodejs入门（一）URL与HTTP | 春风十里</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="基础" />
+    
+    <meta name="description" content="相关
+官网：https://nodejs.org/en/
+API：https://nodejs.org/api/
+慕课网：进击Node.js基础（一）：http://www.imooc.com/learn/348
+
+说点啥一直想做一个属于自己的应用。于是“被迫”就来学一门后台相关的语言。以前从没搞过相关的，node应该算是我的启蒙语言了吧。
+js嘛 很难想不到JavaScript，学会了这个，是不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nodejs入门（一）URL与HTTP">
+<meta property="og:url" content="http://flowerfat.com/2015/10/15/nodejs入门一1015/index.html">
+<meta property="og:site_name" content="春风十里">
+<meta property="og:description" content="相关
+官网：https://nodejs.org/en/
+API：https://nodejs.org/api/
+慕课网：进击Node.js基础（一）：http://www.imooc.com/learn/348
+
+说点啥一直想做一个属于自己的应用。于是“被迫”就来学一门后台相关的语言。以前从没搞过相关的，node应该算是我的启蒙语言了吧。
+js嘛 很难想不到JavaScript，学会了这个，是不">
+<meta property="og:image" content="http://i.imgur.com/18RzCe9.png">
+<meta property="og:updated_time" content="2015-11-09T19:54:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nodejs入门（一）URL与HTTP">
+<meta name="twitter:description" content="相关
+官网：https://nodejs.org/en/
+API：https://nodejs.org/api/
+慕课网：进击Node.js基础（一）：http://www.imooc.com/learn/348
+
+说点啥一直想做一个属于自己的应用。于是“被迫”就来学一门后台相关的语言。以前从没搞过相关的，node应该算是我的启蒙语言了吧。
+js嘛 很难想不到JavaScript，学会了这个，是不">
+<meta name="twitter:image" content="http://i.imgur.com/18RzCe9.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Fighting</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Nodejs/">Nodejs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/github/">github</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/knowledge/">knowledge</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/动画/">动画</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/安卓/">安卓</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Nodejs/">Nodejs</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-nodejs入门一1015" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        nodejs入门（一）URL与HTTP
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2015/10/15/nodejs入门一1015/" class="article-date">
+    <time datetime="2015-10-14T16:00:00.000Z" itemprop="datePublished">2015-10-15</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="相关"><a href="#相关" class="headerlink" title="相关"></a>相关</h1><ul>
+<li>官网：<a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a></li>
+<li>API：<a href="https://nodejs.org/api/" target="_blank" rel="external">https://nodejs.org/api/</a></li>
+<li>慕课网：进击Node.js基础（一）：<a href="http://www.imooc.com/learn/348" target="_blank" rel="external">http://www.imooc.com/learn/348</a></li>
+</ul>
+<h1 id="说点啥"><a href="#说点啥" class="headerlink" title="说点啥"></a>说点啥</h1><p>一直想做一个属于自己的应用。于是“被迫”就来学一门后台相关的语言。以前从没搞过相关的，node应该算是我的启蒙语言了吧。</p>
+<p>js嘛 很难想不到JavaScript，学会了这个，是不是再学Web就简单了？</p>
+<p>我是从慕课网看视频学起的，这篇文章算是学习笔记吧，视频地址见下面的相关</p>
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p>对应api地址：<a href="https://nodejs.org/api/url.html" target="_blank" rel="external">https://nodejs.org/api/url.html</a></p>
+<p>对应慕课网视频地址：<a href="http://www.imooc.com/video/6710" target="_blank" rel="external">http://www.imooc.com/video/6710</a></p>
+<p>api里乍一看啥玩意儿啊，全是英文，然后我就去看视频了。看完视频反过来再看api，卧槽，原来前面那一大坨Example是这个啊，哈哈，我们一起来看</p>
+<p>我们在cmd中输入node，回车，便进入了nodejs的环境。 输入url，回车，我们会看到：</p>
+<pre><code>{
+  parse: [Function: urlParse],
+  resolve: [Function: urlResolve],
+  resolveObject: [Function: urlResolveObject],
+  format: [Function: urlFormat],
+  Url: [Function: Url] 
+}
+</code></pre><p>这就是我们url的几个方法。其中最重要的当属 parse 了。 api中如下，我也不懂。。。：</p>
+<pre><code>url.parse(urlStr, [parseQueryString], [slashesDenoteHost])
+</code></pre><h3 id="parse基础"><a href="#parse基础" class="headerlink" title="parse基础"></a>parse基础</h3><p>作用：解析 url</p>
+<p>输入：url.parse(‘<a href="http://www.flowerfat.com" target="_blank" rel="external">http://www.flowerfat.com</a>‘)<br>输出：</p>
+<pre><code>{
+  protocol: &apos;http:&apos;,
+  slashes: true,
+  auth: null,
+  host: &apos;www.flowerfat.com&apos;,
+  port: null,
+  hostname: &apos;www.flowerfat.com&apos;,
+  hash: null,
+  search: null,
+  query: null,
+  pathname: &apos;/&apos;,
+  path: &apos;/&apos;,
+  href: &apos;http://www.flowerfat.com/&apos; 
+}
+</code></pre><p>跟着视频走到这里的时候，虽然scott哥说了每个的含义，不过还是没咋懂啊！直到后来看到api我说的那一坨，哦吼，每个都有对应的解释啊。<br>具体我就不多说了，英文也不难，大家一看就懂了<br><a id="more"></a></p>
+<h3 id="parse进阶"><a href="#parse进阶" class="headerlink" title="parse进阶"></a>parse进阶</h3><p>输入：url.parse(‘<a href="http://www.flowerfat.com" target="_blank" rel="external">http://www.flowerfat.com</a>‘, true)<br>第二个参数的目的：解析query时，是否用QueryString这个module。<br>这个设置为true的时候，解析到的query就成了键值对的形式。</p>
+<p>输入：url.parse(‘//www.flowerfat.com’, true)<br>出问题了，host都得不到</p>
+<p>输入：url.parse(‘//www.flowerfat.com’, true, true)<br>结果正确了，第三个参数默认是false，这里设置成true ，就能正确解析了。<br>这里我没懂，scott哥也没说这个参数是干啥的。不过我们来看api中：slashesDenoteHost是第三个参数的名字，百度了下，网上的说法是它会去认//与/，这两个中间的当作host。 </p>
+<p>具体我也不造理解的对不，又懂得朋友可以批评指教。</p>
+<h3 id="format"><a href="#format" class="headerlink" title="format"></a>format</h3><p>作用：与parse相反，即把上面解析输出的结果丢到这个函数里，返回url输入</p>
+<p>输入：url.format( {protocol: ‘http:’,……,path: ‘/‘,href: ‘<a href="http://www.flowerfat.com/" target="_blank" rel="external">http://www.flowerfat.com/</a>‘ } );<br>输出：’<a href="http://www.flowerfat.com" target="_blank" rel="external">http://www.flowerfat.com</a>‘</p>
+<h3 id="resolve"><a href="#resolve" class="headerlink" title="resolve"></a>resolve</h3><p>作用：我理解是拼接，有一定规则的拼接</p>
+<p>详情正如api里的Example：</p>
+<pre><code>url.resolve(&apos;/one/two/three&apos;, &apos;four&apos;)         // &apos;/one/two/four&apos;
+url.resolve(&apos;http://example.com/&apos;, &apos;/one&apos;)    // &apos;http://example.com/one&apos;
+url.resolve(&apos;http://example.com/one&apos;, &apos;/two&apos;) // &apos;http://example.com/two&apos;
+</code></pre><h2 id="Query-Strings"><a href="#Query-Strings" class="headerlink" title="Query Strings"></a>Query Strings</h2><p>懂的人都知道，我们用get方法跟服务器交流的时候，’？’后面的请求参数很重要。那么这个问号后面的请求参数就是我们parse后的query的值</p>
+<p>对应api地址：<a href="https://nodejs.org/api/querystring.html" target="_blank" rel="external">https://nodejs.org/api/querystring.html</a></p>
+<p>对应慕课网视频地址：<a href="http://www.imooc.com/video/6711" target="_blank" rel="external">http://www.imooc.com/video/6711</a></p>
+<h3 id="stringify"><a href="#stringify" class="headerlink" title="stringify"></a>stringify</h3><p>序列化：把键值对变成网址的形式</p>
+<h3 id="parse"><a href="#parse" class="headerlink" title="parse"></a>parse</h3><p>反序列化：相当于前面我们提到的url.parse方法中的第二个参数，这是为true</p>
+<h3 id="escape、unescape"><a href="#escape、unescape" class="headerlink" title="escape、unescape"></a>escape、unescape</h3><p>转义和反转义</p>
+<h2 id="HTTP源码"><a href="#HTTP源码" class="headerlink" title="HTTP源码"></a>HTTP源码</h2><p>这可是个大工程，视频里在这部分说了一堆，我表示我睡着了。。。</p>
+<p>中间部分都是一些需要了解的概念和知识，这些有助于我们后面关于HTTP源码的了解，这里就不赘述了。</p>
+<p>对应api地址：<a href="https://nodejs.org/api/http.html" target="_blank" rel="external">https://nodejs.org/api/http.html</a></p>
+<p>对应慕课网视频地址：<a href="http://www.imooc.com/video/7963" target="_blank" rel="external">http://www.imooc.com/video/7963</a></p>
+<p>直接来看源码部分(源码来自Github！but！我在github上找不到视频里的那个工程啊，什么鬼，于是就选了个下面的这个，朋友们海涵)</p>
+<p>nodejs对应源码地址：<a href="https://github.com/nodejs/node" target="_blank" rel="external">https://github.com/nodejs/node</a></p>
+<p><strong>然后在github页面按下t, 就是工程的搜索功能！卧槽，这个有点厉害</strong> 然后搜索http.js，就是我们要的HTTP的源码了哈</p>
+<pre><code>var http = require(&apos;http&apos;)
+
+http
+    .createServer(function(req, res) {
+        res.writeHead(200, {&apos;Content-Type&apos;:&apos;text/plain&apos;})
+        res.write(&apos;Hello Ming&apos;)
+        res.end()
+    })
+    .listen(2015)
+</code></pre><p>我表示这段真没啥好说的。视频里针对上面代码的由来，追踪了下github上的源码。十几分钟的视频下来我是懵圈了，根本不明所以。朋友们你们加油，不说了，都是泪。</p>
+<h2 id="HTTP-爬虫"><a href="#HTTP-爬虫" class="headerlink" title="HTTP 爬虫"></a>HTTP 爬虫</h2><p>作为一个干活分享者，显然上面的乱七八糟的不是我的风格，这里继续copy视频里的好东西。</p>
+<p>对应视频地址：<a href="http://www.imooc.com/video/7965" target="_blank" rel="external">http://www.imooc.com/video/7965</a></p>
+<p><img src="http://i.imgur.com/18RzCe9.png" alt=""></p>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>所谓爬数据，我理解就是把我们需要的东西get到。（其实爬网页对html也要有一定了解）</p>
+<h3 id="执行1"><a href="#执行1" class="headerlink" title="执行1"></a>执行1</h3><p>为了方便爬，我们按照作者的意思，安装一个插件 ：npm install cheerio ，目的是快速找到我们要爬的数据</p>
+<p>在网页上审查元素，找到我们想要的：</p>
+<pre><code>// &lt;div class=&quot;mod-chapters&quot;&gt;
+//   &lt;div class=&quot;chapter chapter-active&quot;&gt;...&lt;/div&gt; 后面的active表示这个item是否展开
+//   &lt;div class=&quot;chapter chapter-active&quot;&gt;...&lt;/div&gt;
+//   &lt;div class=&quot;chapter&quot;&gt;...&lt;/div&gt;
+//   &lt;div class=&quot;chapter&quot;&gt;...&lt;/div&gt;
+//   &lt;div class=&quot;chapter&quot;&gt;...&lt;/div&gt;
+// &lt;/div&gt;
+</code></pre><p>主要代码（不要问我res.on(‘data’, function(data)里的data是哪儿来的，下篇文章见）：</p>
+<pre><code>var http = require(&apos;http&apos;)
+var cheerio = require(&apos;cheerio&apos;)
+var url = &apos;http://www.imooc.com/learn/348&apos;
+
+// 相当于main 我们在这里解析html
+function filterChapters(html){
+    var $ = cheerio.load(html)
+    // 这个跟视频里的learnchapter不同，可能是慕课网改了吧
+    // 通过这个方法就拿到了类名
+    var chapters = $(&apos;.chapter&apos;)
+    // 打印数组的长度
+    console.log(&apos;打印 &apos;+chapters.length)
+}
+
+http.get(url, function (res) {
+    var html = &apos;&apos;
+
+    res.on(&apos;data&apos;, function(data) {
+        html += data
+    })
+
+    res.on(&apos;end&apos;, function(){
+        filterChapters(html)
+    })
+}).on(&apos;error&apos;, function() {
+    console.log(&apos;获取网站数据出错！&apos;)
+})
+</code></pre><p>我们引入了cheerio，并用它来更好的get对应的数据</p>
+<p>这里我们看，跟之前的代码比较，就多了个函数：filterChapters<br>在接收完毕网页后，把网页数据传到这个函数里，进行整理。</p>
+<p>在cdm中执行上面的代码：</p>
+<pre><code>node crawierPlus.js
+</code></pre><p>打印结果如下：</p>
+<pre><code>打印 5
+</code></pre><h3 id="执行2"><a href="#执行2" class="headerlink" title="执行2"></a>执行2</h3><p>显然一个数组长度不是我们想要的，继续，嘿咻嘿咻！<br>由执行1看到，chapters这个“数组”就是我们要的内容了。我们继续解析，如何拿到标题呢？</p>
+<p>看网页的相关审查元素：<br><img src="http://i.imgur.com/f67MSrf.png" alt=""></p>
+<pre><code>chapters.each(function(item){
+    var chapter = $(this)
+    var chapterTitle = chapter.find(&apos;strong&apos;).text()
+    console.log(chapterTitle + &apos;\n&apos;)
+})
+</code></pre><p>通过each方法，得到每个chapter。通过find的方法，得到strong，在.text()得到strong里的text<br>再来看对应video的获取：<br><img src="http://i.imgur.com/VTLj6E7.png" alt=""><br>从图上能看出，video下有两个对应的条目</p>
+<pre><code>chapters.each(function(item){
+    var chapter = $(this)
+    var chapterTitle = chapter.find(&apos;strong&apos;).text()
+    console.log(chapterTitle + &apos;\n&apos;)
+    var videos = chapter.find(&apos;.video&apos;).children(&apos;li&apos;)
+
+    videos.each(function(item){
+        var video = $(this).find(&apos;.studyvideo&apos;)
+        var videoTitle = video.text()
+        var id = video.attr(&apos;href&apos;).split(&apos;video/&apos;)[1]
+        console.log(&apos;【&apos;+id+&apos;】  &apos;+videoTitle)
+    })
+})
+</code></pre><p>对比上面的find方法，我们发现’strong’和’.video’有个不同点，’.video’前面有个’.’，大胆假设，因为video是一个class，而strong不是。故而有此区别<br>跑一遍上面的code，我们就能看到一个很好看的结果了。</p>
+<p>我们是打log，而视频里作者是把数据都封装到了一起，用的是push的方法，具体我也不懂，就不瞎bb了。 </p>
+<h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><pre><code>var http = require(&apos;http&apos;)
+var cheerio = require(&apos;cheerio&apos;)
+var url = &apos;http://www.imooc.com/learn/348&apos;
+
+function filterChapters(html){
+    var $ = cheerio.load(html)
+    var chapters = $(&apos;.chapter&apos;)
+
+    var courseData = []
+
+    chapters.each(function(item){
+        var chapter = $(this)
+        var chapterTitle = chapter.find(&apos;strong&apos;).text()
+        var videos = chapter.find(&apos;.video&apos;).children(&apos;li&apos;)
+
+        var chapterData = {
+            chapterTitle: chapterTitle,
+            videos:[]
+        }
+
+        videos.each(function(item){
+            var video = $(this).find(&apos;.studyvideo&apos;)
+            var videoTitle = video.text()
+            var id = video.attr(&apos;href&apos;).split(&apos;video/&apos;)[1]
+
+            chapterData.videos.push({
+                title:videoTitle,
+                id: id
+            })
+        })
+
+        courseData.push(chapterData)
+    })
+
+    return courseData
+}
+
+function printCourseInfo(courseData){
+    courseData.forEach(function(item){
+        var chapterTitle = item.chapterTitle
+        console.log(chapterTitle + &apos;\n&apos;)
+        item.videos.forEach(function(video){
+        console.log(&apos; 【&apos;+video.id+&apos;】 &apos;+ video.title + &apos;\n&apos;)
+        })
+    })
+}
+
+http.get(url, function (res) {
+    var html = &apos;&apos;
+
+    res.on(&apos;data&apos;, function(data) {
+        html += data
+    })
+
+    res.on(&apos;end&apos;, function(){
+        var courseData = filterChapters(html)
+        printCourseInfo(courseData)
+    })
+}).on(&apos;error&apos;, function() {
+    console.log(&apos;获取网站数据出错！&apos;)
+})
+</code></pre><h1 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h1><p>nodejs入门（一）URL与HTTP <a href="http://www.flowerfat.com/2015/10/15/nodejs%E5%85%A5%E9%97%A8%E4%B8%801015/" target="_blank" rel="external">http://www.flowerfat.com/2015/10/15/nodejs%E5%85%A5%E9%97%A8%E4%B8%801015/</a></p>
+<p>nodejs入门（二）Events<br><a href="http://www.flowerfat.com/2015/10/16/nodejs%E5%85%A5%E9%97%A8%E4%BA%8C1016/" target="_blank" rel="external">http://www.flowerfat.com/2015/10/16/nodejs%E5%85%A5%E9%97%A8%E4%BA%8C1016/</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://flowerfat.com/2015/10/15/nodejs入门一1015/" data-id="cioh5m93x000esgryi62daija" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/mBigflower" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/flowerfat" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/10/16/nodejs入门二1016/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            nodejs入门（二）Events
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/10/13/Junit单元测试1013/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Android Studio Junit单元测试</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/21/各种链接/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/21/各种链接/" class="title">三方链接</a></p>
+                            <p class="item-date"><time datetime="2016-05-21T12:51:20.286Z" itemprop="datePublished">2016-05-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/11/10/List中的Contains1110/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/安卓/">安卓</a></p>
+                            <p class="item-title"><a href="/2015/11/10/List中的Contains1110/" class="title">List中的Contains</a></p>
+                            <p class="item-date"><time datetime="2015-11-09T16:00:00.000Z" itemprop="datePublished">2015-11-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/11/03/nodejs搞服务器1103/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2015/11/03/nodejs搞服务器1103/" class="title">nodejs搞服务器</a></p>
+                            <p class="item-date"><time datetime="2015-11-02T16:00:00.000Z" itemprop="datePublished">2015-11-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/10/21/天狗菜谱（textview与html）1021/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://i.imgur.com/9GgXiw2.png)" alt="使用TextView显示Html" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/安卓/">安卓</a></p>
+                            <p class="item-title"><a href="/2015/10/21/天狗菜谱（textview与html）1021/" class="title">使用TextView显示Html</a></p>
+                            <p class="item-date"><time datetime="2015-10-20T16:00:00.000Z" itemprop="datePublished">2015-10-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/10/21/nodejs入门三1021/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2015/10/21/nodejs入门三1021/" class="title">nodejs入门（三）心得</a></p>
+                            <p class="item-date"><time datetime="2015-10-20T16:00:00.000Z" itemprop="datePublished">2015-10-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/knowledge/">knowledge</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/动画/">动画</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安卓/">安卓</a><span class="category-list-count">11</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">20</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dear/">dear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/get/">get</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/project/">project</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分享/">分享</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/天气预报/">天气预报</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/控件/">控件</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/无标签/">无标签</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日记/">日记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接/">链接</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/dear/" style="font-size: 10px;">dear</a> <a href="/tags/get/" style="font-size: 13.33px;">get</a> <a href="/tags/project/" style="font-size: 13.33px;">project</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/基础/" style="font-size: 16.67px;">基础</a> <a href="/tags/天气预报/" style="font-size: 13.33px;">天气预报</a> <a href="/tags/工具/" style="font-size: 13.33px;">工具</a> <a href="/tags/控件/" style="font-size: 16.67px;">控件</a> <a href="/tags/无标签/" style="font-size: 10px;">无标签</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/链接/" style="font-size: 10px;">链接</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.baidu.com">Baidu</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 胖小了个花</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://flowerfat.com/2015/10/15/nodejs入门一1015/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

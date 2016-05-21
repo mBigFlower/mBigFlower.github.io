@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>带Progress的BaseNetActivity | 春风十里</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="工具" />
+    
+    <meta name="description" content="功能BaseNetActivity，继承AppCompatActivity。请求服务器成功后则显示layout内容，失败则显示‘加载失败’（点击加载失败可重新加载）
+思路使用一个baseLayout，包含progress、mainLayout的“容器”、加载失败的内容显示　三部分。最开始显示进度，同时请求网络，成功或失败后隐藏progress，同时显示对应的内容
+实现layout_base直接上布">
+<meta property="og:type" content="article">
+<meta property="og:title" content="带Progress的BaseNetActivity">
+<meta property="og:url" content="http://flowerfat.com/2015/08/18/带Progress的BaseNetActivity/index.html">
+<meta property="og:site_name" content="春风十里">
+<meta property="og:description" content="功能BaseNetActivity，继承AppCompatActivity。请求服务器成功后则显示layout内容，失败则显示‘加载失败’（点击加载失败可重新加载）
+思路使用一个baseLayout，包含progress、mainLayout的“容器”、加载失败的内容显示　三部分。最开始显示进度，同时请求网络，成功或失败后隐藏progress，同时显示对应的内容
+实现layout_base直接上布">
+<meta property="og:updated_time" content="2015-11-09T19:54:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="带Progress的BaseNetActivity">
+<meta name="twitter:description" content="功能BaseNetActivity，继承AppCompatActivity。请求服务器成功后则显示layout内容，失败则显示‘加载失败’（点击加载失败可重新加载）
+思路使用一个baseLayout，包含progress、mainLayout的“容器”、加载失败的内容显示　三部分。最开始显示进度，同时请求网络，成功或失败后隐藏progress，同时显示对应的内容
+实现layout_base直接上布">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Fighting</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Nodejs/">Nodejs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/github/">github</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/knowledge/">knowledge</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/动画/">动画</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/安卓/">安卓</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/android/">android</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-带Progress的BaseNetActivity" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        带Progress的BaseNetActivity
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2015/08/18/带Progress的BaseNetActivity/" class="article-date">
+    <time datetime="2015-08-17T16:00:00.000Z" itemprop="datePublished">2015-08-18</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h1><p>BaseNetActivity，继承AppCompatActivity。<br>请求服务器成功后则显示layout内容，失败则显示‘加载失败’（点击加载失败可重新加载）</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>使用一个baseLayout，包含progress、mainLayout的“容器”、加载失败的内容显示　三部分。<br>最开始显示进度，同时请求网络，成功或失败后隐藏progress，同时显示对应的内容</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="layout-base"><a href="#layout-base" class="headerlink" title="layout_base"></a>layout_base</h2><p>直接上布局：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;&gt;
+
+    &lt;android.support.v7.widget.Toolbar
+        android:id=&quot;@+id/layoutBase_toolbar&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;?attr/actionBarSize&quot;
+        android:background=&quot;?attr/colorPrimary&quot;
+        android:theme=&quot;@style/ThemeToolbar&quot;
+        app:popupTheme=&quot;@style/ThemeOverlay.AppCompat.Light&quot; /&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/layoutBase_text&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_gravity=&quot;center&quot;
+        android:visibility=&quot;gone&quot;
+        android:drawableTop=&quot;@drawable/bili_net_wrong&quot;
+        android:drawablePadding=&quot;27dp&quot;
+        android:text=&quot;加载失败---&quot;/&gt;
+
+    &lt;ViewStub
+        android:id=&quot;@+id/layoutBase_viewStub&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot; /&gt;
+
+    &lt;android.support.v4.widget.ContentLoadingProgressBar
+        android:id=&quot;@+id/layoutBase_progress&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        style=&quot;?android:attr/progressBarStyleLarge&quot;
+        android:layout_gravity=&quot;center&quot;/&gt;
+
+&lt;/FrameLayout&gt;
+</code></pre><blockquote>
+<p>这里我们的标题使用的是Toolbar，大家也可以自定义，至于toolbar里面的theme等参数，可有可无的东西，不详说</p>
+</blockquote>
+<p>除了标题，就是我刚刚提到的三个部分了，<strong>ViewStub</strong>　这东西懂的人都懂，好东西。用它的目的是少一层嵌套，也是今天我无意中想到的。<br><a id="more"></a></p>
+<h2 id="BaseNetActivity"><a href="#BaseNetActivity" class="headerlink" title="BaseNetActivity"></a>BaseNetActivity</h2><p>直接上代码，就是这么简单粗暴，详解我们后面再说</p>
+<pre><code>import android.os.Bundle;
+import android.support.annotation.LayoutRes;
+import android.support.v4.widget.ContentLoadingProgressBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.ViewStub;
+import android.widget.TextView;
+
+import com.flowerfat.majiang.R;
+
+import butterknife.ButterKnife;
+
+/**
+ * @author BigFlower
+ * @ClassName: BaseNetActivity
+ * @Description: TODO
+ */
+public abstract class BaseNetActivity extends AppCompatActivity {
+
+    protected static String TAG ;
+
+    private ContentLoadingProgressBar mProgress;
+    private TextView errorTextView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.layout_base);
+        TAG = this.getClass().getSimpleName();
+        initView();
+        init();
+        http();
+    }
+
+    /**
+     * 使用这个BaseNet， 就必须调用一开始就http的操作,
+     * 不然就使用BaseActivity就好
+     */
+    public abstract void init();
+    public abstract void http();
+
+    /**
+     * 初始化title的toolbar
+     *
+     * @param title 标题name
+     */
+    protected void initToolbar(String title) {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.layoutBase_toolbar);
+        toolbar.setTitle(title);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void initView() {
+        mProgress = (ContentLoadingProgressBar) findViewById(R.id.layoutBase_progress);
+    }
+
+    /**
+     * http成功后调用
+     * 隐藏progress，显示布局
+     *
+     * @param res
+     */
+    protected void setSuccess(@LayoutRes int res) {
+        mProgress.hide();
+        ViewStub viewStub = (ViewStub) findViewById(R.id.layoutBase_viewStub);
+        viewStub.setLayoutResource(res);
+        viewStub.setVisibility(View.VISIBLE);
+
+        ButterKnife.bind(this);
+    }
+
+    /**
+     * http失败后调用
+     * 隐藏progress, 显示失败的布局
+     */
+    protected void setError() {
+        mProgress.hide();
+        if (errorTextView == null){
+            errorTextView = (TextView) findViewById(R.id.layoutBase_text);
+            errorTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showProgress();
+                    http();
+                }
+            });
+        }
+        errorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showProgress(){
+        errorTextView.setVisibility(View.GONE);
+        mProgress.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // 这个一定不能少！
+        if (mProgress != null) {
+            mProgress.hide();  
+        }
+    }
+
+}
+</code></pre><h3 id="详解之前的综述"><a href="#详解之前的综述" class="headerlink" title="详解之前的综述"></a>详解之前的综述</h3><ol>
+<li><p>使用方法简单，直接继承就好</p>
+<p> public class BaseActTest extends BaseNetActivity { … }</p>
+</li>
+<li><p>代码里我们使用了ButterKnife，因为项目里用到，所以这里顺便也加进去了。它的初始化是为了BaseActTest准备的，不用的朋友去掉就好。不过去掉之后这个还能不能正常运作就不晓得了。有空我再验证下。</p>
+</li>
+</ol>
+<h3 id="onCreate"><a href="#onCreate" class="headerlink" title="onCreate"></a>onCreate</h3><pre><code>protected static String TAG ;
+
+private ContentLoadingProgressBar mProgress;
+private TextView errorTextView;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.layout_base);
+    TAG = this.getClass().getSimpleName();
+    initView();
+    init();
+    http();
+}
+</code></pre><ol>
+<li>TAG就不多说了，这个父类中定义一个，子类直接拿来用就好，这么做方便省事儿</li>
+<li>顶部定义了两个控件，是三部分中的两部分</li>
+<li>onCreate中，先是setContentView我们的layout_base布局，再给TAG赋值，这都简单</li>
+<li><p>最后两个函数后面再说，initView()里面就一句话，是获得我们的mProgress</p>
+<p> private void initView() {</p>
+<pre><code>mProgress = (ContentLoadingProgressBar) findViewById(R.id.layoutBase_progress);
+</code></pre><p> }</p>
+</li>
+</ol>
+<h3 id="强制重写的两个函数init-http"><a href="#强制重写的两个函数init-http" class="headerlink" title="强制重写的两个函数init(),http()"></a>强制重写的两个函数init(),http()</h3><p>这里我要说明下，之所以要强制，是因为有需求！<br><strong>init();</strong><br>一来，方便，直接帮你写了个初始化的函数，你需要初始化的内容直接加进来就好。<br>二来，因为重写了BaseNetActivity后就不需要在我们的子类里使用onCreate了，总得要个入口嘛，init()就是入口。<br><strong>http();</strong><br>不用说了，你既然用了这个就肯定要一开始就http网络请求的嘛。<br>有的人会很不爽了，我们直接在init()里写http请求不行吗？为毛非要重写你的http()？<br>因为当我们加载失败后，需要点击重新进行服务器请求！怎么通过父类的点击事件来调用子类的请求呢？我试过接口啥啥的，感觉这样最好，那就是让子类重写父类。这样我们在父类中调用http()，自然就执行了子类中的请求内容。<br>看下面</p>
+<h3 id="setError"><a href="#setError" class="headerlink" title="setError()"></a>setError()</h3><pre><code>/**
+ * http失败后调用
+ * 隐藏progress, 显示失败的布局
+ */
+protected void setError() {
+    mProgress.hide();
+    if (errorTextView == null){
+        errorTextView = (TextView) findViewById(R.id.layoutBase_text);
+        errorTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showProgress();  // 显示progress
+                http();
+            }
+        });
+    }
+    errorTextView.setVisibility(View.VISIBLE);
+}
+</code></pre><p>里面的　if　判断，是为了提高性能，避免重复的获取控件和增加点击监听。<br>我们会看到点击时间里面，执行了　http()　，这就是我们上面提到的，父类中调用子类的内容。　</p>
+<h3 id="setSuccess-LayoutRes-int-res"><a href="#setSuccess-LayoutRes-int-res" class="headerlink" title="setSuccess(@LayoutRes int res)"></a>setSuccess(@LayoutRes int res)</h3><pre><code>/**
+ * http成功后调用
+ * 隐藏progress，显示布局
+ *
+ * @param res
+ */
+protected void setSuccess(@LayoutRes int res) {
+    mProgress.hide();
+    ViewStub viewStub = (ViewStub) findViewById(R.id.layoutBase_viewStub);
+    viewStub.setLayoutResource(res);
+    viewStub.setVisibility(View.VISIBLE);
+
+    ButterKnife.bind(this);
+}
+</code></pre><p>显示获取控件，然后把布局加载进去，@LayoutRes 说明参数必须是layout资源。<br>最后的ButterKnife前文提过哈。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>前面说了这么多，来看使用，我们用Handler来模拟网络请求</p>
+<pre><code>public class BaseActTest extends BaseNetActivity {
+
+    // R.layout.activity_base_act_test中的TextView
+    @Bind(R.id.justATest)
+    TextView tv;
+
+    Handler mHandler = new Handler();
+
+    @Override
+    public void init() {
+        initToolbar(&quot;测试BaseNet&quot;); // 初始化标题
+    }
+
+    @Override
+    public void http() {
+
+        Util.i(&quot;调用测试&quot;, &quot;zi类的&quot;);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Util.i(&quot;调用测试&quot;, &quot;执行了&quot;);
+                setError();
+
+                // setSuccess(R.layout.activity_base_act_test);
+                // tv.setText(&quot;加载成功！&quot;);
+            }
+        }, 3000);
+    }
+}
+</code></pre><p>R.layout.activity_base_act_test　我就不贴出来了哈，so easy !</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://flowerfat.com/2015/08/18/带Progress的BaseNetActivity/" data-id="cioh5m94s001ssgryokblocsd" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/mBigflower" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/flowerfat" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/08/19/注册登录界面-0819/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            nothing
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/08/17/安卓开发，那些相见恨晚的接口，类/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">安卓开发，相见恨晚的小技巧</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/21/各种链接/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/21/各种链接/" class="title">三方链接</a></p>
+                            <p class="item-date"><time datetime="2016-05-21T12:51:20.286Z" itemprop="datePublished">2016-05-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/11/10/List中的Contains1110/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/安卓/">安卓</a></p>
+                            <p class="item-title"><a href="/2015/11/10/List中的Contains1110/" class="title">List中的Contains</a></p>
+                            <p class="item-date"><time datetime="2015-11-09T16:00:00.000Z" itemprop="datePublished">2015-11-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/11/03/nodejs搞服务器1103/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2015/11/03/nodejs搞服务器1103/" class="title">nodejs搞服务器</a></p>
+                            <p class="item-date"><time datetime="2015-11-02T16:00:00.000Z" itemprop="datePublished">2015-11-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/10/21/天狗菜谱（textview与html）1021/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://i.imgur.com/9GgXiw2.png)" alt="使用TextView显示Html" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/安卓/">安卓</a></p>
+                            <p class="item-title"><a href="/2015/10/21/天狗菜谱（textview与html）1021/" class="title">使用TextView显示Html</a></p>
+                            <p class="item-date"><time datetime="2015-10-20T16:00:00.000Z" itemprop="datePublished">2015-10-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/10/21/nodejs入门三1021/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2015/10/21/nodejs入门三1021/" class="title">nodejs入门（三）心得</a></p>
+                            <p class="item-date"><time datetime="2015-10-20T16:00:00.000Z" itemprop="datePublished">2015-10-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/knowledge/">knowledge</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/动画/">动画</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安卓/">安卓</a><span class="category-list-count">11</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">20</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dear/">dear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/get/">get</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/project/">project</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分享/">分享</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/天气预报/">天气预报</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/控件/">控件</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/无标签/">无标签</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日记/">日记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接/">链接</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/dear/" style="font-size: 10px;">dear</a> <a href="/tags/get/" style="font-size: 13.33px;">get</a> <a href="/tags/project/" style="font-size: 13.33px;">project</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/基础/" style="font-size: 16.67px;">基础</a> <a href="/tags/天气预报/" style="font-size: 13.33px;">天气预报</a> <a href="/tags/工具/" style="font-size: 13.33px;">工具</a> <a href="/tags/控件/" style="font-size: 16.67px;">控件</a> <a href="/tags/无标签/" style="font-size: 10px;">无标签</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/链接/" style="font-size: 10px;">链接</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.baidu.com">Baidu</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 胖小了个花</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://flowerfat.com/2015/08/18/带Progress的BaseNetActivity/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

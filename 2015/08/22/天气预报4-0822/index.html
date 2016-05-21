@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>天气预报（四） | 春风十里</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="天气预报" />
+    
+    <meta name="description" content="前言上次说到了中国气象平台的api没心情做，最近研究了它的api，还真有点头疼。。。
+正文接口根据他官网的说法，看起来还挺简单的
+
+调用规范 规范用于指导三方合作伙伴合理调用指数、3天常规预报(24小时)预报服务数据。请求方式：http get接口组成：由固定URL加5个不同的参数组成，完整URL需客户端经过固定方式加密后使用。数据返回：json完整URL：http://open.weather.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="天气预报（四）">
+<meta property="og:url" content="http://flowerfat.com/2015/08/22/天气预报4-0822/index.html">
+<meta property="og:site_name" content="春风十里">
+<meta property="og:description" content="前言上次说到了中国气象平台的api没心情做，最近研究了它的api，还真有点头疼。。。
+正文接口根据他官网的说法，看起来还挺简单的
+
+调用规范 规范用于指导三方合作伙伴合理调用指数、3天常规预报(24小时)预报服务数据。请求方式：http get接口组成：由固定URL加5个不同的参数组成，完整URL需客户端经过固定方式加密后使用。数据返回：json完整URL：http://open.weather.">
+<meta property="og:image" content="http://i.imgur.com/eeEKe7J.png">
+<meta property="og:updated_time" content="2015-11-09T19:54:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="天气预报（四）">
+<meta name="twitter:description" content="前言上次说到了中国气象平台的api没心情做，最近研究了它的api，还真有点头疼。。。
+正文接口根据他官网的说法，看起来还挺简单的
+
+调用规范 规范用于指导三方合作伙伴合理调用指数、3天常规预报(24小时)预报服务数据。请求方式：http get接口组成：由固定URL加5个不同的参数组成，完整URL需客户端经过固定方式加密后使用。数据返回：json完整URL：http://open.weather.">
+<meta name="twitter:image" content="http://i.imgur.com/eeEKe7J.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Fighting</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Nodejs/">Nodejs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/github/">github</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/knowledge/">knowledge</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/动画/">动画</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/安卓/">安卓</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/安卓/">安卓</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-天气预报4-0822" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        天气预报（四）
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2015/08/22/天气预报4-0822/" class="article-date">
+    <time datetime="2015-08-21T16:00:00.000Z" itemprop="datePublished">2015-08-22</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/天气预报/">天气预报</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上次说到了中国气象平台的api没心情做，最近研究了它的api，还真有点头疼。。。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p>根据他官网的说法，看起来还挺简单的</p>
+<blockquote>
+<p>调用规范 规范用于指导三方合作伙伴合理调用指数、3天常规预报(24小时)预报服务数据。<br>请求方式：http get<br>接口组成：由固定URL加5个不同的参数组成，完整URL需客户端经过固定方式加密后使用。<br>数据返回：json<br>完整URL：<a href="http://open.weather.com.cn/data/?areaid=&quot;&quot;&amp;type=&quot;&quot;&amp;date=&quot;&quot;&amp;appid=&quot;&quot;&amp;key=&quot;.urlencode($key" target="_blank" rel="external">http://open.weather.com.cn/data/?areaid=&quot;&quot;&amp;type=&quot;&quot;&amp;date=&quot;&quot;&amp;appid=&quot;&quot;&amp;key=&quot;.urlencode($key</a>);<br>固定URL：<a href="http://open.weather.com.cn/data/" target="_blank" rel="external">http://open.weather.com.cn/data/</a></p>
+</blockquote>
+<p>其他都好说，就是那个最后的key的编码是怎么个回事儿？<br>他官方的示例demo有方法，不过一开始我没看到，就找了个网友的类，别说还挺好用，哈哈，code如下：</p>
+<pre><code>import android.util.Base64;
+import android.util.Log;
+
+import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+
+/**
+ * Created by 明明大美女 on 2015/8/22.
+ */
+public class SmartWeatherUrlUtil {
+    private final static String TAG = &quot;WeatherUrlUtil&quot;;
+    private static final String MAC_NAME = &quot;HmacSHA1&quot;;
+    private static final String ENCODING = &quot;UTF-8&quot;;
+    private static final String appid = &quot;34b8c9f1ece084a7&quot;;
+    private static final String private_key = &quot;46d458_SmartWeatherAPI_95941da&quot;;
+    private static final String url_header=&quot;http://open.weather.com.cn/data/?&quot;;
+
+    /**
+     * 使用 HMAC-SHA1 签名方法对对encryptText进行签名
+     *
+     * @param url
+     *            被签名的字符串
+     * @param privatekey
+     *            密钥
+     * @return
+     * @throws Exception
+     */
+    private static byte[] HmacSHA1Encrypt(String url, String privatekey)
+            throws Exception {
+        byte[] data = privatekey.getBytes(ENCODING);
+        // 根据给定的字节数组构造一个密钥,第二参数指定一个密钥算法的名称
+        SecretKey secretKey = new SecretKeySpec(data, MAC_NAME);
+        // 生成一个指定 Mac 算法 的 Mac 对象
+        Mac mac = Mac.getInstance(MAC_NAME);
+        // 用给定密钥初始化 Mac 对象
+        mac.init(secretKey);
+        byte[] text = url.getBytes(ENCODING);
+        // 完成 Mac 操作
+        return mac.doFinal(text);
+    }
+    /**
+     * 获取URL通过privatekey加密后的码
+     * @param url
+     * @param privatekey
+     * @return
+     * @throws Exception
+     */
+    private static String getKey(String url, String privatekey) throws Exception {
+        byte[] key_bytes = HmacSHA1Encrypt(url, privatekey);
+        String base64encoderStr = Base64.encodeToString(key_bytes, Base64.NO_WRAP);
+        return URLEncoder.encode(base64encoderStr, ENCODING);
+    }
+    /**
+     * 获得接口的URL地址
+     * @param areaid
+     * @param type
+     * @param date
+     * @return
+     * @throws Exception
+     */
+    private static String getInterfaceURL(String areaid,String type,String date) throws Exception{
+        String keyurl=url_header+&quot;areaid=&quot;+areaid+&quot;&amp;type=&quot;+type+&quot;&amp;date=&quot;+date+&quot;&amp;appid=&quot;;
+        String key=getKey(keyurl+appid,private_key);
+        String appid6 = appid.substring(0, 6);
+
+        return keyurl+appid6+&quot;&amp;key=&quot; + key;
+    }
+
+    public static String getInterfaceURL(String areaid, String type){
+        SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;yyyyMMddhhmm&quot;);
+        String date = dateFormat.format(new Date());
+        //String type=&quot;forecast3d&quot;;//&quot;index&quot;;//&quot;forecast3d&quot;;&quot;observe&quot;
+        try {
+            return getInterfaceURL(areaid,type,date);
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage(), e.fillInStackTrace());
+        }
+        return null;
+    }
+}
+</code></pre><p>用起来很方便</p>
+<pre><code>String url = SmartWeatherUrlUtil.getInterfaceURL(cityId, Type) ;
+</code></pre><h3 id="回参"><a href="#回参" class="headerlink" title="回参"></a>回参</h3><p>话说这个也真是蛋疼，返回就没有个“准信”，非要整些玄乎的，也不知道图啥。我们来看返回的参数</p>
+<p><img src="http://i.imgur.com/eeEKe7J.png" alt=""></p>
+<p>简直不忍直视。。。 于是又去网上淘了写宝贝，如下：</p>
+<p><img src="http://ds.devstore.cn/20141230/1419924890624/%E5%9B%BE%E7%89%879.png" alt=""></p>
+<p>回参倒是搞明白了，那里面的编号又是啥？<br><strong>风向的编号：</strong><br><img src="http://i.imgur.com/5AUNl4T.png" alt=""><br><strong>天气的编号</strong> 图片可能有点小，<a href="http://openweather.weather.com.cn/Home/Help/tqqx.html" target="_blank" rel="external">大家自行去官网看哈</a><br><img src="http://i.imgur.com/1CzzTWz.png" alt=""></p>
+<p>那么这个就告一段落了。话说最近这个是免费的啊。赶紧去购买，指不定就什么时候收费了</p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>我也没注意有没有把天气的返回值对应表直接写成工具类的，以后有了再更新哈，不想去淘了。<br>我想关于接口应该就写这么多了，下一步应该就是界面和数据处理了，有空再更新哈。</p>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>天气预报（四） <a href="http://www.flowerfat.com/2015/08/22/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A54-0822/" title="http://www.flowerfat.com/2015/08/22/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A54-0822/" target="_blank" rel="external">http://www.flowerfat.com/2015/08/22/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A54-0822/</a><br>天气预报（三） <a href="http://www.flowerfat.com/2015/08/13/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5-0813/" target="_blank" rel="external">http://www.flowerfat.com/2015/08/13/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5-0813/</a><br>天气预报（二） <a href="http://www.flowerfat.com/2015/08/12/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5-0812/" target="_blank" rel="external">http://www.flowerfat.com/2015/08/12/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5-0812/</a><br>天气预报（一） <a href="http://www.flowerfat.com/2015/08/11/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5-0811/" target="_blank" rel="external">http://www.flowerfat.com/2015/08/11/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5-0811/</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://flowerfat.com/2015/08/22/天气预报4-0822/" data-id="cioh5m94s001msgrytum22h2d" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/mBigflower" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/flowerfat" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/08/25/社会化分享0825/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            友盟社会化分享（一） QQ、微信
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/08/22/Activity启动动画/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">让控件动起来</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/21/各种链接/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/21/各种链接/" class="title">三方链接</a></p>
+                            <p class="item-date"><time datetime="2016-05-21T12:51:20.286Z" itemprop="datePublished">2016-05-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/11/10/List中的Contains1110/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/安卓/">安卓</a></p>
+                            <p class="item-title"><a href="/2015/11/10/List中的Contains1110/" class="title">List中的Contains</a></p>
+                            <p class="item-date"><time datetime="2015-11-09T16:00:00.000Z" itemprop="datePublished">2015-11-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/11/03/nodejs搞服务器1103/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2015/11/03/nodejs搞服务器1103/" class="title">nodejs搞服务器</a></p>
+                            <p class="item-date"><time datetime="2015-11-02T16:00:00.000Z" itemprop="datePublished">2015-11-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/10/21/天狗菜谱（textview与html）1021/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://i.imgur.com/9GgXiw2.png)" alt="使用TextView显示Html" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/安卓/">安卓</a></p>
+                            <p class="item-title"><a href="/2015/10/21/天狗菜谱（textview与html）1021/" class="title">使用TextView显示Html</a></p>
+                            <p class="item-date"><time datetime="2015-10-20T16:00:00.000Z" itemprop="datePublished">2015-10-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/10/21/nodejs入门三1021/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2015/10/21/nodejs入门三1021/" class="title">nodejs入门（三）心得</a></p>
+                            <p class="item-date"><time datetime="2015-10-20T16:00:00.000Z" itemprop="datePublished">2015-10-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/knowledge/">knowledge</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/动画/">动画</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安卓/">安卓</a><span class="category-list-count">11</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">20</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dear/">dear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/get/">get</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/project/">project</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分享/">分享</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/天气预报/">天气预报</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/控件/">控件</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/无标签/">无标签</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日记/">日记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接/">链接</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/dear/" style="font-size: 10px;">dear</a> <a href="/tags/get/" style="font-size: 13.33px;">get</a> <a href="/tags/project/" style="font-size: 13.33px;">project</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/基础/" style="font-size: 16.67px;">基础</a> <a href="/tags/天气预报/" style="font-size: 13.33px;">天气预报</a> <a href="/tags/工具/" style="font-size: 13.33px;">工具</a> <a href="/tags/控件/" style="font-size: 16.67px;">控件</a> <a href="/tags/无标签/" style="font-size: 10px;">无标签</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/链接/" style="font-size: 10px;">链接</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.baidu.com">Baidu</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 胖小了个花</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://flowerfat.com/2015/08/22/天气预报4-0822/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

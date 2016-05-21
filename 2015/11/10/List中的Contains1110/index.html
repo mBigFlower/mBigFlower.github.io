@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>List中的Contains | 春风十里</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="基础" />
+    
+    <meta name="description" content="感谢文章是我按照我的bug和debug过程写的，这里感谢这篇文章的帮助：http://www.2cto.com/kf/201506/410713.html
+背景最近在弄一个通讯录导入小功能：【A操作】读取通讯录-获得列表-选择你想要的某些联系人-保存到安卓客户端。但是遇到个问题：当你导入成功后，【B操作】想再导入几个联系人的时候。再走一遍上述流程，你会发现，通讯录和你本地有重复的数据
+那么问题来了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="List中的Contains">
+<meta property="og:url" content="http://flowerfat.com/2015/11/10/List中的Contains1110/index.html">
+<meta property="og:site_name" content="春风十里">
+<meta property="og:description" content="感谢文章是我按照我的bug和debug过程写的，这里感谢这篇文章的帮助：http://www.2cto.com/kf/201506/410713.html
+背景最近在弄一个通讯录导入小功能：【A操作】读取通讯录-获得列表-选择你想要的某些联系人-保存到安卓客户端。但是遇到个问题：当你导入成功后，【B操作】想再导入几个联系人的时候。再走一遍上述流程，你会发现，通讯录和你本地有重复的数据
+那么问题来了">
+<meta property="og:updated_time" content="2015-11-09T19:54:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="List中的Contains">
+<meta name="twitter:description" content="感谢文章是我按照我的bug和debug过程写的，这里感谢这篇文章的帮助：http://www.2cto.com/kf/201506/410713.html
+背景最近在弄一个通讯录导入小功能：【A操作】读取通讯录-获得列表-选择你想要的某些联系人-保存到安卓客户端。但是遇到个问题：当你导入成功后，【B操作】想再导入几个联系人的时候。再走一遍上述流程，你会发现，通讯录和你本地有重复的数据
+那么问题来了">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Fighting</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Nodejs/">Nodejs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/github/">github</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/knowledge/">knowledge</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/动画/">动画</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/安卓/">安卓</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/安卓/">安卓</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-List中的Contains1110" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        List中的Contains
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2015/11/10/List中的Contains1110/" class="article-date">
+    <time datetime="2015-11-09T16:00:00.000Z" itemprop="datePublished">2015-11-10</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h1><p>文章是我按照我的bug和debug过程写的，这里感谢这篇文章的帮助：<a href="http://www.2cto.com/kf/201506/410713.html" target="_blank" rel="external">http://www.2cto.com/kf/201506/410713.html</a></p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>最近在弄一个通讯录导入小功能：【A操作】读取通讯录-获得列表-选择你想要的某些联系人-保存到安卓客户端。<br>但是遇到个问题：当你导入成功后，【B操作】想再导入几个联系人的时候。再走一遍上述流程，你会发现，通讯录和你本地有重复的数据</p>
+<p>那么问题来了：通讯录是一个列表， 客户端本地也有一个列表。我们需要把通讯录读取后，移除我们本地的数据。展示出来的全是未导入的数据</p>
+<h1 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h1><h3 id="contains-1"><a href="#contains-1" class="headerlink" title="contains 1"></a>contains 1</h3><p>说到一个List里包含某个<em>*</em>， 会不会想到Contains？最常见的是这样的：</p>
+<pre><code>public void main1(){
+    ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();
+    list.add(&quot;张三&quot;);
+    list.add(&quot;李四&quot;);
+    list.add(&quot;王二麻子&quot;);
+    String aimString1 = &quot;李四&quot;;
+    String aimString2 = &quot;我不是黄蓉&quot;;
+    if(list.contains(aimString1)) {
+        Log.i(&quot;是否包含？&quot;, &quot;包含了-李四&quot;);
+    }
+    Log.i(&quot;是否包含？&quot;, &quot;包含了-我不是黄蓉？&quot;+list.contains(aimString2));
+
+}
+</code></pre><p>打印如下：</p>
+<pre><code>I/是否包含？﹕ 包含了-李四
+I/是否包含？﹕ 包含了-我不是黄蓉？false
+</code></pre><p>可以看到Contains很完美的实现了我们的目标！你以为这样这篇文章就结束了？NoNoNo ~</p>
+<h3 id="contains-2"><a href="#contains-2" class="headerlink" title="contains 2"></a>contains 2</h3><p>如果我们要比对的不是String类型，而是一个下面的自定义类呢？</p>
+<pre><code>public class userInfo {
+    private int _id ;
+    private String name ;
+    private String phone ;
+
+    public userInfo(String name){
+        this.name = name ;
+    }
+
+    // getter和setter略去
+}
+</code></pre><p>测试代码小改动了下，如下：</p>
+<pre><code>public void main2() {
+    ArrayList&lt;userInfo&gt; list = new ArrayList&lt;&gt;();
+    list.add(new userInfo(&quot;张三&quot;));
+    list.add(new userInfo(&quot;李四&quot;));
+    list.add(new userInfo(&quot;王二麻子&quot;));
+    userInfo aimUser1 = new userInfo(&quot;李四&quot;);
+    if (list.contains(aimUser1)) {
+        Log.i(&quot;是否包含？&quot;, &quot;包含了-李四&quot;);
+    } else {
+        Log.i(&quot;是否包含？&quot;, &quot;我擦，居然没包含？不科学啊&quot;);
+    }
+
+}
+</code></pre><p>打印如下：</p>
+<pre><code>I/是否包含？﹕ 我擦，居然没包含？不科学啊
+</code></pre><h3 id="contains-进阶"><a href="#contains-进阶" class="headerlink" title="contains 进阶"></a>contains 进阶</h3><a id="more"></a>
+<p>有问题就找嘛，我们按住Ctrl点击contains来看源码：</p>
+<pre><code>@Override public boolean contains(Object object) {
+    Object[] a = array;
+    int s = size;
+    if (object != null) {
+        for (int i = 0; i &lt; s; i++) {
+            if (object.equals(a[i])) {
+                return true;
+            }
+        }
+    } else {
+        for (int i = 0; i &lt; s; i++) {
+            if (a[i] == null) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+</code></pre><p>PS:系统有啥叼的嘛， 还不是用for循环挨个对比的</p>
+<p>里面用到了</p>
+<pre><code>object.equals(a[i])
+</code></pre><p>其源码是</p>
+<pre><code>public boolean equals(Object o) {
+    return this == o;
+}
+</code></pre><p>其实这里面的Object就是我们上面的自定义类userInfo 这上面的源码居然用 this==o 来对比两个实体？这就是判断两者的地址是否相等嘛。<br>可是我们需要的是两者的内容相等</p>
+<p>按照文章开头那里感谢的那篇文章，在我们的实体类中重写equals方法，没啥难的，我们一起来看：</p>
+<pre><code>public class userInfo {
+    private int _id ;
+    private String name ;
+    private String phone ;
+
+    public userInfo(String name){
+        this.name = name ;
+    }
+
+    // getter和setter略去
+
+    @Override
+    public boolean equals(Object o) {
+        if(o instanceof userInfo) {
+            // 类型强转
+            userInfo _userInfo = (userInfo) o ;
+    //          // 仅仅比对name
+    //          return this.name.equals(_userInfo.getName()) ;
+            // 比对三个参数
+            return this.name.equals(_userInfo.getName()) &amp;&amp;
+                    this.phone.equals(_userInfo.getPhone()) &amp;&amp;
+                    this._id == _userInfo.get_id();
+        }
+        return super.equals(o);
+    }
+}
+</code></pre><p>这时候再跑一次code ，崩~ NullPointerException</p>
+<pre><code>String crash = null ;
+Log.i(&quot;log&quot;, &quot;result:&quot;+crash.equals(&quot;oh no !&quot;));
+</code></pre><p>equals前面是不能为null的。那怎么办？ 我怎么知道。。。 尽量避免不让其为null呗，或者你加判断试试？顺便说一句，下面的写法比较好：</p>
+<pre><code>String crash = null ;
+Log.i(&quot;log&quot;, &quot;result:&quot;+&quot;oh no !&quot;.equals(crash));
+</code></pre><h1 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h1><p>一开始就说到是一个导入通讯录的小任务嘛，上面一直是举例子，这下轮到实战了。不过我不想写了。任性一回 。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://flowerfat.com/2015/11/10/List中的Contains1110/" data-id="cioh5m93x000hsgry29ffsbxe" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/mBigflower" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/flowerfat" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/05/21/各种链接/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            三方链接
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/11/03/nodejs搞服务器1103/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">nodejs搞服务器</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/21/各种链接/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/05/21/各种链接/" class="title">三方链接</a></p>
+                            <p class="item-date"><time datetime="2016-05-21T12:51:20.286Z" itemprop="datePublished">2016-05-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/11/10/List中的Contains1110/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/安卓/">安卓</a></p>
+                            <p class="item-title"><a href="/2015/11/10/List中的Contains1110/" class="title">List中的Contains</a></p>
+                            <p class="item-date"><time datetime="2015-11-09T16:00:00.000Z" itemprop="datePublished">2015-11-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/11/03/nodejs搞服务器1103/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2015/11/03/nodejs搞服务器1103/" class="title">nodejs搞服务器</a></p>
+                            <p class="item-date"><time datetime="2015-11-02T16:00:00.000Z" itemprop="datePublished">2015-11-03</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/10/21/天狗菜谱（textview与html）1021/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://i.imgur.com/9GgXiw2.png)" alt="使用TextView显示Html" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/安卓/">安卓</a></p>
+                            <p class="item-title"><a href="/2015/10/21/天狗菜谱（textview与html）1021/" class="title">使用TextView显示Html</a></p>
+                            <p class="item-date"><time datetime="2015-10-20T16:00:00.000Z" itemprop="datePublished">2015-10-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2015/10/21/nodejs入门三1021/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-title"><a href="/2015/10/21/nodejs入门三1021/" class="title">nodejs入门（三）心得</a></p>
+                            <p class="item-date"><time datetime="2015-10-20T16:00:00.000Z" itemprop="datePublished">2015-10-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/knowledge/">knowledge</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/动画/">动画</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安卓/">安卓</a><span class="category-list-count">11</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">20</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dear/">dear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/get/">get</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/project/">project</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分享/">分享</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/天气预报/">天气预报</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/控件/">控件</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/无标签/">无标签</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日记/">日记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接/">链接</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/dear/" style="font-size: 10px;">dear</a> <a href="/tags/get/" style="font-size: 13.33px;">get</a> <a href="/tags/project/" style="font-size: 13.33px;">project</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/基础/" style="font-size: 16.67px;">基础</a> <a href="/tags/天气预报/" style="font-size: 13.33px;">天气预报</a> <a href="/tags/工具/" style="font-size: 13.33px;">工具</a> <a href="/tags/控件/" style="font-size: 16.67px;">控件</a> <a href="/tags/无标签/" style="font-size: 10px;">无标签</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/链接/" style="font-size: 10px;">链接</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.baidu.com">Baidu</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 胖小了个花</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://flowerfat.com/2015/11/10/List中的Contains1110/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
