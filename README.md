@@ -14,7 +14,7 @@
 
 这个网上也很容易百度到
 
-1. 创建工程（注意工程名）
+1. 创建github工程（注意工程名）
 2. 然后没然后了
 
 ## 重点来了，如何关联？
@@ -23,8 +23,8 @@
 
 其实说白了，github pages我们就理解成是一个仓库，它存的东西，其实
 
-就是hexo项目里的一个文件夹，哪个呢？ ** public **
+就是hexo项目里的一个文件夹，哪个呢？ **public**，这个只有在你generate后才会生成（貌似是把md变成了html）
 
 1. 文章都是放在source/_post里的md文件
 2. 当我们写完文章后，使用hexo g(即 hexo generate的简写)，此时public里的文件就更新了
-3. 把public里的内容，通过git传到我们的github工程里，搞定
+3. 把public里的内容，通过git commit、push到我们的github工程里(就是本工程)，搞定
