@@ -37,6 +37,17 @@
     
     
     
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?328b95b1394b38bbb7e7acb8e108c17f";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
 
 </head>
 
@@ -65,7 +76,7 @@
                                     <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
-                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Nodejs/">Nodejs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/github/">github</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/knowledge/">knowledge</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/动画/">动画</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/安卓/">安卓</a></li></ul>
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/LifeStyle/">LifeStyle</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tech/">Tech</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tech/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tech/nodejs/">nodejs</a></li></ul></li></ul>
                                     
                                 <li class="main-nav-list-item" >
                                     <a class="main-nav-list-link" href="/about/index.html">About</a>
@@ -147,73 +158,6 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2015/08/06/学习笔记/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-url="http://flowerfat.com/2015/08/06/学习笔记/">0</span>
-    
-</span>
-
-    
-</a>
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2015-08-05T16:00:00.000Z" itemprop="datePublished">2015-08-06</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2015/08/06/学习笔记/">Fresco 与 RecyclerView</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            Fresco图片属性提供了各种图 不存在scaleType 而是换成了自己的，具体如下：摘取自这里
-
-正常图：actualImageScaleType=”focusCrop” //设置图片缩放. 通常使用focusCrop,该属性值会通过算法把人头像放在中间
-占位图：placeholderImage   —&gt;&gt; placeholderImageScaleType
-加载图：progressBarImage   —&gt;&gt; progressBarImageScaleType
-失败图：failureImage       —&gt;&gt; failureImageScaleType
-重载图：retryImage         —&gt;&gt; retryImageScaleType
-
-其他修改图片尺寸
-Uri uri = &quot;file:///mnt/sdcard/MyApp/myfile.jpg&quot;;
-int width = 50, height = 50;
-ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
-    .setResizeOptions(new ResizeOptions(width, height))
-    .build();
-PipelineDraweeController controller = Fresco.newDraweeControllerBuilder()
-    .setOldController(mDraweeView.getController())
-    .setImageRequest(request)
-    .build();
-mSimpleDraweeView.setController(controller);
-自动旋转
-ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
-    .setAutoRotateEnabled(true)
-    .build();
-
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
         <a href="/2015/08/05/2015-08-05/" class="thumbnail">
     
     
@@ -224,7 +168,7 @@ ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-url="http://flowerfat.com/2015/08/05/2015-08-05/">0</span>
+        <span class="ds-thread-count" data-thread-key="2015/08/05/2015-08-05/">0</span>
     
 </span>
 
@@ -254,14 +198,10 @@ Tips2今天对 Meterial Design 进行了熟悉。
     </div>
 </article>
     
-        </div>
-    
 
     
     
     
-    
-        <div class="article-row">
     
         <article class="article article-summary">
     <div class="article-summary-inner">
@@ -276,7 +216,7 @@ Tips2今天对 Meterial Design 进行了熟悉。
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-url="http://flowerfat.com/2015/08/04/hexo使用心得/">0</span>
+        <span class="ds-thread-count" data-thread-key="2015/08/04/hexo使用心得/">0</span>
     
 </span>
 
@@ -361,7 +301,7 @@ mark一下，我的md编辑器用的是这个 http://pan.baidu.com/s/1sjE9HAt  �
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2016/05/21/各种链接/" class="thumbnail">
+                            <a href="/2015/11/11/各种链接/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -371,9 +311,9 @@ mark一下，我的md编辑器用的是这个 http://pan.baidu.com/s/1sjE9HAt  �
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/05/21/各种链接/" class="title">三方链接</a></p>
-                            <p class="item-date"><time datetime="2016-05-21T12:51:20.286Z" itemprop="datePublished">2016-05-21</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a></p>
+                            <p class="item-title"><a href="/2015/11/11/各种链接/" class="title">三方链接</a></p>
+                            <p class="item-date"><time datetime="2015-11-10T16:00:00.000Z" itemprop="datePublished">2015-11-11</time></p>
                         </div>
                     </li>
                 
@@ -390,7 +330,7 @@ mark一下，我的md编辑器用的是这个 http://pan.baidu.com/s/1sjE9HAt  �
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/安卓/">安卓</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a></p>
                             <p class="item-title"><a href="/2015/11/10/List中的Contains1110/" class="title">List中的Contains</a></p>
                             <p class="item-date"><time datetime="2015-11-09T16:00:00.000Z" itemprop="datePublished">2015-11-10</time></p>
                         </div>
@@ -409,7 +349,7 @@ mark一下，我的md编辑器用的是这个 http://pan.baidu.com/s/1sjE9HAt  �
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/nodejs/">nodejs</a></p>
                             <p class="item-title"><a href="/2015/11/03/nodejs搞服务器1103/" class="title">nodejs搞服务器</a></p>
                             <p class="item-date"><time datetime="2015-11-02T16:00:00.000Z" itemprop="datePublished">2015-11-03</time></p>
                         </div>
@@ -428,7 +368,7 @@ mark一下，我的md编辑器用的是这个 http://pan.baidu.com/s/1sjE9HAt  �
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/安卓/">安卓</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a></p>
                             <p class="item-title"><a href="/2015/10/21/天狗菜谱（textview与html）1021/" class="title">使用TextView显示Html</a></p>
                             <p class="item-date"><time datetime="2015-10-20T16:00:00.000Z" itemprop="datePublished">2015-10-21</time></p>
                         </div>
@@ -447,7 +387,7 @@ mark一下，我的md编辑器用的是这个 http://pan.baidu.com/s/1sjE9HAt  �
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/nodejs/">nodejs</a></p>
                             <p class="item-title"><a href="/2015/10/21/nodejs入门三1021/" class="title">nodejs入门（三）心得</a></p>
                             <p class="item-date"><time datetime="2015-10-20T16:00:00.000Z" itemprop="datePublished">2015-10-21</time></p>
                         </div>
@@ -462,7 +402,7 @@ mark一下，我的md编辑器用的是这个 http://pan.baidu.com/s/1sjE9HAt  �
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/knowledge/">knowledge</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/动画/">动画</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安卓/">安卓</a><span class="category-list-count">11</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/">LifeStyle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/android/">android</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/nodejs/">nodejs</a><span class="category-list-count">4</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -472,7 +412,7 @@ mark一下，我的md编辑器用的是这个 http://pan.baidu.com/s/1sjE9HAt  �
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">20</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">19</span></li></ul>
         </div>
     </div>
 
@@ -482,7 +422,7 @@ mark一下，我的md编辑器用的是这个 http://pan.baidu.com/s/1sjE9HAt  �
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dear/">dear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/get/">get</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/project/">project</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分享/">分享</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/天气预报/">天气预报</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/控件/">控件</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/无标签/">无标签</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日记/">日记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接/">链接</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/anim/">anim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/project/">project</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/skill/">skill</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/">tips</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/views/">views</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/widget/">widget</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分享/">分享</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/天气预报/">天气预报</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/控件/">控件</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接/">链接</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -492,7 +432,7 @@ mark一下，我的md编辑器用的是这个 http://pan.baidu.com/s/1sjE9HAt  �
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/dear/" style="font-size: 10px;">dear</a> <a href="/tags/get/" style="font-size: 13.33px;">get</a> <a href="/tags/project/" style="font-size: 13.33px;">project</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/基础/" style="font-size: 16.67px;">基础</a> <a href="/tags/天气预报/" style="font-size: 13.33px;">天气预报</a> <a href="/tags/工具/" style="font-size: 13.33px;">工具</a> <a href="/tags/控件/" style="font-size: 16.67px;">控件</a> <a href="/tags/无标签/" style="font-size: 10px;">无标签</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/链接/" style="font-size: 10px;">链接</a>
+            <a href="/tags/anim/" style="font-size: 10px;">anim</a> <a href="/tags/project/" style="font-size: 18px;">project</a> <a href="/tags/skill/" style="font-size: 10px;">skill</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/views/" style="font-size: 10px;">views</a> <a href="/tags/widget/" style="font-size: 14px;">widget</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/基础/" style="font-size: 20px;">基础</a> <a href="/tags/天气预报/" style="font-size: 16px;">天气预报</a> <a href="/tags/控件/" style="font-size: 12px;">控件</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/链接/" style="font-size: 10px;">链接</a>
         </div>
     </div>
 
@@ -540,16 +480,15 @@ mark一下，我的md编辑器用的是这个 http://pan.baidu.com/s/1sjE9HAt  �
 </footer>
         
     
-    <script>
-    var disqus_shortname = 'hexo-theme-hueman';
-    
-    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'flowerfat'};
     (function() {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
     })();
     </script>
 

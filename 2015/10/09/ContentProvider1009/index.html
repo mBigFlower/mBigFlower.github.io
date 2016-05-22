@@ -6,7 +6,7 @@
     <title>ContentProvider学习笔记 | 春风十里</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="控件" />
+        <meta name="keywords" content="widget" />
     
     <meta name="description" content="说点啥原谅我这么晚才来了解这个名为安卓四大组件之一的家伙 -。-这个名字明显是两个英文拼一块儿的，内容、提供者。是个载体？
 简介我们本地存储的东西，可以用SharedPreferences,可以用数据库，可以用文件存储，但这些都是应用内的。那么如果我想将数据分享给其他程序呢（别问我为什么，开源也不是坏事）这时候主角就出现了：ContentProvider
@@ -21,7 +21,7 @@ ContentResolver前言这玩意">
 
 ContentResolver前言这玩意">
 <meta property="og:image" content="http://i.imgur.com/G8YjxiS.png">
-<meta property="og:updated_time" content="2015-11-09T19:54:10.000Z">
+<meta property="og:updated_time" content="2016-05-21T13:50:45.973Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ContentProvider学习笔记">
 <meta name="twitter:description" content="说点啥原谅我这么晚才来了解这个名为安卓四大组件之一的家伙 -。-这个名字明显是两个英文拼一块儿的，内容、提供者。是个载体？
@@ -51,6 +51,17 @@ ContentResolver前言这玩意">
     
     
     
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?328b95b1394b38bbb7e7acb8e108c17f";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
 
 </head>
 
@@ -79,7 +90,7 @@ ContentResolver前言这玩意">
                                     <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
-                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Nodejs/">Nodejs</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/github/">github</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/knowledge/">knowledge</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/动画/">动画</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/安卓/">安卓</a></li></ul>
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/LifeStyle/">LifeStyle</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tech/">Tech</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tech/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tech/nodejs/">nodejs</a></li></ul></li></ul>
                                     
                                 <li class="main-nav-list-item" >
                                     <a class="main-nav-list-link" href="/about/index.html">About</a>
@@ -138,7 +149,7 @@ ContentResolver前言这玩意">
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/安卓/">安卓</a>
+    <a class="page-title-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Tech/android/">android</a>
     </h1>
 </div>
                         <div class="main-body-content">
@@ -160,7 +171,7 @@ ContentResolver前言这玩意">
     <time datetime="2015-10-08T16:00:00.000Z" itemprop="datePublished">2015-10-09</time>
 </a>
             
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/控件/">控件</a></li></ul>
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/widget/">widget</a></li></ul>
 
         </div>
         <div class="article-entry" itemprop="articleBody">
@@ -357,9 +368,44 @@ public class ContactsUtil {
     <section id="comments">
     
         
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
+    <div class="ds-thread" data-thread-key="2015/10/09/ContentProvider1009/" data-title="ContentProvider学习笔记" data-url="http://flowerfat.com/2015/10/09/ContentProvider1009/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
 
     
     </section>
@@ -426,7 +472,7 @@ public class ContactsUtil {
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2016/05/21/各种链接/" class="thumbnail">
+                            <a href="/2015/11/11/各种链接/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -436,9 +482,9 @@ public class ContactsUtil {
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2016/05/21/各种链接/" class="title">三方链接</a></p>
-                            <p class="item-date"><time datetime="2016-05-21T12:51:20.286Z" itemprop="datePublished">2016-05-21</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a></p>
+                            <p class="item-title"><a href="/2015/11/11/各种链接/" class="title">三方链接</a></p>
+                            <p class="item-date"><time datetime="2015-11-10T16:00:00.000Z" itemprop="datePublished">2015-11-11</time></p>
                         </div>
                     </li>
                 
@@ -455,7 +501,7 @@ public class ContactsUtil {
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/安卓/">安卓</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a></p>
                             <p class="item-title"><a href="/2015/11/10/List中的Contains1110/" class="title">List中的Contains</a></p>
                             <p class="item-date"><time datetime="2015-11-09T16:00:00.000Z" itemprop="datePublished">2015-11-10</time></p>
                         </div>
@@ -474,7 +520,7 @@ public class ContactsUtil {
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/nodejs/">nodejs</a></p>
                             <p class="item-title"><a href="/2015/11/03/nodejs搞服务器1103/" class="title">nodejs搞服务器</a></p>
                             <p class="item-date"><time datetime="2015-11-02T16:00:00.000Z" itemprop="datePublished">2015-11-03</time></p>
                         </div>
@@ -493,7 +539,7 @@ public class ContactsUtil {
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/安卓/">安卓</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a></p>
                             <p class="item-title"><a href="/2015/10/21/天狗菜谱（textview与html）1021/" class="title">使用TextView显示Html</a></p>
                             <p class="item-date"><time datetime="2015-10-20T16:00:00.000Z" itemprop="datePublished">2015-10-21</time></p>
                         </div>
@@ -512,7 +558,7 @@ public class ContactsUtil {
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Nodejs/">Nodejs</a></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/nodejs/">nodejs</a></p>
                             <p class="item-title"><a href="/2015/10/21/nodejs入门三1021/" class="title">nodejs入门（三）心得</a></p>
                             <p class="item-date"><time datetime="2015-10-20T16:00:00.000Z" itemprop="datePublished">2015-10-21</time></p>
                         </div>
@@ -527,7 +573,7 @@ public class ContactsUtil {
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Nodejs/">Nodejs</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/android/">android</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/knowledge/">knowledge</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/动画/">动画</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安卓/">安卓</a><span class="category-list-count">11</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/">LifeStyle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/android/">android</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/nodejs/">nodejs</a><span class="category-list-count">4</span></li></ul></li></ul>
         </div>
     </div>
 
@@ -537,7 +583,7 @@ public class ContactsUtil {
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">20</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">19</span></li></ul>
         </div>
     </div>
 
@@ -547,7 +593,7 @@ public class ContactsUtil {
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dear/">dear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/get/">get</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/project/">project</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分享/">分享</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/天气预报/">天气预报</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/控件/">控件</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/无标签/">无标签</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/日记/">日记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接/">链接</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/anim/">anim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/project/">project</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/skill/">skill</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/">tips</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/views/">views</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/widget/">widget</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分享/">分享</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/天气预报/">天气预报</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/控件/">控件</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接/">链接</a><span class="tag-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -557,7 +603,7 @@ public class ContactsUtil {
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/android/" style="font-size: 20px;">android</a> <a href="/tags/dear/" style="font-size: 10px;">dear</a> <a href="/tags/get/" style="font-size: 13.33px;">get</a> <a href="/tags/project/" style="font-size: 13.33px;">project</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/基础/" style="font-size: 16.67px;">基础</a> <a href="/tags/天气预报/" style="font-size: 13.33px;">天气预报</a> <a href="/tags/工具/" style="font-size: 13.33px;">工具</a> <a href="/tags/控件/" style="font-size: 16.67px;">控件</a> <a href="/tags/无标签/" style="font-size: 10px;">无标签</a> <a href="/tags/日记/" style="font-size: 10px;">日记</a> <a href="/tags/链接/" style="font-size: 10px;">链接</a>
+            <a href="/tags/anim/" style="font-size: 10px;">anim</a> <a href="/tags/project/" style="font-size: 18px;">project</a> <a href="/tags/skill/" style="font-size: 10px;">skill</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/views/" style="font-size: 10px;">views</a> <a href="/tags/widget/" style="font-size: 14px;">widget</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/基础/" style="font-size: 20px;">基础</a> <a href="/tags/天气预报/" style="font-size: 16px;">天气预报</a> <a href="/tags/控件/" style="font-size: 12px;">控件</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/链接/" style="font-size: 10px;">链接</a>
         </div>
     </div>
 
@@ -605,18 +651,15 @@ public class ContactsUtil {
 </footer>
         
     
-    <script>
-    var disqus_shortname = 'hexo-theme-hueman';
-    
-    
-    var disqus_url = 'http://flowerfat.com/2015/10/09/ContentProvider1009/';
-    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'flowerfat'};
     (function() {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
     })();
     </script>
 
