@@ -1,58 +1,59 @@
 # Hexo and Github
 
-**github pages** + **Hexo**���ص�������������ô������ϵ�ģ�����ֻ�Ǵ�ʵ��������ԭ��ȥ�ٶ����������¿���
-��ϣ������һ��������������������¡�
+**github pages** + **Hexo**，重点是他们两个怎么产生关系的，这里只是纯实践操作，原理去百度上其他文章看，
+我希望你有一定基础再来看下面的文章。
 
 ### Hexo
 
-���Ϻܶ࣬�ܽ�һ���޷ǣ�����windows����
+网上很多，总结一下无非（我是windows）：
 
-1. ����nodejs --> ��װ
-2. ��װHexo --> ����һ��Hexo��Ŀ 
-3. ����һ��������ſ�����⣬�ŵ�themes�� --> ���á���Ŀ¼���µ�_config.yml������⻻�������ص�
+1. 下载nodejs --> 安装
+2. 安装Hexo --> 生成一个Hexo项目 
+3. 下载一款你觉得炫酷的主题，放到themes里 --> 配置“根目录”下的_config.yml里，将主题换成你下载的
 
 ### github pages
 
-�������Ҳ�����װٶȵ�������˵��������վ��Ҫ�½�һ��***��֧���ҷ���ʵ��master��Ū�ģ�
+这个网上也很容易百度到（有人说做个人网站需要新建一个***分支，我反正实在master里弄的）
 
-1. ����github���̣�ע�⹤����������һ����ʵ���Ǹ�ҳ�棬��������̣� 
-2. Ȼ��ûȻ����
+1. 创建github工程（注意工程名）（这一步其实就是该页面，我这个工程） 
+2. 然后没然后了
 
-## �ص����ˣ���ι�����
+## 重点来了，如何关联？
 
-(���������ַ����ϴ����£�һ��ʹ��deploy�������ҪSSH����û�����ף��Ҳ��õڶ��֣��ֶ�)
+(这里有两种方法上传文章，一种使用deploy，这个需要SSH，我没整明白，我采用第二种，手动)
 
-��ʵ˵���ˣ�github pages���Ǿ��������һ���ֿ⣬����Ķ�������ʵ
+其实说白了，github pages我们就理解成是一个仓库，它存的东西，其实
 
-����hexo��Ŀ���һ���ļ��У��ĸ��أ� **public**�����ֻ������generate��Ż����ɣ�ò���ǰ�md�����html��
+就是hexo项目里的一个文件夹，哪个呢？ **public**，这个只有在你generate后才会生成（貌似是把md变成了html）
 
-�㲻���������ɵ�public�ļ��д򿪣��Ա�һ�£��ǲ��Ǻ��ҵ��������������ļ�����
+你不妨把你生成的public文件夹打开，对比一下，是不是和我的这个工程里面的文件很像？
 
-1. ���¶��Ƿ���source/_post���md�ļ�
-2. ������д�����º�ʹ��hexo g(�� hexo generate�ļ�д)����ʱpublic����ļ��͸�����
-3. ��public������ݣ�ͨ��git commit��push�����ǵ�github������(���Ǳ�����)���㶨
+1. 文章都是放在source/_post里的md文件
+2. 当我们写完文章后，使用hexo g(即 hexo generate的简写)，此时public里的文件就更新了
+3. 把public里的内容，通过git commit、push到我们的github工程里(就是本工程)，搞定
 
-## �󶨸�������
+## 绑定个人域名
 
-Ҫִ����һ��������ȷ�������涼over�ˣ�զ֪����������yourName.github.io���������ݶԲ������ٲ�����404�ɡ�OK��next
+要执行这一步，首先确保你上面都over了，咋知道？访问下yourName.github.io，看看内容对不，至少不能是404吧。OK，next
 
-1. ��������pingһ�����github pages����  ping yourName,github.io���Դ��������IP��ַ��
-2. �����Լ���������������������ϸոջ�õ�IP��ַ��Ȼ�����ĵȴ�����
-3. �ܶ��ƶ�˵��������ʱ��������������¼f1g1ns1.dnspod.net��f1g1ns2.dnspod.net������û�ӣ�Ŀǰ��������ɶ���
+1. 用命令行ping一下你的github pages，即  ping yourName,github.io（以此来获得其IP地址）
+2. 把你自己购买的域名，解析，填上刚刚获得的IP地址，然后耐心等待即可
+3. 很多伙计都说域名解析时：“添加两条记录f1g1ns1.dnspod.net和f1g1ns2.dnspod.net”，我没加，目前不晓得有啥后果
 
-�����¶��Ǹ������⣩��������˵��ʲôCNAME���������Ŀ���Ƿ���ġ������Ŀ���ǣ������������Լ�������ʱ����ʾ����ʵ��yourName.github.io�������
+（以下都是个人理解）至于网友说的什么CNAME，跟上面的目的是反向的。上面的目的是，当访问我们自己的域名时，显示的其实是yourName.github.io里的内容
 
-��������CNAME��Ŀ���ǣ�������yourName.github.ioʱ���Զ���ת�����ǵ������������������
+而添加了CNAME的目的是：当访问yourName.github.io时，自动跳转到我们的域名，具体操作如下
 
-1. ��hexo�Ĺ��̵�source������һ���ļ����޺�׺�����ļ���ΪCNAME
-2. �ڸ��ļ��н�����һ�У�������������磺flowerfat.com����Ҫwww��
-3. hexo gһ�£���ʱpublic����Զ�����һ��CNAME����ʵ���Ǹ��ƹ�ȥ�ġ�������
+1. 在hexo的工程的source里添加一个文件（无后缀），文件名为CNAME
+2. 在该文件中仅添加一行，即你的域名，如：flowerfat.com（不要www）
+3. hexo g一下，这时public里会自动生成一个CNAME（其实就是复制过去的。。。）
 
 ## Tips
 
-1. ��վ����������������룬������ܸ�hexo���language: zh-CN�޹أ�������ʹ���˼��±����༭�����±�����ı����ʽ������utf-8���������༭����������Ϊutf-8��
-2. 
+1. 网站里输入的中文是乱码，这个可能跟hexo里的language: zh-CN无关，而是你使用了记事本来编辑，记事本保存的编码格式并不是utf-8（用其他编辑器或者另存为utf-8）
+2. 有待解决：有时候你进行了页面的改动，如新添加了分类，但是push到github后，网站木有变化。这时候就需要在 hexo g 之前，先调用 hexo clean（把public文件给删了），再进行hexo g重新生成public。这样的话，有个问题。删了public文件夹，那么文件夹里的git就木有了。又要重新git init。而且~新生成的与github上的会各种冲突。。。 我也时醉了。
 
-## �������
+## 相关链接
 
-- [�����������󶨵�github pages ������](http://jingyan.baidu.com/article/3c343ff70fb6e60d3779632f.html)
+- [怎样将域名绑定到github pages 博客上](http://jingyan.baidu.com/article/3c343ff70fb6e60d3779632f.html)
+- [手把手教你使用Hexo + Github Pages搭建个人独立博客](https://segmentfault.com/a/1190000004947261)
