@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>nodejs入门（三）心得 | 春风十里</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="基础" />
+    
+    <meta name="description" content="说点啥之前是写安卓的，最初接触nodejs的目的，就是为了自己能一个人做一个应用。前面两篇文章，入门一二只是对nodejs的api进行了下分析。其实我后来还是按照Scott老师的视频走完了
+视频最后是一个爬虫的小例子，和一个刷评论的方法，感觉so cool有木有，我还按照这个方法刷了下我的博客的回复，哈哈！
+然后我就空虚了，视频看完了，没啥感觉啊，离我的目标有点远啊。或许是因为理解的不够透彻，于是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nodejs入门（三）心得">
+<meta property="og:url" content="http://flowerfat.com/2015/10/21/nodejs入门三1021/index.html">
+<meta property="og:site_name" content="春风十里">
+<meta property="og:description" content="说点啥之前是写安卓的，最初接触nodejs的目的，就是为了自己能一个人做一个应用。前面两篇文章，入门一二只是对nodejs的api进行了下分析。其实我后来还是按照Scott老师的视频走完了
+视频最后是一个爬虫的小例子，和一个刷评论的方法，感觉so cool有木有，我还按照这个方法刷了下我的博客的回复，哈哈！
+然后我就空虚了，视频看完了，没啥感觉啊，离我的目标有点远啊。或许是因为理解的不够透彻，于是">
+<meta property="og:updated_time" content="2016-05-21T13:48:56.776Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nodejs入门（三）心得">
+<meta name="twitter:description" content="说点啥之前是写安卓的，最初接触nodejs的目的，就是为了自己能一个人做一个应用。前面两篇文章，入门一二只是对nodejs的api进行了下分析。其实我后来还是按照Scott老师的视频走完了
+视频最后是一个爬虫的小例子，和一个刷评论的方法，感觉so cool有木有，我还按照这个方法刷了下我的博客的回复，哈哈！
+然后我就空虚了，视频看完了，没啥感觉啊，离我的目标有点远啊。或许是因为理解的不够透彻，于是">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?328b95b1394b38bbb7e7acb8e108c17f";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Fighting</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/LifeStyle/">LifeStyle</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/LifeStyle/stronger/">stronger</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/LifeStyle/travels/">travels</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tech/">Tech</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tech/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tech/nodejs/">nodejs</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Tech/nodejs/">nodejs</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-nodejs入门三1021" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        nodejs入门（三）心得
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2015/10/21/nodejs入门三1021/" class="article-date">
+    <time datetime="2015-10-20T16:00:00.000Z" itemprop="datePublished">2015-10-21</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础/">基础</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="说点啥"><a href="#说点啥" class="headerlink" title="说点啥"></a>说点啥</h1><p>之前是写安卓的，最初接触nodejs的目的，就是为了自己能一个人做一个应用。<br>前面两篇文章，入门一二只是对nodejs的api进行了下分析。其实我后来还是按照Scott老师的视频走完了</p>
+<p>视频最后是一个爬虫的小例子，和一个刷评论的方法，感觉so cool有木有，我还按照这个方法刷了下我的博客的回复，哈哈！</p>
+<p>然后我就空虚了，视频看完了，没啥感觉啊，离我的目标有点远啊。或许是因为理解的不够透彻，于是我又找了一些资料，如下：</p>
+<ol>
+<li>（暂时无用）大神的《Node.js 包教不包会》<a href="https://github.com/alsotang/node-lessons" target="_blank" rel="external">https://github.com/alsotang/node-lessons</a></li>
+<li>（学不明白）Scott老师的 node+mongodb 建站攻略（一期）</li>
+<li>（没啥用）极客学院的： Node.js 实战项目开发：极客学院“技术问答”</li>
+<li>（重点！）极客学院的： Node.js 实践： 使用 MongoDB 存储数据（可看23小节）</li>
+</ol>
+<hr>
+<p>我们来按照我的过程捋一下：</p>
+<p>《Node.js包教不包会》是我朋友推荐的，他说你看完了这些就入门啦，一开始几课还好，后来就很吃力了。而且感觉课程面挺广，目前初学者可能涉及不到那些，于是我决定先放放，等有了一定了解了再回来</p>
+<p>然后我想到了Scott老师，他的视频感觉挺好啊，找找有没有其他的视频，然后找到了《node+mongodb 建站攻略（一期）》，哎呦，不仅学了node还学了数据库，就它了。看了一会发现，这个教程不适合初学者（别问我为什么，可能是我笨）</p>
+<p>经过了上面两个坎坷后，有点抱怨人生了。然后又去撸了会儿安卓。其实之前的两步还是有收获的，只不过我可能上手有点慢？都是“浅尝辄止”了。</p>
+<p>今天上午看了极客学院的nodejs实战项目开发后，心里逐渐有了个方向：服务器嘛，无非就是你给我个请求，我返回给你个数据。对于我这样的初学者来说，管你什么性能什么并发什么……现在能简单的做个数据交互就好！ 那我就需要两点：</p>
+<ul>
+<li>解析请求</li>
+<li>操作数据库</li>
+</ul>
+<h1 id="二人组"><a href="#二人组" class="headerlink" title="二人组"></a>二人组</h1><h2 id="express"><a href="#express" class="headerlink" title="express"></a>express</h2><p>我把express理解为中间人，客户端和数据库的中间人，别人发来的请求，我通过express进行路由（我理解的路由就是：一个请求好比一车乘客，我路由就是把不同的乘客送到不同的家，即分发）、解析（知道这个请求是干啥的嘛）</p>
+<h2 id="mongoDb"><a href="#mongoDb" class="headerlink" title="mongoDb"></a>mongoDb</h2><p>express之后，自然而然就涉及到操作数据库了。于是我找了上面提到的视频教程《node.js实践：使用MongoDB》</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>视频第三节中，使用express <em>*</em> 初始化项目目录，而4.x以后，我们要单独的加入express-generator，所以</p>
+<pre><code>npm install express-generator
+</code></pre><p>然后再express <em>*</em> 就可以使用了</p>
+<hr>
+<p>可以说有了上面俩玩意儿，我就能搭建基本的服务器了。至于其他的，先甩到后面去，先把这两个弄懂了再说。</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://flowerfat.com/2015/10/21/nodejs入门三1021/" data-id="cioxlmztl000rs8ryj7l4hc7o" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/10/21/nodejs入门三1021/" data-title="nodejs入门（三）心得" data-url="http://flowerfat.com/2015/10/21/nodejs入门三1021/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/mBigflower" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/flowerfat" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/10/21/天狗菜谱（textview与html）1021/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            使用TextView显示Html
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/10/16/nodejs入门二1016/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">nodejs入门（二）Events</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/02/减脂与减重/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/mw690/0068dzq5jw1f3qcdoj80jj30eb0k342s.jpg)" alt="肌哥跟朋友们聊聊减脂与减重" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/02/减脂与减重/" class="title">肌哥跟朋友们聊聊减脂与减重</a></p>
+                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/02/增重饮食法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/0068dzq5gw1f3uwudoauoj30dw0d8q4e.jpg)" alt="肌哥给大家分享自身的增重饮食法" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/02/增重饮食法/" class="title">肌哥给大家分享自身的增重饮食法</a></p>
+                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/02/简单聊聊驼背/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/0068dzq5gw1f406ozuj4wj30dw07tq3c.jpg)" alt="简单聊聊　&quot;**驼背**&quot;　（肌哥已转化简体字）" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/02/简单聊聊驼背/" class="title">简单聊聊　&quot;**驼背**&quot;　（肌哥已转化简体字）</a></p>
+                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/02/ForStronger/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/02/ForStronger/" class="title">肌哥微博文章整理</a></p>
+                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/02/燕麦做法/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/02/燕麦做法/" class="title">健身早餐介紹（燕麥片)</a></p>
+                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/">LifeStyle</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/stronger/">stronger</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/travels/">travels</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/android/">android</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/nodejs/">nodejs</a><span class="category-list-count">4</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/anim/">anim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/project/">project</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/skill/">skill</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/">tips</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/views/">views</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/widget/">widget</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健身/">健身</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分享/">分享</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/天气预报/">天气预报</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/控件/">控件</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接/">链接</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/anim/" style="font-size: 10px;">anim</a> <a href="/tags/project/" style="font-size: 18px;">project</a> <a href="/tags/skill/" style="font-size: 10px;">skill</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/views/" style="font-size: 10px;">views</a> <a href="/tags/widget/" style="font-size: 14px;">widget</a> <a href="/tags/健身/" style="font-size: 18px;">健身</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/基础/" style="font-size: 20px;">基础</a> <a href="/tags/天气预报/" style="font-size: 16px;">天气预报</a> <a href="/tags/控件/" style="font-size: 12px;">控件</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/链接/" style="font-size: 10px;">链接</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.baidu.com">Baidu</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 胖小了个花</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'flowerfat'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

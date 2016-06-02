@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Android M(Design) | 春风十里</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="widget" />
+    
+    <meta name="description" content="这篇文章也是东拼西凑的，看别人的理解整理的：感谢1  感谢2
+功能特性视频连接(感觉没啥用) http://www.jikexueyuan.com/course/1247_1.html?ss=1
+
+
+App Permissions
+
+　　以前在处理权限问题上，碰到要提问权限的手机，经常很头疼。看到第一点很激动有木有，后来发现原来是5.0手机才有的方法。伤不起啊！
+
+App Links 
+
+　　想办">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android M(Design)">
+<meta property="og:url" content="http://flowerfat.com/2015/08/08/Android M-0808/index.html">
+<meta property="og:site_name" content="春风十里">
+<meta property="og:description" content="这篇文章也是东拼西凑的，看别人的理解整理的：感谢1  感谢2
+功能特性视频连接(感觉没啥用) http://www.jikexueyuan.com/course/1247_1.html?ss=1
+
+
+App Permissions
+
+　　以前在处理权限问题上，碰到要提问权限的手机，经常很头疼。看到第一点很激动有木有，后来发现原来是5.0手机才有的方法。伤不起啊！
+
+App Links 
+
+　　想办">
+<meta property="og:image" content="http://i.imgur.com/PRHx3Ke.png">
+<meta property="og:updated_time" content="2016-05-21T13:51:12.111Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android M(Design)">
+<meta name="twitter:description" content="这篇文章也是东拼西凑的，看别人的理解整理的：感谢1  感谢2
+功能特性视频连接(感觉没啥用) http://www.jikexueyuan.com/course/1247_1.html?ss=1
+
+
+App Permissions
+
+　　以前在处理权限问题上，碰到要提问权限的手机，经常很头疼。看到第一点很激动有木有，后来发现原来是5.0手机才有的方法。伤不起啊！
+
+App Links 
+
+　　想办">
+<meta name="twitter:image" content="http://i.imgur.com/PRHx3Ke.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?328b95b1394b38bbb7e7acb8e108c17f";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Fighting</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/LifeStyle/">LifeStyle</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/LifeStyle/stronger/">stronger</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/LifeStyle/travels/">travels</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tech/">Tech</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tech/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tech/nodejs/">nodejs</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Tech/android/">android</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-Android M-0808" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Android M(Design)
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2015/08/08/Android M-0808/" class="article-date">
+    <time datetime="2015-08-07T16:00:00.000Z" itemprop="datePublished">2015-08-08</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/widget/">widget</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>这篇文章也是东拼西凑的，看别人的理解整理的：<a href="http://www.open-open.com/lib/view/open1438265746378.html" target="_blank" rel="external">感谢1</a>  <a href="http://www.2cto.com/kf/201506/405132.html" target="_blank" rel="external">感谢2</a></p>
+<h1 id="功能特性"><a href="#功能特性" class="headerlink" title="功能特性"></a>功能特性</h1><p>视频连接(感觉没啥用) <a href="http://www.jikexueyuan.com/course/1247_1.html?ss=1" target="_blank" rel="external">http://www.jikexueyuan.com/course/1247_1.html?ss=1</a></p>
+<p><img src="http://i.imgur.com/PRHx3Ke.png" alt=""></p>
+<blockquote>
+<p>App Permissions</p>
+</blockquote>
+<p>　　以前在处理权限问题上，碰到要提问权限的手机，经常很头疼。看到第一点很激动有木有，后来发现原来是5.0手机才有的方法。伤不起啊！</p>
+<blockquote>
+<p>App Links </p>
+</blockquote>
+<p>　　想办法通过链接弹到我们的应用</p>
+<blockquote>
+<p>其他的没玩过。</p>
+</blockquote>
+<h1 id="Android-Design"><a href="#Android-Design" class="headerlink" title="Android Design"></a>Android Design</h1><h2 id="一步两步，似爪牙"><a href="#一步两步，似爪牙" class="headerlink" title="一步两步，似爪牙~"></a>一步两步，似爪牙~</h2><ol>
+<li>CoordinatorLayout</li>
+<li>AppBarLayout</li>
+<li>CollapsingToolbarLayout</li>
+<li>Toolbar</li>
+<li>NestedScrollView</li>
+<li>FloatingActionButton 即 FAB</li>
+</ol>
+<p>看这段代码：</p>
+<pre><code>&lt;android.support.design.widget.CoordinatorLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    android:id=&quot;@+id/main_content&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:fitsSystemWindows=&quot;true&quot;&gt;
+
+    &lt;android.support.design.widget.AppBarLayout
+        android:id=&quot;@+id/appbar&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;@dimen/detail_backdrop_height&quot;
+        android:theme=&quot;@style/ThemeOverlay.AppCompat.Dark.ActionBar&quot;
+        android:fitsSystemWindows=&quot;true&quot;&gt;
+
+        &lt;android.support.design.widget.CollapsingToolbarLayout
+            android:id=&quot;@+id/collapsing_toolbar&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;match_parent&quot;
+            app:layout_scrollFlags=&quot;scroll|exitUntilCollapsed&quot;
+            android:fitsSystemWindows=&quot;true&quot;
+            app:contentScrim=&quot;?attr/colorPrimary&quot;
+            app:expandedTitleMarginStart=&quot;48dp&quot;
+            app:expandedTitleMarginEnd=&quot;64dp&quot;&gt;
+
+            &lt;ImageView
+                android:id=&quot;@+id/backdrop&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;match_parent&quot;
+                android:scaleType=&quot;centerCrop&quot;
+                android:fitsSystemWindows=&quot;true&quot;
+                app:layout_collapseMode=&quot;parallax&quot; /&gt;
+
+            &lt;android.support.v7.widget.Toolbar
+                android:id=&quot;@+id/toolbar&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;?attr/actionBarSize&quot;
+                app:popupTheme=&quot;@style/ThemeOverlay.AppCompat.Light&quot;
+                app:layout_collapseMode=&quot;pin&quot; /&gt;
+
+        &lt;/android.support.design.widget.CollapsingToolbarLayout&gt;
+
+    &lt;/android.support.design.widget.AppBarLayout&gt;
+
+    &lt;android.support.v4.widget.NestedScrollView
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot;&gt;
+
+        &lt;LinearLayout
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;match_parent&quot;
+            android:orientation=&quot;vertical&quot;
+            android:paddingTop=&quot;24dp&quot;&gt;
+
+            &lt;!-- 这里是你主要功能的布局，我就给略去了 --&gt;
+
+        &lt;/LinearLayout&gt;
+
+    &lt;/android.support.v4.widget.NestedScrollView&gt;
+
+    &lt;android.support.design.widget.FloatingActionButton
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        app:layout_anchor=&quot;@id/appbar&quot;
+        app:layout_anchorGravity=&quot;bottom|right|end&quot;
+        app:rippleColor=&quot;#FFA5BE&quot;
+        android:src=&quot;@mipmap/ic_discuss&quot;
+        android:layout_margin=&quot;@dimen/fab_margin&quot;
+        android:clickable=&quot;true&quot;/&gt;
+
+&lt;/android.support.design.widget.CoordinatorLayout&gt;
+</code></pre><a id="more"></a>
+<h2 id="CoordinatorLayout"><a href="#CoordinatorLayout" class="headerlink" title="CoordinatorLayout"></a>CoordinatorLayout</h2><p>增强型的 FrameLayout:</p>
+<p>作用：网友是这么说的：“可作为根布局；为子视图之间相互协调手势效果的一个协调布局”<br>其实就是作为一个桥梁，便于子视图构建“相互依赖”的关系</p>
+<h2 id="AppBarLayout"><a href="#AppBarLayout" class="headerlink" title="AppBarLayout"></a>AppBarLayout</h2><p>AppBarLayout跟它的名字一样，把容器类的组件全部作为AppBar<br>我们代码中，实际上只包含了 ImageView 和 Toolbar，就是说，把他俩整个当成一个AppBar</p>
+<pre><code>&lt;android.support.design.widget.AppBarLayout
+    android:id=&quot;@+id/appbar&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;@dimen/detail_backdrop_height&quot;
+    android:theme=&quot;@style/ThemeOverlay.AppCompat.Dark.ActionBar&quot;
+    android:fitsSystemWindows=&quot;true&quot;&gt;
+
+    &lt;android.support.design.widget.CollapsingToolbarLayout
+        android:id=&quot;@+id/collapsing_toolbar&quot;
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        app:layout_scrollFlags=&quot;scroll|exitUntilCollapsed&quot;
+        android:fitsSystemWindows=&quot;true&quot;
+        app:contentScrim=&quot;?attr/colorPrimary&quot;
+        app:expandedTitleMarginStart=&quot;48dp&quot;
+        app:expandedTitleMarginEnd=&quot;64dp&quot;&gt;
+
+        &lt;ImageView
+            android:id=&quot;@+id/backdrop&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;match_parent&quot;
+            android:scaleType=&quot;centerCrop&quot;
+            android:fitsSystemWindows=&quot;true&quot;
+            app:layout_collapseMode=&quot;parallax&quot; /&gt;
+
+        &lt;android.support.v7.widget.Toolbar
+            android:id=&quot;@+id/toolbar&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;?attr/actionBarSize&quot;
+            app:popupTheme=&quot;@style/ThemeOverlay.AppCompat.Light&quot;
+            app:layout_collapseMode=&quot;pin&quot; /&gt;
+
+    &lt;/android.support.design.widget.CollapsingToolbarLayout&gt;
+
+&lt;/android.support.design.widget.AppBarLayout&gt;
+</code></pre><h2 id="CollapsingToolbarLayout"><a href="#CollapsingToolbarLayout" class="headerlink" title="CollapsingToolbarLayout"></a>CollapsingToolbarLayout</h2><p>CollapsingToolbarLayout提供了一个可以折叠的Toolbar，这也是Google+、photos中的效果。Google把它做成了一个标准控件，更加方便大家使用。<br>简言之，有了它，AppBarLayout里的ImageView采可以实现缩放的那种效果</p>
+<p>这里有一个属性 <strong>app:layout_scrollFlags=”scroll|exitUntilCollapsed”</strong> 这个是和 NestedScrollView中的  <strong>app:layout_behavior=”@string/appbar_scrolling_view_behavior”</strong> 配套使用的。啥意思？<br>这时候CoordinatorLayout的作用就来了，CoordinatorLayout可以说是这次support library更新的重中之重。它从另一层面去控制子view之间触摸事件的布局，Design library中的很多控件都利用了它。<br>在我们的代码中，NestedScrollView是可上下滚动的，而CollapsingToolbarLayout是要通过其滚动而变化的，那么：</p>
+<p>1 给这个可滚动组件设置了layout_behavior：android.support.design.widget.AppBarLayout$ScrollingViewBehavior<br>2 给另一个控件设置了layout_scrollFlags<br>那么，当设置了layout_behavior的控件滑动时，就会触发设置了layout_scrollFlags的控件发生状态的改变。</p>
+<p>关于<strong>layout_scrollFlags</strong>的值我这里再说一下：</p>
+<blockquote>
+<p>scroll - 想滚动就必须设置这个。<br>enterAlways - 实现quick return效果, 当向下移动时，立即显示View（比如Toolbar)。<br>exitUntilCollapsed - 向上滚动时收缩View，但可以固定Toolbar一直在上面。<br>enterAlwaysCollapsed - 当你的View已经设置minHeight属性又使用此标志时，你的View只能以最小高度进入，只有当滚动视图到达顶部时才扩大到完整高度。</p>
+</blockquote>
+<p>而里面的app属性</p>
+<blockquote>
+<p>app:contentScrim=”?attr/colorPrimary” 设置当完全CollapsingToolbarLayout折叠(收缩)后的背景颜色。<br>app:expandedTitleMarginStart=”48dp”  设置扩张时候(还没有收缩时)title向左填充的距离<br>app:expandedTitleMarginEnd=”64dp”   设置扩张时候(还没有收缩时)title向右填充的距离</p>
+</blockquote>
+<h2 id="Toolbar"><a href="#Toolbar" class="headerlink" title="Toolbar"></a>Toolbar</h2><p>现在我们可以不用actionBar了。 至于Toolbar， <a href="http://www.tuicool.com/articles/7BJBZb" target="_blank" rel="external">看这篇文章哈</a>， 总结的很好。</p>
+<p>这里还有一个小玩意儿，就是点击了左上角的图标后的动画：</p>
+<pre><code>ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.title_activity_activity_welcome, R.string.title_activity_activity_welcome);
+    mDrawerToggle.syncState();
+    mDrawerLayout.setDrawerListener(mDrawerToggle);
+</code></pre><p>虽然我们这个工程加入这个不明显（因为导航栏出来后给遮挡住了，基本看不到动画），但是也要mark一下嘛</p>
+<h2 id="TabLayout"><a href="#TabLayout" class="headerlink" title="TabLayout"></a>TabLayout</h2><p><a href="http://blog.csdn.net/tgzzl/article/details/47208799" target="_blank" rel="external">http://blog.csdn.net/tgzzl/article/details/47208799</a></p>
+<h2 id="NestedScrollView"><a href="#NestedScrollView" class="headerlink" title="NestedScrollView"></a>NestedScrollView</h2><p>你以为这就是一个ScrollView？ NoNoNo. 它对子View和父View的触摸事件有着独到的见解。<br>如果你理解为ScrollView ， 你可以试着把上面的代码中，替换成ScrollView 会发现居然不能滑动了！<br>具体我还没深入研究，<a href="http://segmentfault.com/a/1190000002873657" target="_blank" rel="external">倒是找到一片相关的文章</a></p>
+<h2 id="FloatingActionButton"><a href="#FloatingActionButton" class="headerlink" title="FloatingActionButton"></a>FloatingActionButton</h2><p>嗯 没错 这其实就是一个控件 用起来也颇为简单，直接拿来就能用。不过这里因为我们要配合其他View进行某些动画，所以里面还是要有几个必要的属性的</p>
+<blockquote>
+<p>app:layout_anchor=”@id/appbar”  跟下面的搭配使用的，我理解就是抱大腿（根据id）<br>app:layout_anchorGravity=”bottom|right|end”  我理解就是一个相对于大腿位置（right和end貌似是一个东西）<br>app:rippleColor=”#FFA5BE”   按下后的颜色（不必要）</p>
+</blockquote>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li>CoordinatorLayout 给子控件添加依赖关系</li>
+<li>AppBarLayout 它包含的整个作为一个Appbar</li>
+<li>CollapsingToolbarLayout 放在AppBarLayout中使用，缩放的效果</li>
+</ol>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://flowerfat.com/2015/08/08/Android M-0808/" data-id="cioxlmzt6000bs8ryx4rhvvqm" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/08/08/Android M-0808/" data-title="Android M(Design)" data-url="http://flowerfat.com/2015/08/08/Android M-0808/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/mBigflower" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/flowerfat" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/08/10/日记0810/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            签到0810
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/08/07/混淆与反编译/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">混淆与反编译</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/02/减脂与减重/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/mw690/0068dzq5jw1f3qcdoj80jj30eb0k342s.jpg)" alt="肌哥跟朋友们聊聊减脂与减重" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/02/减脂与减重/" class="title">肌哥跟朋友们聊聊减脂与减重</a></p>
+                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/02/增重饮食法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/0068dzq5gw1f3uwudoauoj30dw0d8q4e.jpg)" alt="肌哥给大家分享自身的增重饮食法" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/02/增重饮食法/" class="title">肌哥给大家分享自身的增重饮食法</a></p>
+                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/02/简单聊聊驼背/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/0068dzq5gw1f406ozuj4wj30dw07tq3c.jpg)" alt="简单聊聊　&quot;**驼背**&quot;　（肌哥已转化简体字）" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/02/简单聊聊驼背/" class="title">简单聊聊　&quot;**驼背**&quot;　（肌哥已转化简体字）</a></p>
+                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/02/ForStronger/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/02/ForStronger/" class="title">肌哥微博文章整理</a></p>
+                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/02/燕麦做法/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/02/燕麦做法/" class="title">健身早餐介紹（燕麥片)</a></p>
+                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/">LifeStyle</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/stronger/">stronger</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/travels/">travels</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/android/">android</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/nodejs/">nodejs</a><span class="category-list-count">4</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/anim/">anim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/project/">project</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/skill/">skill</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/">tips</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/views/">views</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/widget/">widget</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健身/">健身</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分享/">分享</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/天气预报/">天气预报</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/控件/">控件</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接/">链接</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/anim/" style="font-size: 10px;">anim</a> <a href="/tags/project/" style="font-size: 18px;">project</a> <a href="/tags/skill/" style="font-size: 10px;">skill</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/views/" style="font-size: 10px;">views</a> <a href="/tags/widget/" style="font-size: 14px;">widget</a> <a href="/tags/健身/" style="font-size: 18px;">健身</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/基础/" style="font-size: 20px;">基础</a> <a href="/tags/天气预报/" style="font-size: 16px;">天气预报</a> <a href="/tags/控件/" style="font-size: 12px;">控件</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/链接/" style="font-size: 10px;">链接</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.baidu.com">Baidu</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 胖小了个花</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'flowerfat'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>天气预报（二） | 春风十里</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="project,天气预报" />
+    
+    <meta name="description" content="前言上次使用的360api查询天气，web调用很好，手机调用时返回的参数有的是null啊！！！ 我用的是Volley 。朋友说是服务器分段返回数据，不明觉厉，要自己写一个connection？
+车联网api上次提到的这个没有去尝试，总结如下
+百度的appkey获取上次说到AS的SHA1不知道怎么获取，回去百度了下，使用java自带的keytool可以的。两种方法 一个是使用cmd，一个是使用AS的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="天气预报（二）">
+<meta property="og:url" content="http://flowerfat.com/2015/08/12/天气预报-0812/index.html">
+<meta property="og:site_name" content="春风十里">
+<meta property="og:description" content="前言上次使用的360api查询天气，web调用很好，手机调用时返回的参数有的是null啊！！！ 我用的是Volley 。朋友说是服务器分段返回数据，不明觉厉，要自己写一个connection？
+车联网api上次提到的这个没有去尝试，总结如下
+百度的appkey获取上次说到AS的SHA1不知道怎么获取，回去百度了下，使用java自带的keytool可以的。两种方法 一个是使用cmd，一个是使用AS的">
+<meta property="og:updated_time" content="2016-05-21T13:52:12.432Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="天气预报（二）">
+<meta name="twitter:description" content="前言上次使用的360api查询天气，web调用很好，手机调用时返回的参数有的是null啊！！！ 我用的是Volley 。朋友说是服务器分段返回数据，不明觉厉，要自己写一个connection？
+车联网api上次提到的这个没有去尝试，总结如下
+百度的appkey获取上次说到AS的SHA1不知道怎么获取，回去百度了下，使用java自带的keytool可以的。两种方法 一个是使用cmd，一个是使用AS的">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?328b95b1394b38bbb7e7acb8e108c17f";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Fighting</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/LifeStyle/">LifeStyle</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/LifeStyle/stronger/">stronger</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/LifeStyle/travels/">travels</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tech/">Tech</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tech/android/">android</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Tech/nodejs/">nodejs</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Tech/android/">android</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-天气预报-0812" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        天气预报（二）
+        </h1>
+    
+
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/2015/08/12/天气预报-0812/" class="article-date">
+    <time datetime="2015-08-11T16:00:00.000Z" itemprop="datePublished">2015-08-12</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/project/">project</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/天气预报/">天气预报</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上次使用的360api查询天气，web调用很好，手机调用时返回的参数有的是null啊！！！ 我用的是Volley 。朋友说是服务器分段返回数据，不明觉厉，要自己写一个connection？</p>
+<h2 id="车联网api"><a href="#车联网api" class="headerlink" title="车联网api"></a>车联网api</h2><p>上次提到的这个没有去尝试，总结如下</p>
+<h3 id="百度的appkey获取"><a href="#百度的appkey获取" class="headerlink" title="百度的appkey获取"></a>百度的appkey获取</h3><p>上次说到AS的SHA1不知道怎么获取，回去百度了下，使用java自带的keytool可以的。两种方法 一个是使用cmd，一个是使用AS的Terminal</p>
+<ol>
+<li>在命令行进入到debug.keystore的目录下</li>
+<li>妈的这里太简单了，不想写了。</li>
+</ol>
+<h3 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h3><p>车联网api的接口说明， <a href="http://developer.baidu.com/map/index.php?title=car/api/weather" target="_blank" rel="external">网址是这个</a> 按照里面的接口调用get后，返回居然报错了！state：102 ， message：mcode不存在，这个参数是必须的。我擦，你api里也没这参数啊，这是啥？<br>继续问度娘<br><a href="http://bbs.lbsyun.baidu.com/forum.php?mod=viewthread&amp;tid=34535" target="_blank" rel="external">多亏了这篇文章</a> 里面有个红色的是重点<br>太不只能了这个api ， SHA1;package再带上去，完整的api应该是这样的：</p>
+<pre><code>&quot;http://api.map.baidu.com/telematics/v3/weather?location=&quot;+地址+&quot;&amp;output=json&amp;ak=你的appkey&amp;mcode=你的SHA1;package&quot;
+
+地址：java.net.URLEncoder.encode(name)  这里需要编码一下，仅仅是String是不行的
+
+你的appkey： 这个是 获取密钥后 百度给你的
+
+你的SHA1;package ： 这个是你获取密钥时要填的那个
+</code></pre><p>有了上述的三个参数就可以使用这个api了！  三个！不是两个！</p>
+<h3 id="话又说回来"><a href="#话又说回来" class="headerlink" title="话又说回来"></a>话又说回来</h3><p>其实这个api的返回结果也是比较简单的，不详细，但是带图片。<br>而且貌似有限制 5000次 想要增加次数要发邮件给某某某，具体收费不就不晓得了。</p>
+<h1 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h1><p>天气预报（四） <a href="http://www.flowerfat.com/2015/08/22/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A54-0822/" title="http://www.flowerfat.com/2015/08/22/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A54-0822/" target="_blank" rel="external">http://www.flowerfat.com/2015/08/22/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A54-0822/</a><br>天气预报（三） <a href="http://www.flowerfat.com/2015/08/13/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5-0813/" target="_blank" rel="external">http://www.flowerfat.com/2015/08/13/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5-0813/</a><br>天气预报（二） <a href="http://www.flowerfat.com/2015/08/12/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5-0812/" target="_blank" rel="external">http://www.flowerfat.com/2015/08/12/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5-0812/</a><br>天气预报（一） <a href="http://www.flowerfat.com/2015/08/11/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5-0811/" target="_blank" rel="external">http://www.flowerfat.com/2015/08/11/%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5-0811/</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://flowerfat.com/2015/08/12/天气预报-0812/" data-id="cioxlmzuh0020s8ry183jfxn0" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2015/08/12/天气预报-0812/" data-title="天气预报（二）" data-url="http://flowerfat.com/2015/08/12/天气预报-0812/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/mBigflower" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="http://weibo.com/flowerfat" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/08/13/天气预报-0813/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            天气预报（三）
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/08/11/天气预报-0811/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">天气预报（一）</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/02/减脂与减重/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/mw690/0068dzq5jw1f3qcdoj80jj30eb0k342s.jpg)" alt="肌哥跟朋友们聊聊减脂与减重" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/02/减脂与减重/" class="title">肌哥跟朋友们聊聊减脂与减重</a></p>
+                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/02/增重饮食法/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/large/0068dzq5gw1f3uwudoauoj30dw0d8q4e.jpg)" alt="肌哥给大家分享自身的增重饮食法" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/02/增重饮食法/" class="title">肌哥给大家分享自身的增重饮食法</a></p>
+                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/02/简单聊聊驼背/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww4.sinaimg.cn/mw690/0068dzq5gw1f406ozuj4wj30dw07tq3c.jpg)" alt="简单聊聊　&quot;**驼背**&quot;　（肌哥已转化简体字）" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/02/简单聊聊驼背/" class="title">简单聊聊　&quot;**驼背**&quot;　（肌哥已转化简体字）</a></p>
+                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/02/ForStronger/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/02/ForStronger/" class="title">肌哥微博文章整理</a></p>
+                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/06/02/燕麦做法/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/02/燕麦做法/" class="title">健身早餐介紹（燕麥片)</a></p>
+                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/">LifeStyle</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/stronger/">stronger</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/travels/">travels</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/android/">android</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/nodejs/">nodejs</a><span class="category-list-count">4</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">19</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/anim/">anim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/project/">project</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/skill/">skill</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/">tips</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/views/">views</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/widget/">widget</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/健身/">健身</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分享/">分享</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/基础/">基础</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/天气预报/">天气预报</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/控件/">控件</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂谈/">杂谈</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接/">链接</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/anim/" style="font-size: 10px;">anim</a> <a href="/tags/project/" style="font-size: 18px;">project</a> <a href="/tags/skill/" style="font-size: 10px;">skill</a> <a href="/tags/tips/" style="font-size: 10px;">tips</a> <a href="/tags/views/" style="font-size: 10px;">views</a> <a href="/tags/widget/" style="font-size: 14px;">widget</a> <a href="/tags/健身/" style="font-size: 18px;">健身</a> <a href="/tags/分享/" style="font-size: 10px;">分享</a> <a href="/tags/基础/" style="font-size: 20px;">基础</a> <a href="/tags/天气预报/" style="font-size: 16px;">天气预报</a> <a href="/tags/控件/" style="font-size: 12px;">控件</a> <a href="/tags/杂谈/" style="font-size: 10px;">杂谈</a> <a href="/tags/链接/" style="font-size: 10px;">链接</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.baidu.com">Baidu</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2016 胖小了个花</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'flowerfat'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+    
+        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
+        <script src="/vendor/scrollLoading/main.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
