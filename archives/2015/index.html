@@ -3,22 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Archive: 2015 | 春风十里</title>
+    <title>Archive: 2015 | bigflower</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="description" content="Just do it">
 <meta property="og:type" content="website">
-<meta property="og:title" content="春风十里">
+<meta property="og:title" content="bigflower">
 <meta property="og:url" content="http://flowerfat.com/archives/2015/index.html">
-<meta property="og:site_name" content="春风十里">
+<meta property="og:site_name" content="bigflower">
 <meta property="og:description" content="Just do it">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="春风十里">
+<meta name="twitter:title" content="bigflower">
 <meta name="twitter:description" content="Just do it">
     
 
     
 
+    
+        <link rel="icon" href="/images/favicon.ico" />
     
 
     <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
@@ -445,141 +447,6 @@ $ sudo npm insta
     </div>
 </article>
     
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2015/10/16/nodejs入门二1016/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="ds-thread-count" data-thread-key="2015/10/16/nodejs入门二1016/">0</span>
-    
-</span>
-
-    
-</a>
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/nodejs/">nodejs</a>
-            </p>
-            <p class="date"><time datetime="2015-10-15T16:00:00.000Z" itemprop="datePublished">2015-10-16</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2015/10/16/nodejs入门二1016/">nodejs入门（二）Events</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            相关
-官网：https://nodejs.org/en/
-API：https://nodejs.org/api/
-慕课网：进击Node.js基础（一）：http://www.imooc.com/learn/348
-
-说点啥上次提到了 api中的Url与Http 。 这次我们继续跟着视频来走，看一下事件Events
-上期回顾总结我们在看API的时候，发现有些方法里的参数是用’[]’包含起来的，包含起
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2015/10/15/nodejs入门一1015/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://i.imgur.com/18RzCe9.png)" alt="nodejs入门（一）URL与HTTP" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="ds-thread-count" data-thread-key="2015/10/15/nodejs入门一1015/">0</span>
-    
-</span>
-
-    
-</a>
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/nodejs/">nodejs</a>
-            </p>
-            <p class="date"><time datetime="2015-10-14T16:00:00.000Z" itemprop="datePublished">2015-10-15</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2015/10/15/nodejs入门一1015/">nodejs入门（一）URL与HTTP</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            相关
-官网：https://nodejs.org/en/
-API：https://nodejs.org/api/
-慕课网：进击Node.js基础（一）：http://www.imooc.com/learn/348
-
-说点啥一直想做一个属于自己的应用。于是“被迫”就来学一门后台相关的语言。以前从没搞过相关的，node应该算是我的启蒙语言了吧。
-js嘛 很难想不到JavaScript，学会了这个，是不是再学Web就简单了？
-我是从慕课网看视频学起的，这篇文章算是学习笔记吧，视频地址见下面的相关
-APIURL对应api地址：https://nodejs.org/api/url.html
-对应慕课网视频地址：http://www.imooc.com/video/6710
-api里乍一看啥玩意儿啊，全是英文，然后我就去看视频了。看完视频反过来再看api，卧槽，原来前面那一大坨Example是这个啊，哈哈，我们一起来看
-我们在cmd中输入node，回车，便进入了nodejs的环境。 输入url，回车，我们会看到：
-{
-  parse: [Function: urlParse],
-  resolve: [Function: urlResolve],
-  resolveObject: [Function: urlResolveObject],
-  format: [Function: urlFormat],
-  Url: [Function: Url] 
-}
-这就是我们url的几个方法。其中最重要的当属 parse 了。 api中如下，我也不懂。。。：
-url.parse(urlStr, [parseQueryString], [slashesDenoteHost])
-parse基础作用：解析 url
-输入：url.parse(‘http://www.flowerfat.com‘)输出：
-{
-  protocol: &apos;http:&apos;,
-  slashes: true,
-  auth: null,
-  host: &apos;www.flowerfat.com&apos;,
-  port: null,
-  hostname: &apos;www.flowerfat.com&apos;,
-  hash: null,
-  search: null,
-  query: null,
-  pathname: &apos;/&apos;,
-  path: &apos;/&apos;,
-  href: &apos;http://www.flowerfat.com/&apos; 
-}
-跟着视频走到这里的时候，虽然scott哥说了每个的含义，不过还是没咋懂啊！直到后来看到api我说的那一坨，哦吼，每个都有对应的解释啊。具体我就不多说了，英文也不难，大家一看就懂了
-        </p>
-    </div>
-</article>
-    
         </div>
     
 
@@ -588,8 +455,8 @@ parse基础作用：解析 url
 
 
     <nav id="page-nav">
-        <span class="pages">Page 1 of 5</span>
-        <span class="page-number current">1</span><a class="page-number" href="/archives/2015/page/2/">2</a><a class="page-number" href="/archives/2015/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2015/page/5/">5</a><a class="extend next" rel="next" href="/archives/2015/page/2/">&raquo;</a>
+        <span class="pages">Page 1 of 6</span>
+        <span class="page-number current">1</span><a class="page-number" href="/archives/2015/page/2/">2</a><a class="page-number" href="/archives/2015/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2015/page/6/">6</a><a class="extend next" rel="next" href="/archives/2015/page/2/">&raquo;</a>
     </nav>
 
 
@@ -628,25 +495,6 @@ parse基础作用：解析 url
         <h3 class="widget-title">recents</h3>
         <div class="widget">
             <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/06/02/减脂与减重/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww3.sinaimg.cn/mw690/0068dzq5jw1f3qcdoj80jj30eb0k342s.jpg)" alt="肌哥跟朋友们聊聊减脂与减重" class="thumbnail-image"></span>
-    
-    
-</a>
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
-                            <p class="item-title"><a href="/2016/06/02/减脂与减重/" class="title">肌哥跟朋友们聊聊减脂与减重</a></p>
-                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
-                        </div>
-                    </li>
                 
                     <li>
                         
@@ -708,7 +556,26 @@ parse基础作用：解析 url
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2016/06/02/燕麦做法/" class="thumbnail">
+                            <a href="/2016/06/01/减脂与减重/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/mw690/0068dzq5jw1f3qcdoj80jj30eb0k342s.jpg)" alt="肌哥跟朋友们聊聊减脂与减重" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/01/减脂与减重/" class="title">肌哥跟朋友们聊聊减脂与减重</a></p>
+                            <p class="item-date"><time datetime="2016-05-31T16:00:00.000Z" itemprop="datePublished">2016-06-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/27/燕麦做法/" class="thumbnail">
     
     
         <span style="background-image:url(https://gd2.alicdn.com/bao/uploaded/i2/1997612543/TB2eAcgoXXXXXa0XpXXXXXXXXXX_!!1997612543.jpg)" alt="健身早餐介紹（燕麥片)" class="thumbnail-image"></span>
@@ -719,8 +586,8 @@ parse基础作用：解析 url
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
-                            <p class="item-title"><a href="/2016/06/02/燕麦做法/" class="title">健身早餐介紹（燕麥片)</a></p>
-                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                            <p class="item-title"><a href="/2016/05/27/燕麦做法/" class="title">健身早餐介紹（燕麥片)</a></p>
+                            <p class="item-date"><time datetime="2016-05-26T16:00:00.000Z" itemprop="datePublished">2016-05-27</time></p>
                         </div>
                     </li>
                 
@@ -734,16 +601,6 @@ parse基础作用：解析 url
         <h3 class="widget-title">categories</h3>
         <div class="widget">
             <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/">LifeStyle</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/stronger/">stronger</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/travels/">travels</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/android/">android</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/nodejs/">nodejs</a><span class="category-list-count">4</span></li></ul></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">archives</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">19</span></li></ul>
         </div>
     </div>
 

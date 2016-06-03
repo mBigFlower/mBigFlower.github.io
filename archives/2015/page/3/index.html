@@ -3,22 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Archive: 2015 | 春风十里</title>
+    <title>Archive: 2015 | bigflower</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="description" content="Just do it">
 <meta property="og:type" content="website">
-<meta property="og:title" content="春风十里">
+<meta property="og:title" content="bigflower">
 <meta property="og:url" content="http://flowerfat.com/archives/2015/page/3/index.html">
-<meta property="og:site_name" content="春风十里">
+<meta property="og:site_name" content="bigflower">
 <meta property="og:description" content="Just do it">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="春风十里">
+<meta name="twitter:title" content="bigflower">
 <meta name="twitter:description" content="Just do it">
     
 
     
 
+    
+        <link rel="icon" href="/images/favicon.ico" />
     
 
     <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
@@ -158,6 +160,227 @@ var _hmt = _hmt || [];
         <article class="article article-summary">
     <div class="article-summary-inner">
         
+        <a href="/2015/09/23/开源项目Make Point/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xjizl.com1.z0.glb.clouddn.com/makepointGifPoint1.gif)" alt="开源项目MakePoint~" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="ds-thread-count" data-thread-key="2015/09/23/开源项目Make Point/">0</span>
+    
+</span>
+
+    
+</a>
+        
+        <div class="article-meta">
+            <p class="category">
+            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
+            </p>
+            <p class="date"><time datetime="2015-09-22T16:00:00.000Z" itemprop="datePublished">2015-09-23</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2015/09/23/开源项目Make Point/">开源项目MakePoint~</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            说点啥看了标题，你以为是某个叼叼的开源项目，那你就错了。哈哈，是我的第一个开源项目。
+贴图
+github地址https://github.com/mBigFlower/MakePoint
+简介今日事，今日毕。每天定义四个重要的事情，mark在这里。
+四件事分为四个重要等级，灵感来自爱情公寓–关谷和悠悠, 姹紫嫣红~~~~
+APK下载
+to be continued …
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2015/08/25/社会化分享0825/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://i.imgur.com/bTTSFml.png)" alt="友盟社会化分享（一） QQ、微信" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="ds-thread-count" data-thread-key="2015/08/25/社会化分享0825/">0</span>
+    
+</span>
+
+    
+</a>
+        
+        <div class="article-meta">
+            <p class="category">
+            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
+            </p>
+            <p class="date"><time datetime="2015-08-24T16:00:00.000Z" itemprop="datePublished">2015-08-25</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2015/08/25/社会化分享0825/">友盟社会化分享（一） QQ、微信</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            工具：studio
+前言这篇文章讲的是如何使用友盟的社会化分享，因为第一次用友盟，所以把步骤写下来，以后方便用，肯定比官方的文档直观的多。无非就是jar包和res资源了，是从官网下载的，他还推荐一个什么SDKIntegration.jar可以帮助你自动导入这两个的。我用了下还真可以。不过对于Manifest就没啥用了。
+准备
+在友盟官网下载相关sdk
+在你要分享的平台注册开发者帐号，在里面创建应用。具体操作后面说
+准备好你的包名；debug版本，release版本的SHA1，MD5
+
+老大哥–友盟libs
+umeng_social_sdk.jar 这个是老大哥，负责一揽子业务
+httpmime-4.1.3.jar 
+
+res我尼玛！用了SDKIntegration.jar自动导入后，res里面的drawable加了一堆乱造的东西进去，什么豆瓣人人共73个文件，layout里也一堆，哪些有用我都不知道，到现在我也不知道哪些有用哪些没用，暂且先不管了，听大哥的。把功能都实现先。
+Manifest.xml注意里面的APPKEY，你在友盟创建应用的时候他就会给你一个，把value里换成你的哈
+&lt;!--友盟社会化分享--&gt;
+&lt;meta-data
+    android:name=&quot;UMENG_APPKEY&quot;
+    android:value=&quot;Your appkey&quot; /&gt;
+&lt;activity
+    android:name=&quot;com.umeng.socialize.view.ShareActivity&quot;
+    android:configChanges=&quot;orientation|keyboard&quot;
+    android:launchMode=&quot;singleTask&quot;
+    android:noHistory=&quot;true&quot;
+    android:theme=&quot;@style/Theme.UMDialog&quot;
+    android:windowSoftInputMode=&quot;stateVisible|adjustResize&quot; /&gt;
+
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2015/08/22/Activity启动动画/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://www.jcodecraeer.com/uploads/20150505/1430810502219892.gif)" alt="让控件动起来" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="ds-thread-count" data-thread-key="2015/08/22/Activity启动动画/">0</span>
+    
+</span>
+
+    
+</a>
+        
+        <div class="article-meta">
+            <p class="category">
+            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
+            </p>
+            <p class="date"><time datetime="2015-08-21T16:00:00.000Z" itemprop="datePublished">2015-08-22</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2015/08/22/Activity启动动画/">让控件动起来</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            前言直接上图，简单粗暴
+
+当然我们这里只是一个小demo，介绍某一个控件产生这种效果。操作很简单，不超过十行(加粗的部分是不是很诱人-。-)
+效果一重点重点是要在activity出现之前，让里面的控件挨个动画显示出来。当然你可以说我一开始都是View.GONE，然后挨个让它们可见并带上动画，我承认这样可以。。。。。。不过这里我们还是学习一个专业点的方法哈。原文是在这里
+code给我们要产生动画的控
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2015/08/22/天气预报4-0822/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://i.imgur.com/eeEKe7J.png)" alt="天气预报（四）" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="ds-thread-count" data-thread-key="2015/08/22/天气预报4-0822/">0</span>
+    
+</span>
+
+    
+</a>
+        
+        <div class="article-meta">
+            <p class="category">
+            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
+            </p>
+            <p class="date"><time datetime="2015-08-21T16:00:00.000Z" itemprop="datePublished">2015-08-22</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2015/08/22/天气预报4-0822/">天气预报（四）</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            前言上次说到了中国气象平台的api没心情做，最近研究了它的api，还真有点头疼。。。
+正文接口根据他官网的说法，看起来还挺简单的
+
+调用规范 规范用于指导三方合作伙伴合理调用指数、3天常规预报(24小时)预报服务数据。请求方式：http get接口组成：由固定URL加5个不同的参数组成，完整URL需客户端经过固定方式加密后使用。数据返回：json完整URL：http://open.weather.
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
         <a href="/2015/08/20/软引用/" class="thumbnail">
     
     
@@ -201,349 +424,6 @@ var _hmt = _hmt || [];
     </div>
 </article>
     
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2015/08/19/注册登录界面-0819/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://i.imgur.com/j8W5nxS.png)" alt="nothing" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="ds-thread-count" data-thread-key="2015/08/19/注册登录界面-0819/">0</span>
-    
-</span>
-
-    
-</a>
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
-            </p>
-            <p class="date"><time datetime="2015-08-18T16:00:00.000Z" itemprop="datePublished">2015-08-19</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2015/08/19/注册登录界面-0819/">nothing</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            坑1：Fragment与Activity目标：一个Activity中加入一个Fragment。坑： 一开始可以运行的，后来突然就报错了详细如下：xml
-&lt;FrameLayout
-    android:id=&quot;@+id/signup_fragment&quot;
-    android:layout_width=&quot;match_parent&quot;
-    androi
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2015/08/18/带Progress的BaseNetActivity/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="ds-thread-count" data-thread-key="2015/08/18/带Progress的BaseNetActivity/">0</span>
-    
-</span>
-
-    
-</a>
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
-            </p>
-            <p class="date"><time datetime="2015-08-17T16:00:00.000Z" itemprop="datePublished">2015-08-18</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2015/08/18/带Progress的BaseNetActivity/">带Progress的BaseNetActivity</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            功能BaseNetActivity，继承AppCompatActivity。请求服务器成功后则显示layout内容，失败则显示‘加载失败’（点击加载失败可重新加载）
-思路使用一个baseLayout，包含progress、mainLayout的“容器”、加载失败的内容显示　三部分。最开始显示进度，同时请求网络，成功或失败后隐藏progress，同时显示对应的内容
-实现layout_base直接上布局：
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;&gt;
-
-    &lt;android.support.v7.widget.Toolbar
-        android:id=&quot;@+id/layoutBase_toolbar&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;?attr/actionBarSize&quot;
-        android:background=&quot;?attr/colorPrimary&quot;
-        android:theme=&quot;@style/ThemeToolbar&quot;
-        app:popupTheme=&quot;@style/ThemeOverlay.AppCompat.Light&quot; /&gt;
-
-    &lt;TextView
-        android:id=&quot;@+id/layoutBase_text&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:layout_gravity=&quot;center&quot;
-        android:visibility=&quot;gone&quot;
-        android:drawableTop=&quot;@drawable/bili_net_wrong&quot;
-        android:drawablePadding=&quot;27dp&quot;
-        android:text=&quot;加载失败---&quot;/&gt;
-
-    &lt;ViewStub
-        android:id=&quot;@+id/layoutBase_viewStub&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;match_parent&quot; /&gt;
-
-    &lt;android.support.v4.widget.ContentLoadingProgressBar
-        android:id=&quot;@+id/layoutBase_progress&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        style=&quot;?android:attr/progressBarStyleLarge&quot;
-        android:layout_gravity=&quot;center&quot;/&gt;
-
-&lt;/FrameLayout&gt;
-
-这里我们的标题使用的是Toolbar，大家也可以自定义，至于toolbar里面的theme等参数，可有可无的东西，不详说
-
-除了标题，就是我刚刚提到的三个部分了，ViewStub　这东西懂的人都懂，好东西。用它的目的是少一层嵌套，也是今天我无意中想到的。
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2015/08/17/安卓开发，那些相见恨晚的接口，类/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="ds-thread-count" data-thread-key="2015/08/17/安卓开发，那些相见恨晚的接口，类/">0</span>
-    
-</span>
-
-    
-</a>
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
-            </p>
-            <p class="date"><time datetime="2015-08-16T16:00:00.000Z" itemprop="datePublished">2015-08-17</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2015/08/17/安卓开发，那些相见恨晚的接口，类/">安卓开发，相见恨晚的小技巧</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            前言今天周一，开始干活喽~  
-本文摘自鸿洋大哥转发的一片知乎上的文章 原文链接 我挑了一些我喜欢的我懂了的放在这里mark下
-正文
-View中的isShown()方法，以前都是用view.getVisibility() == View.VISIBLE来判断的(╯□╰)；
-Arrays类中的asList(T… array)方法，数组转List集合；反过来List.toArray()；
-android.media.ThumbnailUtils类，用来获取媒体（图片、视频）缩略图；
-TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””；（原来有自带的啊。。）
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2015/08/15/动画ObjectAnimation/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://www.jcodecraeer.com/uploads/20150508/1431097706714026.gif)" alt="属性动画 -- ObjectAnimator" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="ds-thread-count" data-thread-key="2015/08/15/动画ObjectAnimation/">0</span>
-    
-</span>
-
-    
-</a>
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
-            </p>
-            <p class="date"><time datetime="2015-08-14T16:00:00.000Z" itemprop="datePublished">2015-08-15</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2015/08/15/动画ObjectAnimation/">属性动画 -- ObjectAnimator</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            前言以前在自定义View中，使用Canvas也仅仅是静态的画东西。今天来个小进阶，如题。看下效果， 来自http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0509/2851.html
-
-简述点击查看ObjectAnimation的源码不难发现，它是继承ValueAnimator的（ValueAnimator 继承 Animator），他们都是属性动画的一份子。这次我们初探ObjectAnimation，完成一个自动画圆的过程
-简单来说有这么几个步骤：
-
-初始化画笔
-初始化动画
-开始动画
-
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2015/08/13/天气预报-0813/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="ds-thread-count" data-thread-key="2015/08/13/天气预报-0813/">0</span>
-    
-</span>
-
-    
-</a>
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
-            </p>
-            <p class="date"><time datetime="2015-08-12T16:00:00.000Z" itemprop="datePublished">2015-08-13</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2015/08/13/天气预报-0813/">天气预报（三）</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            前言昨天说到车联网api， 今天执着的我又把气象数据开放平台给拿下了！
-注册，审核这个平台应该算是官网了吧。注册号就不说了，三方登陆也可以。
-居然有个审核，感觉审核也挺水的 ，我尤其是什么服务器ip那个，我随便写了个192.168.1.1也通过审核了。
-关于api说实话这两天都在玩天气，已经要吐了。所以这个平台的api也没试。重点在下一点
-这个是重点，重点，重点气象平台的天气获取需要城市对应的id
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2015/08/12/天气预报-0812/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="ds-thread-count" data-thread-key="2015/08/12/天气预报-0812/">0</span>
-    
-</span>
-
-    
-</a>
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
-            </p>
-            <p class="date"><time datetime="2015-08-11T16:00:00.000Z" itemprop="datePublished">2015-08-12</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2015/08/12/天气预报-0812/">天气预报（二）</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            前言上次使用的360api查询天气，web调用很好，手机调用时返回的参数有的是null啊！！！ 我用的是Volley 。朋友说是服务器分段返回数据，不明觉厉，要自己写一个connection？
-车联网api上次提到的这个没有去尝试，总结如下
-百度的appkey获取上次说到AS的SHA1不知道怎么获取，回去百度了下，使用java自带的keytool可以的。两种方法 一个是使用cmd，一个是使用AS的
-        </p>
-    </div>
-</article>
-    
         </div>
     
 
@@ -552,8 +432,8 @@ TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””�
 
 
     <nav id="page-nav">
-        <span class="pages">Page 3 of 5</span>
-        <a class="extend prev" rel="prev" href="/archives/2015/page/2/">&laquo;</a><a class="page-number" href="/archives/2015/">1</a><a class="page-number" href="/archives/2015/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2015/page/4/">4</a><a class="page-number" href="/archives/2015/page/5/">5</a><a class="extend next" rel="next" href="/archives/2015/page/4/">&raquo;</a>
+        <span class="pages">Page 3 of 6</span>
+        <a class="extend prev" rel="prev" href="/archives/2015/page/2/">&laquo;</a><a class="page-number" href="/archives/2015/">1</a><a class="page-number" href="/archives/2015/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2015/page/4/">4</a><a class="page-number" href="/archives/2015/page/5/">5</a><a class="page-number" href="/archives/2015/page/6/">6</a><a class="extend next" rel="next" href="/archives/2015/page/4/">&raquo;</a>
     </nav>
 
 
@@ -592,25 +472,6 @@ TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””�
         <h3 class="widget-title">recents</h3>
         <div class="widget">
             <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/06/02/减脂与减重/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww3.sinaimg.cn/mw690/0068dzq5jw1f3qcdoj80jj30eb0k342s.jpg)" alt="肌哥跟朋友们聊聊减脂与减重" class="thumbnail-image"></span>
-    
-    
-</a>
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
-                            <p class="item-title"><a href="/2016/06/02/减脂与减重/" class="title">肌哥跟朋友们聊聊减脂与减重</a></p>
-                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
-                        </div>
-                    </li>
                 
                     <li>
                         
@@ -672,7 +533,26 @@ TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””�
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2016/06/02/燕麦做法/" class="thumbnail">
+                            <a href="/2016/06/01/减脂与减重/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/mw690/0068dzq5jw1f3qcdoj80jj30eb0k342s.jpg)" alt="肌哥跟朋友们聊聊减脂与减重" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/01/减脂与减重/" class="title">肌哥跟朋友们聊聊减脂与减重</a></p>
+                            <p class="item-date"><time datetime="2016-05-31T16:00:00.000Z" itemprop="datePublished">2016-06-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/27/燕麦做法/" class="thumbnail">
     
     
         <span style="background-image:url(https://gd2.alicdn.com/bao/uploaded/i2/1997612543/TB2eAcgoXXXXXa0XpXXXXXXXXXX_!!1997612543.jpg)" alt="健身早餐介紹（燕麥片)" class="thumbnail-image"></span>
@@ -683,8 +563,8 @@ TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””�
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
-                            <p class="item-title"><a href="/2016/06/02/燕麦做法/" class="title">健身早餐介紹（燕麥片)</a></p>
-                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                            <p class="item-title"><a href="/2016/05/27/燕麦做法/" class="title">健身早餐介紹（燕麥片)</a></p>
+                            <p class="item-date"><time datetime="2016-05-26T16:00:00.000Z" itemprop="datePublished">2016-05-27</time></p>
                         </div>
                     </li>
                 
@@ -698,16 +578,6 @@ TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””�
         <h3 class="widget-title">categories</h3>
         <div class="widget">
             <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/">LifeStyle</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/stronger/">stronger</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/travels/">travels</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/android/">android</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/nodejs/">nodejs</a><span class="category-list-count">4</span></li></ul></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">archives</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">19</span></li></ul>
         </div>
     </div>
 

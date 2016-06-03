@@ -3,22 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Category: android | 春风十里</title>
+    <title>Category: android | bigflower</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="description" content="Just do it">
 <meta property="og:type" content="website">
-<meta property="og:title" content="春风十里">
+<meta property="og:title" content="bigflower">
 <meta property="og:url" content="http://flowerfat.com/categories/Tech/android/page/2/index.html">
-<meta property="og:site_name" content="春风十里">
+<meta property="og:site_name" content="bigflower">
 <meta property="og:description" content="Just do it">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="春风十里">
+<meta name="twitter:title" content="bigflower">
 <meta name="twitter:description" content="Just do it">
     
 
     
 
+    
+        <link rel="icon" href="/images/favicon.ico" />
     
 
     <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
@@ -150,6 +152,127 @@ var _hmt = _hmt || [];
                 <a href="/archives/2015" class="archive-year"><i class="icon fa fa-calendar-o"></i>2015</a>
             </div>
             <div class="archives">
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2015/09/24/多点触摸0924/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://github.com/mattprecious/telescope/raw/master/images/sample.gif)" alt="多点触摸" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="ds-thread-count" data-thread-key="2015/09/24/多点触摸0924/">0</span>
+    
+</span>
+
+    
+</a>
+        
+        <div class="article-meta">
+            <p class="category">
+            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
+            </p>
+            <p class="date"><time datetime="2015-09-23T16:00:00.000Z" itemprop="datePublished">2015-09-24</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2015/09/24/多点触摸0924/">多点触摸</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            说点啥今天在网上看到了个长按两个手指，然后执行 某某 操作的gif，感觉这个想法不错，于是自己试了下，先看图：
+
+DO检测按下onTouchListener没啥好说的：
+@Override
+public boolean onTouch(View v, MotionEvent event) {
+    switch (event.getAction()) {
+        case MotionEvent.ACTION_DOWN:
+            Log.i(&quot;onTouch&quot;, &quot;DOWN X：&quot; + event.getX());
+            break;
+
+        case MotionEvent.ACTION_MOVE:
+            Log.i(&quot;onTouch&quot;, &quot;MOVE X：&quot; + event.getX());
+            break;
+
+        case MotionEvent.ACTION_UP:
+            Log.i(&quot;onTouch&quot;, &quot;UP X：&quot; + event.getX());
+            break;
+    }
+    return true;
+}
+平时我们用到的普通的触摸都是上面的Code。case后面跟了三种情况：按下，移动，抬起
+检测多个点按下言归正传，我们要的是多点触摸，上面的只是一个点啊。所以case后面再来两种方法试试：
+MotionEvent.ACTION_POINTER_DOWN  和  MotionEvent.ACTION_POINTER_UP
+
+        </p>
+    </div>
+</article>
+    
+
+    
+    
+    
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <a href="/2015/09/23/开源项目Make Point/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xjizl.com1.z0.glb.clouddn.com/makepointGifPoint1.gif)" alt="开源项目MakePoint~" class="thumbnail-image"></span>
+    
+    
+        
+<span class="comment-counter">
+    <i class="fa fa-comments-o"></i>
+    
+        <span class="ds-thread-count" data-thread-key="2015/09/23/开源项目Make Point/">0</span>
+    
+</span>
+
+    
+</a>
+        
+        <div class="article-meta">
+            <p class="category">
+            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
+            </p>
+            <p class="date"><time datetime="2015-09-22T16:00:00.000Z" itemprop="datePublished">2015-09-23</time></p>
+        </div>
+        
+    
+        <h1 class="article-title" itemprop="name">
+        <a href="/2015/09/23/开源项目Make Point/">开源项目MakePoint~</a>
+        </h1>
+    
+
+        <p class="article-excerpt">
+            说点啥看了标题，你以为是某个叼叼的开源项目，那你就错了。哈哈，是我的第一个开源项目。
+贴图
+github地址https://github.com/mBigFlower/MakePoint
+简介今日事，今日毕。每天定义四个重要的事情，mark在这里。
+四件事分为四个重要等级，灵感来自爱情公寓–关谷和悠悠, 姹紫嫣红~~~~
+APK下载
+to be continued …
+        </p>
+    </div>
+</article>
+    
+        </div>
+    
+
+    
     
     
     
@@ -317,250 +440,6 @@ code给我们要产生动画的控
     </div>
 </article>
     
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2015/08/20/软引用/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="ds-thread-count" data-thread-key="2015/08/20/软引用/">0</span>
-    
-</span>
-
-    
-</a>
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
-            </p>
-            <p class="date"><time datetime="2015-08-19T16:00:00.000Z" itemprop="datePublished">2015-08-20</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2015/08/20/软引用/">强，软，弱，虚引用</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            前言很早就听说过，但一直没有系统的看下，今天就来深入，咳咳，深入研究
-分类
-强引用 – 平时我们常用的
-弱引用 – Weak Reference
-软引用 – SoftReference
-虚引用 – PhantomRefrence
-
-强引用以前我们使用的大部分引用实际上都是强引用，这是使用最普遍的引用。如果一个对象具有强引用，那就类似于必不可少的生活用品，垃圾回收器绝不会回收它。当内存空 间不足，J
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2015/08/19/注册登录界面-0819/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://i.imgur.com/j8W5nxS.png)" alt="nothing" class="thumbnail-image"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="ds-thread-count" data-thread-key="2015/08/19/注册登录界面-0819/">0</span>
-    
-</span>
-
-    
-</a>
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
-            </p>
-            <p class="date"><time datetime="2015-08-18T16:00:00.000Z" itemprop="datePublished">2015-08-19</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2015/08/19/注册登录界面-0819/">nothing</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            坑1：Fragment与Activity目标：一个Activity中加入一个Fragment。坑： 一开始可以运行的，后来突然就报错了详细如下：xml
-&lt;FrameLayout
-    android:id=&quot;@+id/signup_fragment&quot;
-    android:layout_width=&quot;match_parent&quot;
-    androi
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2015/08/18/带Progress的BaseNetActivity/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="ds-thread-count" data-thread-key="2015/08/18/带Progress的BaseNetActivity/">0</span>
-    
-</span>
-
-    
-</a>
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
-            </p>
-            <p class="date"><time datetime="2015-08-17T16:00:00.000Z" itemprop="datePublished">2015-08-18</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2015/08/18/带Progress的BaseNetActivity/">带Progress的BaseNetActivity</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            功能BaseNetActivity，继承AppCompatActivity。请求服务器成功后则显示layout内容，失败则显示‘加载失败’（点击加载失败可重新加载）
-思路使用一个baseLayout，包含progress、mainLayout的“容器”、加载失败的内容显示　三部分。最开始显示进度，同时请求网络，成功或失败后隐藏progress，同时显示对应的内容
-实现layout_base直接上布局：
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;&gt;
-
-    &lt;android.support.v7.widget.Toolbar
-        android:id=&quot;@+id/layoutBase_toolbar&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;?attr/actionBarSize&quot;
-        android:background=&quot;?attr/colorPrimary&quot;
-        android:theme=&quot;@style/ThemeToolbar&quot;
-        app:popupTheme=&quot;@style/ThemeOverlay.AppCompat.Light&quot; /&gt;
-
-    &lt;TextView
-        android:id=&quot;@+id/layoutBase_text&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:layout_gravity=&quot;center&quot;
-        android:visibility=&quot;gone&quot;
-        android:drawableTop=&quot;@drawable/bili_net_wrong&quot;
-        android:drawablePadding=&quot;27dp&quot;
-        android:text=&quot;加载失败---&quot;/&gt;
-
-    &lt;ViewStub
-        android:id=&quot;@+id/layoutBase_viewStub&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;match_parent&quot; /&gt;
-
-    &lt;android.support.v4.widget.ContentLoadingProgressBar
-        android:id=&quot;@+id/layoutBase_progress&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        style=&quot;?android:attr/progressBarStyleLarge&quot;
-        android:layout_gravity=&quot;center&quot;/&gt;
-
-&lt;/FrameLayout&gt;
-
-这里我们的标题使用的是Toolbar，大家也可以自定义，至于toolbar里面的theme等参数，可有可无的东西，不详说
-
-除了标题，就是我刚刚提到的三个部分了，ViewStub　这东西懂的人都懂，好东西。用它的目的是少一层嵌套，也是今天我无意中想到的。
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2015/08/17/安卓开发，那些相见恨晚的接口，类/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="ds-thread-count" data-thread-key="2015/08/17/安卓开发，那些相见恨晚的接口，类/">0</span>
-    
-</span>
-
-    
-</a>
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
-            </p>
-            <p class="date"><time datetime="2015-08-16T16:00:00.000Z" itemprop="datePublished">2015-08-17</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2015/08/17/安卓开发，那些相见恨晚的接口，类/">安卓开发，相见恨晚的小技巧</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            前言今天周一，开始干活喽~  
-本文摘自鸿洋大哥转发的一片知乎上的文章 原文链接 我挑了一些我喜欢的我懂了的放在这里mark下
-正文
-View中的isShown()方法，以前都是用view.getVisibility() == View.VISIBLE来判断的(╯□╰)；
-Arrays类中的asList(T… array)方法，数组转List集合；反过来List.toArray()；
-android.media.ThumbnailUtils类，用来获取媒体（图片、视频）缩略图；
-TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””；（原来有自带的啊。。）
-        </p>
-    </div>
-</article>
-    
         </div>
     
 
@@ -569,8 +448,8 @@ TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””�
 
 
     <nav id="page-nav">
-        <span class="pages">Page 2 of 4</span>
-        <a class="extend prev" rel="prev" href="/categories/Tech/android/">&laquo;</a><a class="page-number" href="/categories/Tech/android/">1</a><span class="page-number current">2</span><a class="page-number" href="/categories/Tech/android/page/3/">3</a><a class="page-number" href="/categories/Tech/android/page/4/">4</a><a class="extend next" rel="next" href="/categories/Tech/android/page/3/">&raquo;</a>
+        <span class="pages">Page 2 of 5</span>
+        <a class="extend prev" rel="prev" href="/categories/Tech/android/">&laquo;</a><a class="page-number" href="/categories/Tech/android/">1</a><span class="page-number current">2</span><a class="page-number" href="/categories/Tech/android/page/3/">3</a><a class="page-number" href="/categories/Tech/android/page/4/">4</a><a class="page-number" href="/categories/Tech/android/page/5/">5</a><a class="extend next" rel="next" href="/categories/Tech/android/page/3/">&raquo;</a>
     </nav>
 
 
@@ -610,25 +489,6 @@ TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””�
         <h3 class="widget-title">recents</h3>
         <div class="widget">
             <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/06/02/减脂与减重/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww3.sinaimg.cn/mw690/0068dzq5jw1f3qcdoj80jj30eb0k342s.jpg)" alt="肌哥跟朋友们聊聊减脂与减重" class="thumbnail-image"></span>
-    
-    
-</a>
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
-                            <p class="item-title"><a href="/2016/06/02/减脂与减重/" class="title">肌哥跟朋友们聊聊减脂与减重</a></p>
-                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
-                        </div>
-                    </li>
                 
                     <li>
                         
@@ -690,7 +550,26 @@ TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””�
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2016/06/02/燕麦做法/" class="thumbnail">
+                            <a href="/2016/06/01/减脂与减重/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/mw690/0068dzq5jw1f3qcdoj80jj30eb0k342s.jpg)" alt="肌哥跟朋友们聊聊减脂与减重" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/01/减脂与减重/" class="title">肌哥跟朋友们聊聊减脂与减重</a></p>
+                            <p class="item-date"><time datetime="2016-05-31T16:00:00.000Z" itemprop="datePublished">2016-06-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/27/燕麦做法/" class="thumbnail">
     
     
         <span style="background-image:url(https://gd2.alicdn.com/bao/uploaded/i2/1997612543/TB2eAcgoXXXXXa0XpXXXXXXXXXX_!!1997612543.jpg)" alt="健身早餐介紹（燕麥片)" class="thumbnail-image"></span>
@@ -701,8 +580,8 @@ TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””�
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
-                            <p class="item-title"><a href="/2016/06/02/燕麦做法/" class="title">健身早餐介紹（燕麥片)</a></p>
-                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                            <p class="item-title"><a href="/2016/05/27/燕麦做法/" class="title">健身早餐介紹（燕麥片)</a></p>
+                            <p class="item-date"><time datetime="2016-05-26T16:00:00.000Z" itemprop="datePublished">2016-05-27</time></p>
                         </div>
                     </li>
                 
@@ -716,16 +595,6 @@ TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””�
         <h3 class="widget-title">categories</h3>
         <div class="widget">
             <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/">LifeStyle</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/stronger/">stronger</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/travels/">travels</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/android/">android</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/nodejs/">nodejs</a><span class="category-list-count">4</span></li></ul></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">archives</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">19</span></li></ul>
         </div>
     </div>
 

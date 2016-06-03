@@ -3,22 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Archive: 2015/8 | 春风十里</title>
+    <title>Archive: 2015/8 | bigflower</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="description" content="Just do it">
 <meta property="og:type" content="website">
-<meta property="og:title" content="春风十里">
+<meta property="og:title" content="bigflower">
 <meta property="og:url" content="http://flowerfat.com/archives/2015/08/index.html">
-<meta property="og:site_name" content="春风十里">
+<meta property="og:site_name" content="bigflower">
 <meta property="og:description" content="Just do it">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="春风十里">
+<meta name="twitter:title" content="bigflower">
 <meta name="twitter:description" content="Just do it">
     
 
     
 
+    
+        <link rel="icon" href="/images/favicon.ico" />
     
 
     <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
@@ -420,147 +422,6 @@ code给我们要产生动画的控
     </div>
 </article>
     
-
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2015/08/18/带Progress的BaseNetActivity/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="ds-thread-count" data-thread-key="2015/08/18/带Progress的BaseNetActivity/">0</span>
-    
-</span>
-
-    
-</a>
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
-            </p>
-            <p class="date"><time datetime="2015-08-17T16:00:00.000Z" itemprop="datePublished">2015-08-18</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2015/08/18/带Progress的BaseNetActivity/">带Progress的BaseNetActivity</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            功能BaseNetActivity，继承AppCompatActivity。请求服务器成功后则显示layout内容，失败则显示‘加载失败’（点击加载失败可重新加载）
-思路使用一个baseLayout，包含progress、mainLayout的“容器”、加载失败的内容显示　三部分。最开始显示进度，同时请求网络，成功或失败后隐藏progress，同时显示对应的内容
-实现layout_base直接上布局：
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;&gt;
-
-    &lt;android.support.v7.widget.Toolbar
-        android:id=&quot;@+id/layoutBase_toolbar&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;?attr/actionBarSize&quot;
-        android:background=&quot;?attr/colorPrimary&quot;
-        android:theme=&quot;@style/ThemeToolbar&quot;
-        app:popupTheme=&quot;@style/ThemeOverlay.AppCompat.Light&quot; /&gt;
-
-    &lt;TextView
-        android:id=&quot;@+id/layoutBase_text&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:layout_gravity=&quot;center&quot;
-        android:visibility=&quot;gone&quot;
-        android:drawableTop=&quot;@drawable/bili_net_wrong&quot;
-        android:drawablePadding=&quot;27dp&quot;
-        android:text=&quot;加载失败---&quot;/&gt;
-
-    &lt;ViewStub
-        android:id=&quot;@+id/layoutBase_viewStub&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;match_parent&quot; /&gt;
-
-    &lt;android.support.v4.widget.ContentLoadingProgressBar
-        android:id=&quot;@+id/layoutBase_progress&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        style=&quot;?android:attr/progressBarStyleLarge&quot;
-        android:layout_gravity=&quot;center&quot;/&gt;
-
-&lt;/FrameLayout&gt;
-
-这里我们的标题使用的是Toolbar，大家也可以自定义，至于toolbar里面的theme等参数，可有可无的东西，不详说
-
-除了标题，就是我刚刚提到的三个部分了，ViewStub　这东西懂的人都懂，好东西。用它的目的是少一层嵌套，也是今天我无意中想到的。
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2015/08/17/安卓开发，那些相见恨晚的接口，类/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="ds-thread-count" data-thread-key="2015/08/17/安卓开发，那些相见恨晚的接口，类/">0</span>
-    
-</span>
-
-    
-</a>
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/Tech/">Tech</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Tech/android/">android</a>
-            </p>
-            <p class="date"><time datetime="2015-08-16T16:00:00.000Z" itemprop="datePublished">2015-08-17</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2015/08/17/安卓开发，那些相见恨晚的接口，类/">安卓开发，相见恨晚的小技巧</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            前言今天周一，开始干活喽~  
-本文摘自鸿洋大哥转发的一片知乎上的文章 原文链接 我挑了一些我喜欢的我懂了的放在这里mark下
-正文
-View中的isShown()方法，以前都是用view.getVisibility() == View.VISIBLE来判断的(╯□╰)；
-Arrays类中的asList(T… array)方法，数组转List集合；反过来List.toArray()；
-android.media.ThumbnailUtils类，用来获取媒体（图片、视频）缩略图；
-TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””；（原来有自带的啊。。）
-        </p>
-    </div>
-</article>
-    
         </div>
     
 
@@ -569,8 +430,8 @@ TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””�
 
 
     <nav id="page-nav">
-        <span class="pages">Page 1 of 3</span>
-        <span class="page-number current">1</span><a class="page-number" href="/archives/2015/08/page/2/">2</a><a class="page-number" href="/archives/2015/08/page/3/">3</a><a class="extend next" rel="next" href="/archives/2015/08/page/2/">&raquo;</a>
+        <span class="pages">Page 1 of 4</span>
+        <span class="page-number current">1</span><a class="page-number" href="/archives/2015/08/page/2/">2</a><a class="page-number" href="/archives/2015/08/page/3/">3</a><a class="page-number" href="/archives/2015/08/page/4/">4</a><a class="extend next" rel="next" href="/archives/2015/08/page/2/">&raquo;</a>
     </nav>
 
 
@@ -609,25 +470,6 @@ TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””�
         <h3 class="widget-title">recents</h3>
         <div class="widget">
             <ul id="recent-post" class="">
-                
-                    <li>
-                        
-                        <div class="item-thumbnail">
-                            <a href="/2016/06/02/减脂与减重/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://ww3.sinaimg.cn/mw690/0068dzq5jw1f3qcdoj80jj30eb0k342s.jpg)" alt="肌哥跟朋友们聊聊减脂与减重" class="thumbnail-image"></span>
-    
-    
-</a>
-                        </div>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
-                            <p class="item-title"><a href="/2016/06/02/减脂与减重/" class="title">肌哥跟朋友们聊聊减脂与减重</a></p>
-                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
-                        </div>
-                    </li>
                 
                     <li>
                         
@@ -689,7 +531,26 @@ TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””�
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2016/06/02/燕麦做法/" class="thumbnail">
+                            <a href="/2016/06/01/减脂与减重/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://ww3.sinaimg.cn/mw690/0068dzq5jw1f3qcdoj80jj30eb0k342s.jpg)" alt="肌哥跟朋友们聊聊减脂与减重" class="thumbnail-image"></span>
+    
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
+                            <p class="item-title"><a href="/2016/06/01/减脂与减重/" class="title">肌哥跟朋友们聊聊减脂与减重</a></p>
+                            <p class="item-date"><time datetime="2016-05-31T16:00:00.000Z" itemprop="datePublished">2016-06-01</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/05/27/燕麦做法/" class="thumbnail">
     
     
         <span style="background-image:url(https://gd2.alicdn.com/bao/uploaded/i2/1997612543/TB2eAcgoXXXXXa0XpXXXXXXXXXX_!!1997612543.jpg)" alt="健身早餐介紹（燕麥片)" class="thumbnail-image"></span>
@@ -700,8 +561,8 @@ TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””�
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/LifeStyle/">LifeStyle</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/LifeStyle/stronger/">stronger</a></p>
-                            <p class="item-title"><a href="/2016/06/02/燕麦做法/" class="title">健身早餐介紹（燕麥片)</a></p>
-                            <p class="item-date"><time datetime="2016-06-01T16:00:00.000Z" itemprop="datePublished">2016-06-02</time></p>
+                            <p class="item-title"><a href="/2016/05/27/燕麦做法/" class="title">健身早餐介紹（燕麥片)</a></p>
+                            <p class="item-date"><time datetime="2016-05-26T16:00:00.000Z" itemprop="datePublished">2016-05-27</time></p>
                         </div>
                     </li>
                 
@@ -715,16 +576,6 @@ TextUtils类中的isEmpty(String)方法，判断字符串是否为null或””�
         <h3 class="widget-title">categories</h3>
         <div class="widget">
             <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/">LifeStyle</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/stronger/">stronger</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LifeStyle/travels/">travels</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/android/">android</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/nodejs/">nodejs</a><span class="category-list-count">4</span></li></ul></li></ul>
-        </div>
-    </div>
-
-
-            
-                
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title">archives</h3>
-        <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">19</span></li></ul>
         </div>
     </div>
 
