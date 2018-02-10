@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="如果你是90前，那明明就是你老了。如果你是九零后，那明明就是你嫂子">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          WPF那点事儿 -- 委托和事件 - Bigflower | 陈大帅
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite-url/2017/11/26/委托和事件/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/BeanTechSign-white.png');
+    }
+    
+</style>
+
+<header class="intro-header" >
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#WPF" title="WPF">WPF</a>
+                            
+                              <a class="tag" href="/tags/#Code" title="Code">Code</a>
+                            
+                        </div>
+                        <h1>WPF那点事儿 -- 委托和事件</h1>
+                        <h2 class="subheading">WPF基础。</h2>
+                        <span class="meta">
+                            Posted by Big Flower on
+                            2017-11-26
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Happy Wa🐕g Year</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>两者我总是傻傻分不清楚，具体每一个该怎么用？用到哪里？ 他俩有啥联系？</p>
+<h2><span id="委托">委托</span></h2>
+<p>年少的时候，总想着，函数可以传递参数，那能不能传递另一个方法进去呢？长大以后我才知道：</p>
+<p>Java有函数式接口；C++有函数指针；C#有委托。 这里就来说道说道委托（面向对象，类型安全）</p>
+<h2><span id="委托的基本用法">委托的基本用法</span></h2>
+<p>下面的代码，展示了两种委托的基本使用方法。类中定义了两个基本方法：加法(Plus)和减法(Subduction)，以及一个委托：计算(Calculate)。<br>
+当计算的参数和返回值 与 加法减法的参数和返回值 相同时，他们就可以胡来了。</p>
+<pre><code>class DelegateLearn
+{
+    // 委托
+    public delegate int Calculate(int a, int b);
+    
+    /// &lt;summary&gt;
+    /// 加法
+    /// &lt;/summary&gt;
+    public int Plus(int a, int b)
+    {
+        return a + b;
+    }
+    /// &lt;summary&gt;
+    /// 减法
+    /// &lt;/summary&gt;
+    public int Subduction(int a, int b)
+    {
+        return a - b;
+    }
+    
+    public DelegateLearn()
+    {
+        // 第一种方式
+        Way1();
+
+        // 第二种方式
+        Way2(Plus, 1, 2);
+        Way2(Subduction, 1, 2);
+    }
+    
+    public void Way1(){
+        // 将委托“指向” Plus函数，此时并未调用Plus函数
+        Calculate calculate = new Calculate(Plus); // 也可以这么写：Calculate calculate = Plus;
+        
+        // 当调用calculate时，就调用了Plus
+        int result = calculate(1, 2);
+        Console.WriteLine(&quot;Calculate Result: {0}&quot;, result);
+    }
+    
+    public void Way2(Calculate calculate, int a, int b)
+    {
+        Console.WriteLine(&quot;Calculate Result: {0}&quot;, calculate(a, b));
+    }
+}
+</code></pre>
+<p>第一种方式，我们可以把计算这个委托“指向”加法函数，那么执行计算的时候，等效于执行了加法</p>
+<pre><code>// 第一种方式
+public void Way1(){
+    // 将委托“指向” Plus函数，此时并未调用Plus函数
+    Calculate calculate = new Calculate(Plus);
+    
+    // 当调用calculate时，就调用了Plus
+    int result = calculate(1, 2);
+    Console.WriteLine(&quot;Calculate Result: {0}&quot;, result);
+}
+</code></pre>
+<p>第二种方式，把函数当作参数传递。我们的Way2其实就是个计算，至于你计算加法还是计算减法，你传什么函数我计算什么。</p>
+<pre><code>// 第二种方式
+Way2(Plus, 1, 2);
+Way2(Subduction, 1, 2);
+</code></pre>
+<p>如果不用委托，我们要怎么写呢？</p>
+<pre><code>public void Way2Origion(int calType, int a, int b)
+{
+    if(calType == 0) {
+        Plus(a, b);   
+    } else if(calType == 1) {
+        Subduction(a, b);    
+    }
+}
+</code></pre>
+<p>试想，如果再多更多的情况，不断的添加，会显得很臃肿。而使用了委托，直接这样：</p>
+<pre><code>public void Way2(Calculate calculate, int a, int b)
+{
+    Console.WriteLine(&quot;Calculate Result: {0}&quot;, calculate(a, b));
+}
+</code></pre>
+<p>有点像状态（工厂）模式啊。。。。。</p>
+<h3><span id="委托的具体应用">委托的具体应用</span></h3>
+<p>例如，我们调用了服务端的API进行网络请求，当服务端操作完成后，会返回给我们请求的结果。 但是具体服务端何时给我结果？我母鸡啊。我不能一直等着吧，那岂不是阻塞了。<br>
+这个时候不得不说，委托跟观察者模式有点像了。</p>
+<p>我们可以定义一个委托：</p>
+<pre><code>public delegate void ServerCallback(string responseData); //假设 服务端返回的数据为一个字符串
+</code></pre>
+<p>我们接到服务端响应后的代码处理如下：(类似于上文中的加法减法)</p>
+<pre><code>public void DoServerResponse(string responseData){
+    // 解析数据
+    ...
+    // 处理数据
+    ...
+}
+</code></pre>
+<p>然后创建这个委托的实例：（类似于Way1中的委托“指向”加法）</p>
+<pre><code>ServerCallback OnResponse = new ServerCallback(DoServerResponse);
+</code></pre>
+<p>然后，重点来了。我们把这个OnResponse传给服务器。  但凡服务器处理好后，就调用 OnResponse(serverData);</p>
+<p>此时，我们的DoServerResponse就执行了。</p>
+<p><strong>那么问题来了</strong> 有人就会问了，委托是用来跟服务器交互的吗？ 我。。。。 异步啊大兄弟，不同类之间交互啊啥的。</p>
+<h2><span id="事件">事件</span></h2>
+<p>事件Event，跟委托Delegate离不开，从定义事件就可以看得出。姑且理解为特殊的委托，使用起来有些约束。</p>
+<pre><code>public static event Action&lt;T&gt; xxxEvent(T t);        //声明事件
+</code></pre>
+<p>解析一下上面的代码：</p>
+<pre><code>- public 这个无需多说
+- static 可有可无（Button的Click事件就没有static）
+- event 说明这是一个事件
+- Action&lt;T&gt; 这其实是一个微软提供的委托，类似的有public delegate TResult Func&lt;out TResult&gt;(); 这两个委托很有用
+- xxxEvent 事件名称，自己随便取，后缀用不用Event无所谓
+</code></pre>
+<p>至于使用方法：</p>
+<pre><code>1. 触发类DoClass中声明事件
+2. 用户类中创建触发类 DoClass doClass = new ...
+3. 用户类（观察者）送一个函数过去：doClass.xxxEvent += 触发后要执行的函数
+4. 触发类直接调用：xxxEvent(t)，完成触 =&gt; 用户类执行【触发后要执行的函数】
+</code></pre>
+<p>对了，事件Event只能通过 += 和 -= 的方式来添加删除（避免了直接=的覆盖行为）</p>
+<h2><span id="委托与事件">委托与事件</span></h2>
+<ol>
+<li>委托和事件没有可比性，因为委托是类型，事件是对象</li>
+<li>其实事件是委托的一个修饰符，加了event（事件）修饰之后，委托就被阉割了，假设这个加了修饰符的事件称为事件1，通过事件1我们可以更好地控制注册和注销，也就是对于一个外部类，那么他只能“注册自己+=、注销自己-=”，例如上面的ClassA，如果我们事件的注册是在ClassA内部进行的，那么它就只能注册自己内部的方法到事件上。另外，外界也不能主动地触发一个事件。事件只能add、remove自己，不能赋值。也就是说事件只能+=、-=，不能= 。</li>
+</ol>
+<p>上述摘自 <a href="http://www.cnblogs.com/kissazi2/p/3189685.html" target="_blank" rel="noopener">http://www.cnblogs.com/kissazi2/p/3189685.html</a></p>
+<p>如果你觉得上面说的不够清晰，那再看看这篇文章 <a href="http://www.360doc.com/content/12/1001/18/10840728_239037938.shtml" target="_blank" rel="noopener">http://www.360doc.com/content/12/1001/18/10840728_239037938.shtml</a><br>
+这里面提到了，观察者应该仅仅是观察，而非主动出发被观察者的动作</p>
+<p>那么我是这样理解的：</p>
+<p>事件能做的事儿，委托都能做。但事件是委托的“加密版”，它保证了触发仅仅在Event所在类发生，外部没法完成触发。 更贴切“各司其职”</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/12/03/自定义布局/" data-toggle="tooltip" data-placement="top" title="WPF那点事儿 -- 自定义布局">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/08/29/29 异步图片加载/" data-toggle="tooltip" data-placement="top" title="异步图片加载">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">委托</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">委托的基本用法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">委托的具体应用</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">事件</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">委托与事件</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#WPF" title="WPF">WPF</a>
+                        
+                          <a class="tag" href="/tags/#Code" title="Code">Code</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://nodepie.com/" target="_blank">Qin Sun</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://yoursite-url/2017/11/26/委托和事件/";
+    var disqus_url = "http://yoursite-url/2017/11/26/委托和事件/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/1918577777">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/mBigFlower">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Big Flower 2018 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org">BeanTech</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite-url/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://yoursite-url/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

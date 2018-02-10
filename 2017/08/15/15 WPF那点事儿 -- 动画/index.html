@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          About - Bigflower | 陈大帅
+          WPF那点事儿 -- 动画 - Bigflower | 陈大帅
         
     </title>
 
-    <link rel="canonical" href="http://yoursite-url/about/">
+    <link rel="canonical" href="http://yoursite-url/2017/08/15/15 WPF那点事儿 -- 动画/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -69,8 +69,8 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/header_img/about-bg.jpg')
-            /*page*/
+            background-image: url('')
+            /*post*/
         
     }
     
@@ -87,10 +87,20 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
-                    <div class="site-heading">
-                        <h1>About</h1>
-                        <!--<hr class="small">-->
-                        <span class="subheading">Wish for the Best, Prepare for the Worst</span>
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#WPF" title="WPF">WPF</a>
+                            
+                              <a class="tag" href="/tags/#Code" title="Code">Code</a>
+                            
+                        </div>
+                        <h1>WPF那点事儿 -- 动画</h1>
+                        <h2 class="subheading">WPF基础。</h2>
+                        <span class="meta">
+                            Posted by Big Flower on
+                            2017-08-15
+                        </span>
                     </div>
                 
 
@@ -193,196 +203,203 @@
 
 
     <!-- Main Content -->
-    <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
+    <!-- Modify by Yu-Hsuan Yen -->
 
-<!-- USE SIDEBAR -->
-    <!-- Post Container -->
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <blockquote>
-<p>好春光，不如梦一场，梦里青草香</p>
-</blockquote>
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
+                <p>哇，真的是没有安卓用的爽。是因为需要一个不断学习的过程吗？</p>
+<h2><span id="动画">动画</span></h2>
+<h3><span id="动画基本属性">动画基本属性</span></h3>
+<ul>
+<li>Duration： 动画播放时间长度</li>
+<li>RepeatBehavior： 重复行为（重复次数）</li>
+<li>FillBehavior： 动画结束后的行为（保持动画的结束状态或恢复到初始状态）</li>
+<li>AutoReverse： 按相反的顺序重复播放动画</li>
+<li>SpeedRatio： 动画播放速率（用于加速或减速播放）</li>
+<li>BeginTime： 动画播放的起始时间</li>
+<li>EasingFunction： 动画的缓动函数（插值器）</li>
+</ul>
+<h3><span id="用法">用法：</span></h3>
+<ol>
+<li>新建一个动画</li>
+<li>对动画的属性进行设置</li>
+<li>需要动画的控件，开始执行动画</li>
+</ol>
+<p>下面以一个 <strong>图片逐渐透明</strong> 的动画为例：</p>
+<pre><code>// 新建动画
+DoubleAnimation alphaAnim = new DoubleAnimation();
+// 对动画的属性进行设置
+alphaAnim.Duration = TimeSpan.FromSeconds(2);
+alphaAnim.From = 1;
+alphaAnim.To = 0;
+alphaAnim.BeginTime = TimeSpan.FromSeconds(3); // 延时执行
+// 开始执行动画
+image.BeginAnimation(Image.OpacityProperty, alphaAnim);
+</code></pre>
+<h2><span id="tips">Tips</span></h2>
+<p>让ScrollViewer的方向变成横向</p>
+<pre><code> HorizontalScrollBarVisibility=&quot;Auto&quot; VerticalScrollBarVisibility=&quot;Disabled&quot;
+</code></pre>
+<hr>
+<p>Image方图片时，类似安卓的ScaleType，它的为 <strong>stretch</strong></p>
+<hr>
+<p>ListBox的选择模式有三个 ：SelectionMode=&quot;&quot;</p>
+<ul>
+<li>Single 单选</li>
+<li>Multiple：多选1 – 类似每个Item都成了CheckBox</li>
+<li>Extended：多选方法2 – windows系统的选择模式</li>
+</ul>
 
-                <!-- 如果开启评论功能 -->
                 
-                    <hr>
 
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
                     
+                        <li class="previous">
+                            <a href="/2017/08/17/16-17电子相册/" data-toggle="tooltip" data-placement="top" title="WPF那点事儿 -- 电子相册">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/08/14/14 WPF那点事儿 -- 命令、Binding/" data-toggle="tooltip" data-placement="top" title="WPF那点事儿 -- 命令 绑定">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
-                    
-                    <!-- disqus 评论框 start -->
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
                     <div class="comment">
                         <div id="disqus_thread" class="disqus-thread"></div>
                     </div>
-                    <!-- disqus 评论框 end -->
-                    
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
 
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">动画</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">动画基本属性</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">用法：</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Tips</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
 
-                    
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-                    
-                    <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-                    <script type="text/javascript">
-                        /* * * CONFIGURATION VARIABLES * * */
-                        var disqus_shortname = "your-disqus-ID";
-                        var disqus_identifier = "http://yoursite-url/about/index.html";
-                        var disqus_url = "http://yoursite-url/about/index.html";
-
-                        (function() {
-                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                        })();
-
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#WPF" title="WPF">WPF</a>
                         
-                    </script>
-                    <!-- disqus 公共JS代码 end -->
+                          <a class="tag" href="/tags/#Code" title="Code">Code</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
                     
+                        <li><a href="http://nodepie.com/" target="_blank">Qin Sun</a></li>
+                    
+                </ul>
                 
             </div>
-
-          <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Featured Tags -->
-
-<section>
-    <!-- no hr -->
-    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-    <div class="tags">
-        
-            
-        
-            
-        
-            
-        
-            
-            <a href="/tags/#WPF" title="WPF" rel="11">WPF</a>
-            
-        
-            
-            <a href="/tags/#Code" title="Code" rel="11">Code</a>
-            
-        
+        </div>
     </div>
-</section>
+</article>
 
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-    <h5><a href="/about/">ABOUT ME</a></h5>
-    <div class="short-about">
 
-        
-            <img id = "avatar_pic" src="/img/icon-me.png" />
-        
 
-        
-            <p>Hi, i&#39;m bigFlower</p>
-        
 
-        <!-- SNS Link -->
-        <ul class="list-inline">
-            
-            
-            
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://yoursite-url/2017/08/15/15 WPF那点事儿 -- 动画/";
+    var disqus_url = "http://yoursite-url/2017/08/15/15 WPF那点事儿 -- 动画/";
 
-            
-                <li>
-                    <a target="_blank" href="http://weibo.com/1918577777">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
 
-            
 
-            
-                <li>
-                    <a target="_blank"  href="https://github.com/mBigFlower">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
-            
-            
-            
-        </ul>
-    </div>
-</section>
-        <hr>
-    
-        
-  <h5>RECENT POSTS</h3>
-  <div class="widget">
-    <ul>
-      
-        <li>
-          <a href="/2017/12/03/自定义布局/">WPF那点事儿 -- 自定义布局</a>
-        </li>
-      
-        <li>
-          <a href="/2017/11/26/委托和事件/">WPF那点事儿 -- 委托和事件</a>
-        </li>
-      
-        <li>
-          <a href="/2017/08/29/29 异步图片加载/">异步图片加载</a>
-        </li>
-      
-        <li>
-          <a href="/2017/08/28/28 日常Tips/">日常打卡</a>
-        </li>
-      
-        <li>
-          <a href="/2017/08/25/25 MvvmDemoApp代码学习/">MvvmDemoApp代码学习.md</a>
-        </li>
-      
-    </ul>
-  </div>
 
-        <hr>
-    
-        <!-- Friends Blog -->
 
-<h5>FRIENDS</h5>
-<ul class="list-inline">
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 
-    
-        <li><a href="http://nodepie.com/" target="_blank">Qin Sun</a></li>
-    
-</ul>
-
-        <hr>
-    
-</div>
-
-        
-    </div>
-</div>
 
 
     <!-- Footer -->

@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          About - Bigflower | 陈大帅
+          异步图片加载 - Bigflower | 陈大帅
         
     </title>
 
-    <link rel="canonical" href="http://yoursite-url/about/">
+    <link rel="canonical" href="http://yoursite-url/2017/08/29/29 异步图片加载/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -69,8 +69,8 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/header_img/about-bg.jpg')
-            /*page*/
+            background-image: url('')
+            /*post*/
         
     }
     
@@ -87,10 +87,20 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
-                    <div class="site-heading">
-                        <h1>About</h1>
-                        <!--<hr class="small">-->
-                        <span class="subheading">Wish for the Best, Prepare for the Worst</span>
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#WPF" title="WPF">WPF</a>
+                            
+                              <a class="tag" href="/tags/#Code" title="Code">Code</a>
+                            
+                        </div>
+                        <h1>异步图片加载</h1>
+                        <h2 class="subheading">WPF基础。</h2>
+                        <span class="meta">
+                            Posted by Big Flower on
+                            2017-08-29
+                        </span>
                     </div>
                 
 
@@ -193,196 +203,231 @@
 
 
     <!-- Main Content -->
-    <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
+    <!-- Modify by Yu-Hsuan Yen -->
 
-<!-- USE SIDEBAR -->
-    <!-- Post Container -->
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <blockquote>
-<p>好春光，不如梦一场，梦里青草香</p>
-</blockquote>
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
+                <h3><span id="异步线程">异步线程</span></h3>
+<p>主流的有三种：</p>
+<ul>
+<li>Thread：新线程</li>
+<li>ThreadPool：线程池</li>
+<li>Task：ThreadPool的优化</li>
+</ul>
+<p>区别：</p>
+<p>Thread为单线程，每次创建都会新建一个线程，这势必会造成内存增加等影响；<br>
+ThreadPool线程池，顾名思义。里面由很多线程，避免了Thread的多次新建的影响。<br>
+Task为ThreadPool的升级版，解决了ThreadPool无优先级、不能灵活取消等问题</p>
+<p>具体的使用方法等，可以看下面两篇文章：</p>
+<ul>
+<li><a href="http://www.cnblogs.com/doforfuture/p/6293926.html" target="_blank" rel="noopener">C#中 Thread，Task，Async/Await，IAsyncResult 的那些事儿！</a></li>
+<li><a href="http://blog.csdn.net/djc11282/article/details/17524013" target="_blank" rel="noopener">使用Task代替ThreadPool和Thread</a></li>
+</ul>
+<h3><span id="异步线程与图片加载">异步线程与图片加载</span></h3>
+<p>首先来看下正常的图片加载：</p>
+<pre><code>Uri uri = new Uri(&quot;E:\\HyteraLearning\\project\\download\\imgLoadApp\\imgLoadApp\\1.jpg&quot;);//设置图片路径
 
-                <!-- 如果开启评论功能 -->
+BitmapImage bmp = new BitmapImage();
+bmp.BeginInit();//初始化
+bmp.UriSource = uri;
+bmp.EndInit();//结束初始化
+bmp.Freeze();
+
+myImage.Source = bmp;
+</code></pre>
+<p>与安卓相同，UI的操作肯定要在主线程。那么最后一步肯定是要出现在主线程的，异步代码如下：</p>
+<pre><code>public MainWindow()
+{
+    ...
+
+    Thread thread = new Thread(UpdateImage);
+    thread.Start();
+}
+
+private void UpdateImage()
+{
+    Uri uri = new Uri(&quot;E:\\HyteraLearning\\project\\download\\imgLoadApp\\imgLoadApp\\1.jpg&quot;);//设置图片路径
+
+    BitmapImage bmp = new BitmapImage();
+    bmp.BeginInit();//初始化
+    bmp.UriSource = uri;
+    bmp.EndInit();//结束初始化
+    bmp.Freeze();// Important !
+
+    this.Dispatcher.Invoke(new Action(() =&gt; {
+        myImage.Source = bmp;
+    }));
+}
+</code></pre>
+<p>可以看出，我们创建了一个Thread，并把刚刚的图片加载代码放到了Thread中，不同的是，调用了一个：</p>
+<pre><code>this.Dispatcher.Invoke(new Action(() =&gt; {
+    myImage.Source = bmp;
+}));
+</code></pre>
+<p>其目的是让图片加载的代码在主线程中执行。</p>
+<p>同时，这里面有一句代码很重要，不然bmp不能赋值到Source中：</p>
+<pre><code>bmp.Freeze();// 使当前对象变为不可修改并将其 System.Windows.Freezable.IsFrozen 属性设置为 true。
+</code></pre>
+<p>意思就是告诉主线程，这个bmp我不改了，以后给你用，拿走吧。这时候主线程才敢放心的使用。<br>
+就好比安卓中，有些参数要使用final属性，才能传递到“内部”。</p>
+<h4><span id="begininvoke-和-invoke">BeginInvoke 和 Invoke</span></h4>
+<p>感觉上BeginInvoke是异步，而Invoke是同步，实际上当内部执行了耗时的操作时，还是会出现假死的情况。</p>
+<h4><span id="异步-多线程">异步、多线程</span></h4>
+<p>“异步是DMA，通过回调来交互，操作复杂度较高”<br>
+“多线程是并发，操作简单，但各线程间的共享资源可能出现死锁”</p>
+<p>“在了解了线程与异步操作各自的优缺点之后，我们可以来探讨一下线程和异步的合理用途。我认为：当需要执行I/O操作时，使用异步操作比使用线程+同步I/O操作更合适。I/O操作不仅包括了直接的文件、网络的读写，还包括数据库操作、Web Service、<a href="http://xn--HttpRequest-ev0r722c.Net" target="_blank" rel="noopener">HttpRequest以及.Net</a> Remoting等跨进程的调用。</p>
+<p>而线程的适用范围则是那种需要长时间CPU运算的场合，例如耗时较长的图形处理和算法执行。但是往往由于使用线程编程的简单和符合习惯，所以很多朋友往往会使用线程来执行耗时较长的I/O操作。这样在只有少数几个并发操作的时候还无伤大雅，如果需要处理大量的并发操作时就不合适了。”</p>
+
                 
-                    <hr>
 
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
                     
+                        <li class="previous">
+                            <a href="/2017/11/26/委托和事件/" data-toggle="tooltip" data-placement="top" title="WPF那点事儿 -- 委托和事件">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/08/28/28 日常Tips/" data-toggle="tooltip" data-placement="top" title="日常打卡">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
-                    
-                    <!-- disqus 评论框 start -->
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
                     <div class="comment">
                         <div id="disqus_thread" class="disqus-thread"></div>
                     </div>
-                    <!-- disqus 评论框 end -->
-                    
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
 
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">异步线程</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">异步线程与图片加载</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">BeginInvoke 和 Invoke</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">异步、多线程</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
 
-                    
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-                    
-                    <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-                    <script type="text/javascript">
-                        /* * * CONFIGURATION VARIABLES * * */
-                        var disqus_shortname = "your-disqus-ID";
-                        var disqus_identifier = "http://yoursite-url/about/index.html";
-                        var disqus_url = "http://yoursite-url/about/index.html";
-
-                        (function() {
-                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                        })();
-
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#WPF" title="WPF">WPF</a>
                         
-                    </script>
-                    <!-- disqus 公共JS代码 end -->
+                          <a class="tag" href="/tags/#Code" title="Code">Code</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
                     
+                        <li><a href="http://nodepie.com/" target="_blank">Qin Sun</a></li>
+                    
+                </ul>
                 
             </div>
-
-          <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Featured Tags -->
-
-<section>
-    <!-- no hr -->
-    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-    <div class="tags">
-        
-            
-        
-            
-        
-            
-        
-            
-            <a href="/tags/#WPF" title="WPF" rel="11">WPF</a>
-            
-        
-            
-            <a href="/tags/#Code" title="Code" rel="11">Code</a>
-            
-        
+        </div>
     </div>
-</section>
+</article>
 
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-    <h5><a href="/about/">ABOUT ME</a></h5>
-    <div class="short-about">
 
-        
-            <img id = "avatar_pic" src="/img/icon-me.png" />
-        
 
-        
-            <p>Hi, i&#39;m bigFlower</p>
-        
 
-        <!-- SNS Link -->
-        <ul class="list-inline">
-            
-            
-            
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://yoursite-url/2017/08/29/29 异步图片加载/";
+    var disqus_url = "http://yoursite-url/2017/08/29/29 异步图片加载/";
 
-            
-                <li>
-                    <a target="_blank" href="http://weibo.com/1918577777">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
 
-            
 
-            
-                <li>
-                    <a target="_blank"  href="https://github.com/mBigFlower">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
-            
-            
-            
-        </ul>
-    </div>
-</section>
-        <hr>
-    
-        
-  <h5>RECENT POSTS</h3>
-  <div class="widget">
-    <ul>
-      
-        <li>
-          <a href="/2017/12/03/自定义布局/">WPF那点事儿 -- 自定义布局</a>
-        </li>
-      
-        <li>
-          <a href="/2017/11/26/委托和事件/">WPF那点事儿 -- 委托和事件</a>
-        </li>
-      
-        <li>
-          <a href="/2017/08/29/29 异步图片加载/">异步图片加载</a>
-        </li>
-      
-        <li>
-          <a href="/2017/08/28/28 日常Tips/">日常打卡</a>
-        </li>
-      
-        <li>
-          <a href="/2017/08/25/25 MvvmDemoApp代码学习/">MvvmDemoApp代码学习.md</a>
-        </li>
-      
-    </ul>
-  </div>
 
-        <hr>
-    
-        <!-- Friends Blog -->
 
-<h5>FRIENDS</h5>
-<ul class="list-inline">
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
 
-    
-        <li><a href="http://nodepie.com/" target="_blank">Qin Sun</a></li>
-    
-</ul>
-
-        <hr>
-    
-</div>
-
-        
-    </div>
-</div>
 
 
     <!-- Footer -->
