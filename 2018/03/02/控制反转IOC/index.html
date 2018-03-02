@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          WPF那点事儿 -- 自定义布局 - Bigflower | 陈大帅
+          控制反转IOC - Bigflower | 陈大帅
         
     </title>
 
-    <link rel="canonical" href="http://yoursite-url/2017/12/03/自定义布局/">
+    <link rel="canonical" href="http://yoursite-url/2018/03/02/控制反转IOC/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -95,11 +95,11 @@
                               <a class="tag" href="/tags/#Code" title="Code">Code</a>
                             
                         </div>
-                        <h1>WPF那点事儿 -- 自定义布局</h1>
-                        <h2 class="subheading">WPF基础。</h2>
+                        <h1>控制反转IOC</h1>
+                        <h2 class="subheading">WPF进阶</h2>
                         <span class="meta">
                             Posted by Big Flower on
-                            2017-12-03
+                            2018-03-02
                         </span>
                     </div>
                 
@@ -216,8 +216,19 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>还在学习中，先贴一个感觉挺好的文章：</p>
-<p><a href="http://blog.csdn.net/qianshen88/article/details/16982177" target="_blank" rel="noopener">http://blog.csdn.net/qianshen88/article/details/16982177</a></p>
+                <h1><span id="ioc">IOC</span></h1>
+<p>后续理解均来自   <a href="http://www.cnblogs.com/xdp-gacl/p/4249939.html" target="_blank" rel="noopener">谈谈对Spring IOC的理解</a>，  这篇文章，<strong>至少读三遍！！！读三遍！！三遍！</strong></p>
+<h3><span id="什么是ioc">什么是IOC</span></h3>
+<p>IOC：控制反转。</p>
+<p>传统的方法，都是在主类中去创建对象；给对象添加数据，注入依赖等。而通过IOC，为其中添加了IOC容器，作为主类和对象之间的桥梁。类似MVP中的P层，将Modle和View中加添加了一个中间件。</p>
+<p>（PS：是不是只要加了中间件就便于解耦？）</p>
+<h3><span id="ioc的作用">IOC的作用</span></h3>
+<p>“它不是一种技术，而是一种思想”</p>
+<p>解耦、易于测试</p>
+<h3><span id="举例">举例</span></h3>
+<p>在WPF使用MVVM组建代码时，通常会在View.cs里创建ViewModel.cs</p>
+<p>最近简单了解使用了一下MvvmLight框架，通过Nuget载入这个框架时，会自动生成一个ViewModelLocator.cs</p>
+<p>这个类中使用的 ServiceLocator 和 SimpleIoc就起到了控制反转的作用。</p>
 
                 
 
@@ -225,13 +236,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/03/02/控制反转IOC/" data-toggle="tooltip" data-placement="top" title="控制反转IOC">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/11/26/委托和事件/" data-toggle="tooltip" data-placement="top" title="WPF那点事儿 -- 委托和事件">Next Post &rarr;</a>
+                            <a href="/2017/12/03/自定义布局/" data-toggle="tooltip" data-placement="top" title="WPF那点事儿 -- 自定义布局">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -261,7 +268,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="nav">none</ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">IOC</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">什么是IOC</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text">IOC的作用</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.0.3.</span> <span class="toc-nav-text">举例</span></a></li></ol></li></ol></li></ol>
         
         </div>
       </aside>
@@ -312,8 +319,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "your-disqus-ID";
-    var disqus_identifier = "http://yoursite-url/2017/12/03/自定义布局/";
-    var disqus_url = "http://yoursite-url/2017/12/03/自定义布局/";
+    var disqus_identifier = "http://yoursite-url/2018/03/02/控制反转IOC/";
+    var disqus_url = "http://yoursite-url/2018/03/02/控制反转IOC/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
