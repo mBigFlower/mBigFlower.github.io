@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          仿安全管家小火箭效果（悬浮窗） - Bigflower | 陈大帅
+          悬浮窗(仿管家小火箭) - Bigflower | 陈大帅
         
     </title>
 
-    <link rel="canonical" href="http://yoursite-url/2018/03/08/悬浮窗效果/">
+    <link rel="canonical" href="http://yoursite-url/2018/03/08/SuspensionWindow/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -69,7 +69,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('')
+            background-image: url('http://image.wufazhuce.com/FjwIMLhJ-YnYcq4dzb-jCU4DXEyG')
             /*post*/
         
     }
@@ -95,7 +95,7 @@
                               <a class="tag" href="/tags/#Code" title="Code">Code</a>
                             
                         </div>
-                        <h1>仿安全管家小火箭效果（悬浮窗）</h1>
+                        <h1>悬浮窗(仿管家小火箭)</h1>
                         <h2 class="subheading">WPF进阶</h2>
                         <span class="meta">
                             Posted by Big Flower on
@@ -216,17 +216,15 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>先来个小推荐，一款666的软件名叫 Listary，Windows上集成了一系列好用便捷的操作，优势大家能百度到，也可以到官网去看看。<br>
-<a href="http://www.listary.com/" target="_blank" rel="noopener">http://www.listary.com/</a>，还有一点，Made In China</p>
-<h2><span id="效果图">效果图</span></h2>
+                <h2><span id="效果图">效果图</span></h2>
 <p>先上效果图，就是这么简单粗暴。</p>
-<pre><code>此处却缺一张图
-</code></pre>
-<p>源码在最后。</p>
+<p><img src="Rocket.gif" alt="Rocket"></p>
+<p>另外，还有个以悬浮窗为基础，做的表单填写。其中包括了打开文件夹、写数据等小操作。</p>
+<p><img src="TDtool.gif" alt="TDtool"></p>
 <h2><span id="实现点">实现点</span></h2>
 <ol>
 <li>隐身术（在Windows底部工具栏、在Alt+Tab时、在任务管理器 统统看不到该应用）</li>
-<li>舞蹈家（额，这个是来凑数的）</li>
+<li>动画（额，这个是来凑数的）</li>
 </ol>
 <h3><span id="隐身术">隐身术</span></h3>
 <h5><span id="先来看看布局">先来看看布局</span></h5>
@@ -276,18 +274,18 @@
     WindowHelper.Window_Loaded(wndHelper);
 }
 </code></pre>
-<p>第二步，调整窗口的位置（56是“小火箭”的宽度）</p>
+<p>第二步，调整窗口的位置</p>
 <pre><code>void FloatWindow_Location()
 {
-    this.Left = SystemParameters.PrimaryScreenWidth - 56;
-    this.Top = SystemParameters.PrimaryScreenHeight - 300;
+    this.Left = SystemParameters.PrimaryScreenWidth - 56; // 56是“小火箭”的宽度
+    this.Top = SystemParameters.PrimaryScreenHeight - 300; 
     // 动画，藏在右边
     AnimToRightEdgeHidden();
 }
 </code></pre>
-<h5><span id="动画部分">动画部分</span></h5>
+<h3><span id="动画部分">动画部分</span></h3>
 <p>其实这个很简单，直接上代码吧。</p>
-<pre><code>// 通过WindowLeft值的改变，达到移动的目的
+<pre><code>// 通过Window.Left的值的改变，达到移动的目的
 private void AnimToRightEdgeHidden()
 {
     if (IsMouseEnter || RootWindow.Left == Hidden_Location_For_Left)
@@ -307,8 +305,13 @@ private void AnimToRightEdgeHidden()
 这点主要是用到：全局快捷键（例如大家都知道QQ的Ctrl+Alt+A是截屏）<br>
 网上能搜到，但是我比较喜欢这个功能，所以自己想研究下，再出个小demo</p>
 <h2><span id="源码">源码</span></h2>
-<p>源码里有两部分哈，一个是文中的“小火箭”，一个是以悬浮窗为基础，做的表单填写。其中包括了打开文件夹、写数据等小操作。</p>
 <p><a href="http://7xjizl.com1.z0.glb.clouddn.com/TDTool.rar" target="_blank" rel="noopener">代码下载</a></p>
+<h2><span id="工具推荐">工具推荐</span></h2>
+<p>一款666的软件名叫Listary，Windows上集成了一系列好用便捷的操作，优势大家能百度到，也可以到官网去看看。<br>
+<a href="http://www.listary.com/" target="_blank" rel="noopener">http://www.listary.com/</a></p>
+<p>还有一点，Made In China</p>
+<hr>
+<p>关于顶部插图，出自 <a href="http://wufazhuce.com/one/2004" target="_blank" rel="noopener">一个</a>，如果侵权请邮件我。</p>
 
                 
 
@@ -348,7 +351,7 @@ private void AnimToRightEdgeHidden()
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">效果图</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">实现点</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">隐身术</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.0.1.</span> <span class="toc-nav-text">先来看看布局</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.0.2.</span> <span class="toc-nav-text">再来看看代码逻辑</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.0.3.</span> <span class="toc-nav-text">动画部分</span></a></li></ol></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">进阶</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">源码</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">效果图</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">实现点</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">隐身术</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.0.1.</span> <span class="toc-nav-text">先来看看布局</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.0.2.</span> <span class="toc-nav-text">再来看看代码逻辑</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">动画部分</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">进阶</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">源码</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">工具推荐</span></a></li></ol>
         
         </div>
       </aside>
@@ -399,8 +402,8 @@ private void AnimToRightEdgeHidden()
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "your-disqus-ID";
-    var disqus_identifier = "http://yoursite-url/2018/03/08/悬浮窗效果/";
-    var disqus_url = "http://yoursite-url/2018/03/08/悬浮窗效果/";
+    var disqus_identifier = "http://yoursite-url/2018/03/08/SuspensionWindow/";
+    var disqus_url = "http://yoursite-url/2018/03/08/SuspensionWindow/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -7,8 +7,16 @@
     </url>
 
     <url>
-        <loc>http://yoursite-url/2018/03/08/%E6%82%AC%E6%B5%AE%E7%AA%97%E6%95%88%E6%9E%9C/</loc>
-        <lastmod>2018-03-08T12:21:24.991Z</lastmod>
+        <loc>http://yoursite-url/2018/03/08/SuspensionWindow/</loc>
+        <lastmod>2018-03-09T11:33:03.460Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite-url/2017/03/18/hexo-theme-beantech/</loc>
+        <lastmod>2018-03-09T11:30:03.514Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -113,14 +121,6 @@
     <url>
         <loc>http://yoursite-url/2017/08/07/07%20WPF%E9%82%A3%E7%82%B9%E4%BA%8B%E5%84%BF%20%20--%20%E5%B8%83%E5%B1%80%E4%B8%8E%E6%8E%A7%E4%BB%B6/</loc>
         <lastmod>2018-02-10T05:56:50.064Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite-url/2017/03/18/hexo-theme-beantech/</loc>
-        <lastmod>2017-09-24T04:40:20.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
