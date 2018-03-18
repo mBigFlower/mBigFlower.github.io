@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          控制反转IOC - Bigflower | 陈大帅
+          Materail Design Sample - Bigflower | 陈大帅
         
     </title>
 
-    <link rel="canonical" href="http://yoursite-url/2018/03/02/控制反转IOC/">
+    <link rel="canonical" href="http://yoursite-url/2018/03/18/MaterialDesignSample/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -69,7 +69,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('')
+            background-image: url('http://image.wufazhuce.com/FjwIMLhJ-YnYcq4dzb-jCU4DXEyG')
             /*post*/
         
     }
@@ -95,11 +95,11 @@
                               <a class="tag" href="/tags/#Code" title="Code">Code</a>
                             
                         </div>
-                        <h1>控制反转IOC</h1>
+                        <h1>Materail Design Sample</h1>
                         <h2 class="subheading">WPF进阶</h2>
                         <span class="meta">
                             Posted by Big Flower on
-                            2018-03-02
+                            2018-03-18
                         </span>
                     </div>
                 
@@ -216,19 +216,31 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1><span id="ioc">IOC</span></h1>
-<p>后续理解均来自   <a href="http://www.cnblogs.com/xdp-gacl/p/4249939.html" target="_blank" rel="noopener">谈谈对Spring IOC的理解</a>，  这篇文章，<strong>至少读三遍！！！读三遍！！三遍！</strong></p>
-<h3><span id="什么是ioc">什么是IOC</span></h3>
-<p>IOC：控制反转。</p>
-<p>传统的方法，都是在主类中去创建对象；给对象添加数据，注入依赖等。而通过IOC，为其中添加了IOC容器，作为主类和对象之间的桥梁。类似MVP中的P层，将Modle和View中加添加了一个中间件。</p>
-<p>（PS：是不是只要加了中间件就便于解耦？）</p>
-<h3><span id="ioc的作用">IOC的作用</span></h3>
-<p>“它不是一种技术，而是一种思想”</p>
-<p>解耦、易于测试</p>
-<h3><span id="举例">举例</span></h3>
-<p>在WPF使用MVVM组建代码时，通常会在View.cs里创建ViewModel.cs</p>
-<p>最近简单了解使用了一下MvvmLight框架，通过Nuget载入这个框架时，会自动生成一个ViewModelLocator.cs</p>
-<p>这个类中使用的 ServiceLocator 和 SimpleIoc就起到了控制反转的作用。</p>
+                <h2><span id="序">序</span></h2>
+<p>年轻的时候玩安卓，那时候就特别喜欢Material Design风格。<br>
+现如今虽然搞起了WPF，但仍是念念不忘，故有此回响</p>
+<h2><span id="应用贴图">应用贴图</span></h2>
+<p>我希望来看这篇文章是始于颜值，而更希望是终于技术。</p>
+<p><img src="mdsample_main.png" alt="主界面"></p>
+<h2><span id="技术路线">技术路线</span></h2>
+<p>并没有太多花哨的操作，更多的是想通过这个工程，展示MaterialDesignInXaml Toolkit是怎么用的。虽然官网以及Demo都有例子，但我觉得还是不够友好。</p>
+<ol>
+<li><a href="https://github.com/ButchersBoy/MaterialDesignInXamlToolkit" target="_blank" rel="noopener">MaterialDesign In Xaml Toolkit</a></li>
+<li>MvvmLight – Mvvm框架</li>
+<li>Newonsoft.Json – Json序列化</li>
+</ol>
+<h2><span id="心路历程">心路历程</span></h2>
+<p>官方的Demo或许更侧重于各个小样式的使用，但我这里则倾向于一个应用。<br>
+其中涉及到Mvvm的部分，我也用的不是很熟练，都是摸索着来的，比如Viewmodel间的通信，我使用的是MvvmLight的Message广播。再比如IOC那块，我一直没领悟到精髓。</p>
+<p><strong>代码过阵子会传到Github，敬请期待</strong></p>
+<h2><span id="最佳遗言家">最佳遗言家</span></h2>
+<ul>
+<li>因为个人的执念，后面我还会出一个与之对应的测试部分</li>
+<li>当然还有服务器，如果只是UI的展示，未免有些乏味</li>
+<li>再往后，或许还有Web端</li>
+</ul>
+<hr>
+<p>关于顶部插图，出自 <a href="http://wufazhuce.com/one/2004" target="_blank" rel="noopener">一个</a>，如果侵权请邮件我。</p>
 
                 
 
@@ -236,13 +248,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/03/08/SuspensionWindow/" data-toggle="tooltip" data-placement="top" title="WPF悬浮窗(仿管家小火箭)">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2017/12/03/自定义布局/" data-toggle="tooltip" data-placement="top" title="WPF那点事儿 -- 自定义布局">Next Post &rarr;</a>
+                            <a href="/2018/03/08/SuspensionWindow/" data-toggle="tooltip" data-placement="top" title="WPF悬浮窗(仿管家小火箭)">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -272,7 +280,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">IOC</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">什么是IOC</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text">IOC的作用</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.0.3.</span> <span class="toc-nav-text">举例</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">序</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">应用贴图</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">技术路线</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">心路历程</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">最佳遗言家</span></a></li></ol>
         
         </div>
       </aside>
@@ -323,8 +331,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "your-disqus-ID";
-    var disqus_identifier = "http://yoursite-url/2018/03/02/控制反转IOC/";
-    var disqus_url = "http://yoursite-url/2018/03/02/控制反转IOC/";
+    var disqus_identifier = "http://yoursite-url/2018/03/18/MaterialDesignSample/";
+    var disqus_url = "http://yoursite-url/2018/03/18/MaterialDesignSample/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

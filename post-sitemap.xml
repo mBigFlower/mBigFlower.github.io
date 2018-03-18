@@ -7,8 +7,16 @@
     </url>
 
     <url>
+        <loc>http://yoursite-url/2018/03/18/MaterialDesignSample/</loc>
+        <lastmod>2018-03-18T09:40:31.579Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite-url/2018/03/08/SuspensionWindow/</loc>
-        <lastmod>2018-03-09T11:33:03.460Z</lastmod>
+        <lastmod>2018-03-11T07:27:52.484Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
